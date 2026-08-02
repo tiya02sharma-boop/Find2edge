@@ -1,6 +1,6 @@
 ## About
 
-**Fin2edge — Wealth, Refined** is a single-page, story-driven financial literacy site built for young women exploring personal finance for the first time.
+**Fin2edge is a single-page, story-driven financial literacy site built for young women exploring personal finance for the first time.
 
 It combines:
 - 🏦 **A live 3D bank scene** (Three.js) — an animated banker guides you through the space
