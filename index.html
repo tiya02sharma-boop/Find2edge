@@ -1,0 +1,215 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" /><title>Fin2edge — Wealth, Refined</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet"><script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script><link rel="stylesheet" href="styles.css"></head><body><nav id="site-nav">
+  <div class="brand" data-scrollto="hero">Fin2<em>edge</em></div>
+  <ul class="nav-links">
+    <li><a href="#literacy">Financial Literacy</a></li>
+    <li><a href="#exchange">Exchange</a></li>
+    <li><a href="#guide-section">Your Guide</a></li>
+  </ul>
+  <button class="btn btn-gold nav-cta" id="navEnterBank">Enter the Bank</button>
+  <button id="navToggle" aria-label="Menu">☰</button></nav><!-- ============ HERO ============ --><section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-veil"></div>
+  <div class="hero-content">
+    <span class="eyebrow">A private finance house, reimagined for every woman</span>
+    <h1 class="hero-title">Wealth,<br><em>Refined.</em></h1>
+    <p class="hero-sub">Where old-world discretion meets a new generation of investors — learn the language of money, then put it to work.</p>
+    <div class="hero-ctas">
+      <button class="btn btn-gold" id="heroEnterBank">Step Into the Bank</button>
+      <a href="#exchange" class="btn">The Exchange</a>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Scroll to explore</span><span class="line"></span></div></section><!-- ============ MARQUEE ============ --><div class="marquee-strip">
+  <div class="marquee-track">
+    <span><span>Discretion</span><span>Literacy</span><span>Growth</span><span>Legacy</span><span>Discipline</span><span>Discretion</span><span>Literacy</span><span>Growth</span><span>Legacy</span><span>Discipline</span></span>
+    <span><span>Discretion</span><span>Literacy</span><span>Growth</span><span>Legacy</span><span>Discipline</span><span>Discretion</span><span>Literacy</span><span>Growth</span><span>Legacy</span><span>Discipline</span></span>
+  </div></div><!-- ============ 3D MODEL ============ --><section id="model-section">
+  <div id="model-sticky">
+    <div id="three-canvas-wrap"></div>
+    <div class="model-copy reveal-3d">
+      <span class="eyebrow">The instruments of capital</span>
+      <h2>A market <em>sculpted</em> in real time.</h2>
+      <p>Every bar, coin and candle on this floor moves the way markets do — never still, never careless. Scroll to turn the monument and see wealth from every side.</p>
+    </div>
+    <div class="model-floor-note">Scroll to rotate the monument</div>
+  </div></section><!-- ============ GUIDE BLOOM ============ --><section id="guide-section">
+  <div class="guide-bloom-bg"></div>
+  <div class="container guide-wrap">
+    <div class="guide-portrait" id="guidePortrait">
+      <div class="guide-portrait-inner" id="guidePortraitInner">
+        <img id="guidePortraitImg" src="" alt="Saashya, your guide" />
+      </div>
+      <div class="guide-portrait-glow"></div>
+    </div>
+    <div class="guide-textblock" id="guideText">
+      <span class="eyebrow">Meet your guide</span>
+      <h2>Saashya keeps <em>every desk</em> honest.</h2>
+      <div class="guide-speech">"Namaste — I'm Saashya. Fifteen years on trading floors taught me that the biggest risk isn't the market. It's not knowing what a form is asking you to sign. Let's fix that, one scheme, one trade at a time."</div>
+      <div class="guide-ctas">
+        <a href="#literacy" class="btn btn-gold">Learn the schemes with Saashya</a>
+        <a href="#exchange" class="btn">Try the Exchange</a>
+      </div>
+    </div>
+  </div></section><!-- ============ FINANCIAL LITERACY ============ --><section id="literacy" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Financial Literacy</span>
+      <h2>Everything <em>no one</em> sat you down and explained.</h2>
+      <p>Government schemes, bank products, and the vocabulary of money — in plain language, with Saashya walking you through the actual counter conversation.</p>
+    </div>
+    <div class="tab-row">
+      <button class="tab-btn active" data-tab="save">Save & Invest</button>
+      <button class="tab-btn" data-tab="loan">Loans</button>
+      <button class="tab-btn" data-tab="women">Made for Women</button>
+      <button class="tab-btn" data-tab="insurance">Insurance & Govt</button>
+      <button class="tab-btn" data-tab="glossary">Glossary</button>
+    </div>
+    <div class="tab-panel active" id="panel-save">
+      <div class="scheme-grid" id="grid-save"></div>
+    </div>
+    <div class="tab-panel" id="panel-loan">
+      <div class="scheme-grid" id="grid-loan"></div>
+    </div>
+    <div class="tab-panel" id="panel-women">
+      <div class="scheme-grid" id="grid-women"></div>
+    </div>
+    <div class="tab-panel" id="panel-insurance">
+      <div class="scheme-grid" id="grid-insurance"></div>
+    </div>
+    <div class="tab-panel" id="panel-glossary">
+      <div class="glossary-search"><input type="text" id="glossarySearch" placeholder="Search a term — e.g. equity, NFT, hedge fund…" /></div>
+      <div class="glossary-grid" id="glossaryGrid"></div>
+    </div>
+  </div></section><!-- ============ EXCHANGE ============ --><section id="exchange" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The Exchange</span>
+      <h2>Trade with <em>play money</em>, learn with real stakes.</h2>
+      <p>You start with ₹1,00,000 in simulated capital. Prices move like a real, restless market. Run it into the ground, and Saashya will quiz you back to solvency.</p>
+    </div>
+    <p class="exchange-disclaimer">All prices, tickers and companies below are simulated for learning purposes only — nothing here is real market data or investment advice.</p>
+    <div class="academy-banner" id="academyBanner">
+      <div>
+        <div class="eyebrow" style="margin-bottom:8px;">New to trading?</div>
+        <h3>Let Saashya walk you through the rules first.</h3>
+        <p style="color:var(--cream-dim);font-size:16px;margin-top:6px;">Orders, tickers, and risk — in seven short steps, before you touch real decisions.</p>
+      </div>
+      <button class="btn btn-gold" id="startAcademyBtn">Start Trading Academy</button>
+    </div>
+    <div class="exchange-grid">
+      <div class="asset-panel" id="assetPanel"></div>
+      <div class="portfolio-panel">
+        <div class="pf-block">
+          <div class="pf-label">Cash on hand</div>
+          <div class="pf-value" id="pfCash">₹0</div>
+        </div>
+        <div class="pf-block">
+          <div class="pf-label">Total net worth</div>
+          <div class="pf-value" id="pfNetworth" style="color:var(--emerald-soft);">₹0</div>
+          <div class="pf-sub" id="pfPnl">—</div>
+        </div>
+        <div class="pf-block">
+          <div class="pf-label">Holdings</div>
+          <div class="pf-holdings" id="pfHoldings"></div>
+        </div>
+        <div class="pf-block">
+          <div class="pf-label">Activity</div>
+          <div class="pf-log" id="pfLog"></div>
+        </div>
+        <button class="btn btn-block" id="quizBoostBtn">Take a quiz for bonus capital</button>
+      </div>
+    </div>
+  </div></section><footer>
+  <span class="brand">Fin2<em>edge</em></span>
+  <p>A learning simulation for private finance education. No real money, trades, or advice are involved.</p>
+  <p>© Fin2edge — Wealth, Refined.</p></footer><!-- ============ FLOATING GUIDE — persistent cinematic companion ============ --><div id="guideStage">
+  <div id="guideCallout">
+    <div class="gc-tag"><span class="gc-dot"></span>Saashya says</div>
+    <p id="gpMessage">Tap any card in Financial Literacy and I'll walk you through it like we're standing at the counter together.</p>
+    <div class="gc-links">
+      <a href="#literacy">Go to Financial Literacy</a>
+      <a href="#exchange">Go to the Exchange</a>
+    </div>
+  </div>
+  <div id="guideFloatWrap" aria-label="Saashya, your guide — tap for a tip">
+    <div class="guide-aura"></div>
+    <div class="guide-embers"><span class="ember"></span><span class="ember"></span><span class="ember"></span><span class="ember"></span></div>
+    <img id="guideFloatImg" src="" alt="Saashya" />
+  </div></div><!-- ============ 3D BANK HALL MODAL ============ --><div class="modal-overlay bank-overlay" id="bankModal">
+  <div class="bank-stage">
+    <button class="modal-close bank-close" data-close="bankModal">×</button>
+    <div id="bankCanvasWrap"></div>
+    <div class="bank-vignette"></div>
+    <div class="bank-hud" id="bankHud">
+      <div class="bank-hud-top">
+        <span class="risk-tag" id="bankRisk">Choose a topic</span>
+        <h3 id="bankTitle">The Counter</h3>
+      </div>
+      <div class="sim-dots" id="bankDots"></div>
+      <div class="sim-bubble bank-bubble">
+        <span class="step-tag" id="bankStepTag">Saashya, your banker</span>
+        <p id="bankStepText">Welcome in. What would you like to understand today?</p>
+      </div>
+      <div id="bankPicker" class="bank-picker"></div>
+      <div class="sim-nav" id="bankNavRow" style="display:none;">
+        <button class="btn" id="bankBack">Back</button>
+        <button class="btn btn-gold" id="bankNext">Next</button>
+      </div>
+    </div>
+  </div></div><!-- ============ TRADE MODAL ============ --><div class="modal-overlay" id="tradeModal">
+  <div class="modal-box">
+    <button class="modal-close" data-close="tradeModal">×</button>
+    <div class="sim-head">
+      <span class="risk-tag" id="tradeAssetType">Stock</span>
+      <h3 id="tradeAssetName">Asset</h3>
+    </div>
+    <div class="trade-body">
+      <div class="trade-toggle">
+        <button class="active" id="toggleBuy">Buy</button>
+        <button id="toggleSell">Sell</button>
+      </div>
+      <div class="trade-row"><span class="lbl">Current price</span><span class="val" id="tradePrice">₹0</span></div>
+      <div class="trade-row"><span class="lbl" id="tradeAvailLbl">Cash available</span><span class="val" id="tradeAvail">₹0</span></div>
+      <div class="qty-controls">
+        <button id="qtyMinus">−</button>
+        <div class="qty-num" id="qtyNum">1</div>
+        <button id="qtyPlus">+</button>
+      </div>
+      <div class="trade-total"><div class="pf-label">Total</div><div class="amt" id="tradeTotal">₹0</div></div>
+      <div class="trade-error" id="tradeError"></div>
+      <button class="btn btn-gold btn-block" id="tradeConfirm">Confirm Buy</button>
+    </div>
+  </div></div><!-- ============ TRADING ACADEMY MODAL ============ --><div class="modal-overlay" id="academyModal">
+  <div class="modal-box">
+    <button class="modal-close" data-close="academyModal">×</button>
+    <div class="sim-head">
+      <span class="risk-tag">Trading Academy</span>
+      <h3>Before you trade</h3>
+    </div>
+    <div class="sim-dots" id="academyDots"></div>
+    <div class="sim-counter">
+      <div class="sim-avatar" id="academyAvatarSlot"></div>
+      <div class="sim-bubble">
+        <span class="step-tag" id="academyStepTag">Step 1</span>
+        <p id="academyStepText">…</p>
+      </div>
+    </div>
+    <div class="academy-demo" id="academyDemo"></div>
+    <div class="sim-nav">
+      <button class="btn" id="academyBack">Back</button>
+      <button class="btn btn-gold" id="academyNext">Next</button>
+    </div>
+  </div></div><!-- ============ QUIZ MODAL ============ --><div class="modal-overlay" id="quizModal">
+  <div class="modal-box">
+    <button class="modal-close" id="quizCloseBtn" data-close="quizModal">×</button>
+    <div class="sim-head">
+      <span class="risk-tag" id="quizTag">Recovery Quiz</span>
+      <h3>Saashya has a question for you</h3>
+    </div>
+    <div class="quiz-body">
+      <div class="quiz-alert" id="quizAlert"></div>
+      <div class="quiz-streak" id="quizStreak"></div>
+      <div class="quiz-q" id="quizQ"></div>
+      <div class="quiz-options" id="quizOptions"></div>
+      <div class="quiz-feedback" id="quizFeedback"></div>
+    </div>
+  </div></div><div class="toast" id="toast"></div><script src="script.js"></script></body></html>
