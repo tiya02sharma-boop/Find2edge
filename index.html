@@ -134,7 +134,22 @@
     <div class="guide-aura"></div>
     <div class="guide-embers"><span class="ember"></span><span class="ember"></span><span class="ember"></span><span class="ember"></span></div>
     <img id="guideFloatImg" src="" alt="Saashya" />
-  </div></div><!-- ============ 3D BANK HALL MODAL ============ --><div class="modal-overlay bank-overlay" id="bankModal">
+  </div></div><!-- ============ AI ASSISTANT — Gemini-powered chat, bottom-left ============ --><div id="aiStage">
+  <div id="aiChatPanel">
+    <div class="ai-chat-head">
+      <span class="ai-chat-title">Ask the Fin2edge Assistant</span>
+      <button id="aiChatClose" aria-label="Close assistant">×</button>
+    </div>
+    <div id="aiChatMessages" class="ai-chat-messages"></div>
+    <div class="ai-chat-input-row">
+      <input type="text" id="aiChatInput" placeholder="Ask about a scheme, term, or trade…" />
+      <button id="aiChatSend" aria-label="Send">➤</button>
+    </div>
+  </div>
+  <button id="aiToggleBtn" aria-label="Open AI assistant">
+    <span id="aiToggleIcon">✦</span>
+  </button>
+</div><!-- ============ 3D BANK HALL MODAL ============ --><div class="modal-overlay bank-overlay" id="bankModal">
   <div class="bank-stage">
     <button class="modal-close bank-close" data-close="bankModal">×</button>
     <div id="bankCanvasWrap"></div>
