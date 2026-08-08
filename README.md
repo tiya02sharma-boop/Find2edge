@@ -4,7 +4,7 @@ An immersive financial literacy web app featuring **Saashya**, an AI mentor who 
 
 
 ## Features
-- **Saashya AI Guide** — voice-enabled mentor (TTS/STT) powered by Gemini
+- **Saashya AI Guide** —   AI mentor (TTS/STT) powered by Gemini
 - **Bank Simulator** — budgeting, risk profiling, monthly progression
 - **SIP Learning Engine** — step-by-step lessons on SIPs & compounding
 - **Strategy Vault** — investment strategy explorer
