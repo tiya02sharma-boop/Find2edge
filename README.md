@@ -2,7 +2,6 @@
 
 An immersive financial literacy web app featuring **Saashya**, an AI mentor who teaches banking, SIPs, and mutual funds through a 3D, story-driven experience.
 
-> ⚠️ All trading/market data is simulated for education only — not real investment advice.
 
 ## Features
 - **Saashya AI Guide** — voice-enabled mentor (TTS/STT) powered by Gemini
