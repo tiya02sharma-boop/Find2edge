@@ -6,11 +6,319 @@
       id:'sip', risk:'Low–Medium', riskClass:'', name:'SIP — Systematic Investment Plan',
       blurb:'Invest a fixed small amount every month into a mutual fund, automatically, without thinking about market timing.',
       steps:[
-        "You walk up to the mutual fund desk and say: \"I'd like to start a SIP.\" That's it — that sentence alone gets you the right form.",
-        "You'll need: PAN card, Aadhaar, a cancelled cheque or bank passbook copy, and one passport photo. KYC (identity check) takes about a day if you haven't done it before.",
-        "Pick an amount you won't miss — even ₹500/month is real. Pick a fund type: 'equity' for long-term growth, 'debt' for steadier, lower-return safety.",
-        "The bank auto-debits your account on a fixed date each month and buys fund units at that day's price. You never have to remember to invest again.",
-        "You can stop, pause, or increase your SIP anytime with one form — there's no lock-in unless you chose a tax-saving (ELSS) fund, which locks for 3 years."
+        `<div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="background:rgba(52,211,153,0.15);color:#34d399;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;">1. Introduction</span>
+            <span style="font-size:13px;color:var(--gold-soft);">Why Investing Matters</span>
+          </div>
+          <p><strong>Welcome to the <mark class="hl-gold">SIP</mark> Counter!</strong> Before we fill any forms, let's understand why we invest.</p>
+          <p style="margin-top:6px;">Most people leave their hard-earned money in a savings bank account earning <strong>~3% per year</strong>. But <mark class="hl-coral">Inflation</mark> in India runs at <strong>5%–7%</strong> every year! Keeping cash in savings actually causes your buying power to shrink every year.</p>
+          <div class="sip-analogy-box">
+            <strong>💡 The Leaky Bucket Analogy:</strong> Saving money without investing is like pouring water into a bucket with a tiny leak (<mark class="hl-coral">inflation</mark>). <strong>Investing</strong> is planting a fruit seed—it takes time, but grows into a tree that produces fresh fruit season after season!
+          </div>
+        </div>`,
+        `<div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="background:rgba(167,139,250,0.15);color:#a78bfa;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;">Saving vs Investing</span>
+            <span style="font-size:13px;color:var(--gold-soft);">Beating Inflation</span>
+          </div>
+          <p>Let's compare <strong>Saving</strong> vs. <strong>Investing</strong> in real life:</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0;">
+            <div style="background:rgba(255,255,255,0.05);padding:10px;border-radius:8px;border-left:3px solid #fb7185;">
+              <strong style="color:#fb7185;">🏦 Saving</strong>
+              <p style="font-size:13px;margin-top:4px;">Keeps money safe for immediate emergencies, but loses purchasing power to <mark class="hl-coral">inflation</mark> over time.</p>
+            </div>
+            <div style="background:rgba(255,255,255,0.05);padding:10px;border-radius:8px;border-left:3px solid #34d399;">
+              <strong style="color:#34d399;">🌱 Investing</strong>
+              <p style="font-size:13px;margin-top:4px;">Puts money to work in assets (like stocks & bonds) to outpace inflation and build long-term wealth.</p>
+            </div>
+          </div>
+          <p style="font-size:13.5px;color:var(--muted);">Example: A ₹100 thali today will cost ~₹200 in 10 years at 7% inflation. Your money must grow at 10%–12% so you can afford it effortlessly!</p>
+          <div class="sip-choice-row">
+            <button class="sip-choice-btn primary" onclick="saashyaNextStep()">Yes, I understand! ➔</button>
+            <button class="sip-choice-btn" onclick="saashyaExplainAgain('Inflation')">🔄 Explain with another example</button>
+          </div>
+        </div>`,
+        `<div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="background:rgba(251,191,36,0.15);color:#fbbf24;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;">2. Mutual Funds</span>
+            <span style="font-size:13px;color:var(--gold-soft);">The Fruit Basket Concept</span>
+          </div>
+          <p>Before we talk about SIPs, what is a <mark class="hl-emerald">Mutual Fund</mark>?</p>
+          <div class="sip-analogy-box">
+            <strong>🧺 Fruit Basket Analogy:</strong> Buying individual stocks is like buying an entire apple orchard—expensive and risky if one crop fails. A <mark class="hl-emerald">Mutual Fund</mark> pools money from thousands of investors to buy a pre-packed basket of 40–50 top companies (Tata, Reliance, Infosys, HDFC). You buy a small slice of the whole basket!
+          </div>
+          <p style="margin-top:6px;">This gives you instant <mark class="hl-purple">Diversification</mark>—even with just ₹500!</p>
+        </div>`,
+        `<div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="background:rgba(52,211,153,0.15);color:#34d399;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;">MF Building Blocks</span>
+            <span style="font-size:13px;color:var(--gold-soft);">Core Vocabulary</span>
+          </div>
+          <p>Here are the 5 core terms every investor must know:</p>
+          <ul style="font-size:13.5px;line-height:1.6;margin:6px 0 0 16px;color:var(--cream);">
+            <li><strong><mark class="hl-gold">AMC</mark> (Asset Management Company):</strong> The fund house (e.g. SBI Mutual Fund) managing the funds.</li>
+            <li><strong><mark class="hl-emerald">Fund Manager</mark>:</strong> The professional expert who researches companies and decides which stocks/bonds to buy.</li>
+            <li><strong><mark class="hl-purple">NAV</mark> (Net Asset Value):</strong> The price of 1 single unit of the fund (like price per kg of fruit).</li>
+            <li><strong>Units:</strong> Your share of the fund. If NAV is ₹50 and you invest ₹1,000, you get <strong>20 units</strong>!</li>
+            <li><strong>Portfolio:</strong> The complete collection of all stocks and bonds held inside the mutual fund.</li>
+          </ul>
+          <div class="sip-choice-row">
+            <button class="sip-choice-btn primary" onclick="saashyaNextStep()">Got NAV & Units! ➔</button>
+            <button class="sip-choice-btn" onclick="saashyaExplainAgain('NAV')">🔄 Explain NAV again</button>
+          </div>
+        </div>`,
+        `<div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="background:rgba(251,113,133,0.15);color:#fb7185;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;">3. Fund Types</span>
+            <span style="font-size:13px;color:#fb7185;font-weight:700;">Equity Funds</span>
+          </div>
+          <p><mark class="hl-coral">Equity Mutual Funds</mark> invest primarily in company stocks/shares.</p>
+          <div style="background:rgba(251,113,133,0.08);border:1px solid rgba(251,113,133,0.2);padding:12px;border-radius:10px;margin:8px 0;font-size:13.5px;">
+            <div><strong>• Risk Level:</strong> <span class="risk-tag risk-high">High</span> (fluctuates with stock market)</div>
+            <div><strong>• Benefits:</strong> Highest long-term returns (12%–15%+ returns historically)</div>
+            <div><strong>• Who Should Invest:</strong> Investors seeking wealth creation for long-term goals</div>
+            <div><strong>• Recommended Horizon:</strong> 5 Years or longer</div>
+          </div>
+        </div>`,
+        `<div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="background:rgba(52,211,153,0.15);color:#34d399;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;">Debt vs Hybrid</span>
+            <span style="font-size:13px;color:var(--gold-soft);">Stability & Balance</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:6px 0;">
+            <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;border-left:3px solid #34d399;">
+              <strong style="color:#34d399;">🛡️ <mark class="hl-emerald">Debt Funds</mark></strong>
+              <p style="font-size:12.5px;margin-top:4px;">Invests in government & corporate bonds.<br><strong>Risk:</strong> Low–Moderate<br><strong>Horizon:</strong> 1–3 Years<br><strong>Best for:</strong> Short-term safety & predictable growth.</p>
+            </div>
+            <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;border-left:3px solid #a78bfa;">
+              <strong style="color:#a78bfa;">⚖️ <mark class="hl-purple">Hybrid Funds</mark></strong>
+              <p style="font-size:12.5px;margin-top:4px;">Mixes Equity (Stocks) + Debt (Bonds).<br><strong>Risk:</strong> Moderate<br><strong>Horizon:</strong> 3–5 Years<br><strong>Best for:</strong> Balanced growth with lower volatility.</p>
+            </div>
+          </div>
+        </div>`,
+        `<div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="background:rgba(251,191,36,0.15);color:#fbbf24;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;">Index & ELSS</span>
+            <span style="font-size:13px;color:var(--gold-soft);">Low Cost & Tax Saving</span>
+          </div>
+          <p>Two very popular specialized mutual fund categories:</p>
+          <div style="margin:6px 0;font-size:13px;line-height:1.5;">
+            <div style="background:rgba(251,191,36,0.08);padding:10px 12px;border-radius:8px;margin-bottom:6px;border-left:3px solid #fbbf24;">
+              <strong style="color:#fbbf24;">📊 <mark class="hl-gold">Index Funds</mark>:</strong> Automatically tracks a stock index like Nifty 50 or Sensex. Ultra-low expense ratio (0.1%–0.2%) and zero human bias. Excellent for beginners!
+            </div>
+            <div style="background:rgba(52,211,153,0.08);padding:10px 12px;border-radius:8px;border-left:3px solid #34d399;">
+              <strong style="color:#34d399;">📑 <mark class="hl-emerald">ELSS</mark> (Equity Linked Savings Scheme):</strong> Tax-saving equity fund under Section 80C (save up to ₹46,800 tax/year). Has a <strong>3-year lock-in period</strong> (the shortest among all 80C options!).
+            </div>
+          </div>
+          <div class="sip-choice-row">
+            <button class="sip-choice-btn primary" onclick="saashyaNextStep()">Understood Fund Types! ➔</button>
+            <button class="sip-choice-btn" onclick="saashyaExplainAgain('ELSS Tax Saving')">🔄 Explain ELSS again</button>
+          </div>
+        </div>`,
+        `<div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="background:rgba(52,211,153,0.15);color:#34d399;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;">4. What is SIP?</span>
+            <span style="font-size:13px;color:var(--gold-soft);">SIP vs Lump Sum</span>
+          </div>
+          <p><strong><mark class="hl-gold">SIP</mark> (Systematic Investment Plan)</strong> is a method of investing a fixed small amount (e.g. ₹500, ₹1,000, ₹5,000) into a mutual fund automatically every month on a date you choose.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0;font-size:13px;">
+            <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;border-left:3px solid #fbbf24;">
+              <strong>📅 <mark class="hl-gold">SIP</mark> (Regular)</strong>
+              <p>Small monthly auto-debit. No need to time the market. Disciplined & stress-free!</p>
+            </div>
+            <div style="background:rgba(255,255,255,0.04);padding:10px;border-radius:8px;border-left:3px solid #a78bfa;">
+              <strong>💰 Lump Sum (One-time)</strong>
+              <p>Investing a large sum at once (e.g. ₹1 Lakh). High risk if invested right before a market dip.</p>
+            </div>
+          </div>
+        </div>`,
+        `<div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="background:rgba(167,139,250,0.15);color:#a78bfa;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;">SIP Superpower</span>
+            <span style="font-size:13px;color:var(--gold-soft);">Rupee Cost Averaging</span>
+          </div>
+          <p>How does SIP protect you from market crashes? Through <mark class="hl-purple">Rupee Cost Averaging</mark>!</p>
+          <div class="sip-analogy-box" style="font-size:13.5px;">
+            📉 <strong>When the market crashes:</strong> NAV drops, so your ₹1,000 buys <em>MORE units</em>!<br>
+            📈 <strong>When the market rises:</strong> NAV goes up, so your ₹1,000 buys <em>FEWER units</em>.<br>
+            ✨ Over time, your average purchase cost stays low automatically without you ever needing to guess market highs or lows!
+          </div>
+          <div class="sip-choice-row">
+            <button class="sip-choice-btn primary" onclick="saashyaNextStep()">Love Rupee Cost Averaging! ➔</button>
+            <button class="sip-choice-btn" onclick="saashyaExplainAgain('Rupee Cost Averaging')">🔄 Explain Chocolate Example</button>
+          </div>
+        </div>`,
+        `<div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="background:rgba(52,211,153,0.15);color:#34d399;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;">Compounding Power</span>
+            <span style="font-size:13px;color:var(--gold-soft);">The 8th Wonder</span>
+          </div>
+          <p><mark class="hl-emerald">Compounding</mark> is earning returns on your returns!</p>
+          <div class="sip-example-box" style="font-size:13.5px;">
+            <strong>📈 Real Example (₹2,000/month SIP at 12% return):</strong><br>
+            • <strong>10 Years:</strong> You invest ₹2.4 Lakhs ➔ Grows to <strong>₹4.6 Lakhs</strong><br>
+            • <strong>20 Years:</strong> You invest ₹4.8 Lakhs ➔ Grows to <strong>₹20.0 Lakhs</strong><br>
+            • <strong>30 Years:</strong> You invest ₹7.2 Lakhs ➔ Explodes to <strong>₹70.6 Lakhs!</strong><br>
+            <em>Notice how growth skyrockets in the last 10 years! Time in the market beats timing the market.</em>
+          </div>
+          <div class="sip-choice-row">
+            <button class="sip-choice-btn primary" onclick="saashyaNextStep()">Compounding makes sense! ➔</button>
+            <button class="sip-choice-btn" onclick="saashyaExplainAgain('Compounding')">🔄 Explain compounding again</button>
+          </div>
+        </div>`,
+        `<div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="background:rgba(251,191,36,0.15);color:#fbbf24;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;">5. Key Terms</span>
+            <span style="font-size:13px;color:var(--gold-soft);">CAGR, XIRR & Expense Ratio</span>
+          </div>
+          <ul style="font-size:13.5px;line-height:1.6;margin:4px 0 0 16px;">
+            <li><strong><mark class="hl-gold">CAGR</mark> (Compound Annual Growth Rate):</strong> Annualized growth rate of a one-time lump sum investment. <em>(E.g., ₹10,000 to ₹14,400 in 2 yrs = 20% CAGR)</em></li>
+            <li><strong><mark class="hl-emerald">XIRR</mark> (Extended Internal Rate of Return):</strong> The true return metric for <strong>SIPs</strong> that accounts for multiple monthly cashflows at different dates.</li>
+            <li><strong><mark class="hl-purple">Expense Ratio</mark>:</strong> The annual fee (0.1%–1.5%) charged by the AMC to manage the fund. Lower expense ratio = higher net wealth for you!</li>
+          </ul>
+        </div>`,
+        `<div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="background:rgba(52,211,153,0.15);color:#34d399;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;">Key Terms</span>
+            <span style="font-size:13px;color:var(--gold-soft);">Protection & Allocation</span>
+          </div>
+          <ul style="font-size:13.5px;line-height:1.6;margin:4px 0 0 16px;">
+            <li><strong><mark class="hl-coral">Exit Load</mark>:</strong> A small fee (e.g. 1%) charged if you redeem units early (usually within 1 year). Encourages long-term holding.</li>
+            <li><strong>Lock-in Period:</strong> Time during which funds cannot be withdrawn (e.g., 3 years for ELSS tax-saving funds).</li>
+            <li><strong><mark class="hl-purple">Diversification</mark>:</strong> "Don't put all eggs in one basket." Spreading investments across sectors (IT, Banking, Pharma) so one company's drop doesn't hurt you.</li>
+            <li><strong><mark class="hl-emerald">Asset Allocation</mark>:</strong> Balancing your portfolio between Equity (Growth) and Debt (Safety) according to your age and risk capacity.</li>
+          </ul>
+        </div>`,
+        `<div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="background:rgba(167,139,250,0.15);color:#a78bfa;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;">Key Terms</span>
+            <span style="font-size:13px;color:var(--gold-soft);">Market Caps & Plan Options</span>
+          </div>
+          <ul style="font-size:13.5px;line-height:1.6;margin:4px 0 0 16px;">
+            <li><strong>Large, Mid & Small Cap:</strong> Large Cap = Top 100 steady giants (Reliance). Mid Cap = 101–250 fast growers. Small Cap = 251+ high growth, high risk.</li>
+            <li><strong><mark class="hl-gold">Direct Plan</mark> vs Regular Plan:</strong> <em>Direct Plans</em> have NO distributor commission (higher returns). <em>Regular Plans</em> pay ~1% annual commission to agents. Always pick <strong>Direct</strong>!</li>
+            <li><strong>Growth vs IDCW:</strong> <em>Growth Option</em> reinvests profits to compound. <em>IDCW (Dividend)</em> pays out dividends periodically. Choose <strong>Growth</strong> for wealth building!</li>
+          </ul>
+          <div class="sip-choice-row">
+            <button class="sip-choice-btn primary" onclick="saashyaNextStep()">Key Terms Clear! ➔</button>
+            <button class="sip-choice-btn" onclick="saashyaExplainAgain('Direct vs Regular')">🔄 Direct vs Regular Plan</button>
+          </div>
+        </div>`,
+        function(){
+          const name = userProfile.fullName || 'Investor';
+          const prof = userProfile.profession || 'Professional';
+          const goal = userProfile.goal || 'Wealth Creation';
+          const experience = (userProfile.experience || 'Beginner').toLowerCase();
+          const cautious = experience.includes('beginner');
+          const confident = experience.includes('advanced') || experience.includes('pro');
+          const profileFund = cautious
+            ? { name:'Nifty 50 Index / Balanced Advantage Fund', risk:'Low–Moderate', horizon:'5+ years', why:'broad diversification and a simpler first investing experience' }
+            : confident
+              ? { name:'Flexi Cap or Large & Mid Cap Fund', risk:'Moderate–High', horizon:'7+ years', why:'room for growth, while still spreading money across many companies' }
+              : { name:'Flexi Cap or Hybrid Fund', risk:'Moderate', horizon:'5+ years', why:'a balance of growth potential and smoother swings' };
+          return `<div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+              <span style="background:rgba(251,191,36,0.15);color:#fbbf24;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;">6. Fund Selection</span>
+              <span style="font-size:13px;color:var(--gold-soft);">Personalised Profile Match</span>
+            </div>
+            <p style="font-size:14px;">Based on your onboarding profile (<strong>${name}</strong>, ${prof}, Goal: <em>${goal}</em>, comfort level: <em>${userProfile.experience || 'Beginner'}</em>):</p>
+            <div style="background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.2);padding:12px;border-radius:10px;margin:8px 0;font-size:13px;line-height:1.55;">
+              <div><strong>🏆 Educational category match for you:</strong></div>
+              <div>• <strong>${profileFund.name}:</strong> ${profileFund.risk} risk · ${profileFund.horizon} horizon · ${profileFund.why}.</div>
+              <div>• <strong>Long-term Wealth (5+ yrs):</strong> Flexi Cap or Large & Mid Cap Direct Fund</div>
+              <div>• <strong>Tax Saving:</strong> ELSS Direct Equity Fund (Save tax under 80C)</div>
+              <div>• <strong>Emergency/Short Term:</strong> Liquid / Low Duration Debt Fund</div>
+            </div>
+            <p style="font-size:11.5px;color:var(--muted);margin-top:2px;"><em>*This is an educational category match, not a fund recommendation or SEBI-registered financial advice.</em></p>
+          </div>`;
+        },
+        `<div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="background:rgba(52,211,153,0.15);color:#34d399;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;">Popular Funds</span>
+            <span style="font-size:13px;color:var(--gold-soft);">Indian Market Favorites</span>
+          </div>
+          <div style="font-size:13px;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:6px 0;">
+            <div style="background:rgba(255,255,255,0.04);padding:8px 10px;border-radius:8px;">
+              <strong style="color:#34d399;">Large Cap Funds</strong>
+              <div>Risk: Low–Mod | Horizon: 3-5 yrs</div>
+              <div>Invests in India's top 100 companies. Steady & reliable.</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.04);padding:8px 10px;border-radius:8px;">
+              <strong style="color:#a78bfa;">Flexi Cap Funds</strong>
+              <div>Risk: Moderate | Horizon: 5+ yrs</div>
+              <div>Fund manager switches between Large, Mid & Small cap dynamically.</div>
+            </div>
+          </div>
+          <div style="font-size:13px;background:rgba(255,255,255,0.04);padding:8px 10px;border-radius:8px;">
+            <strong style="color:#fbbf24;">Balanced Advantage Funds (BAF)</strong>
+            <div>Risk: Moderate | Automatically adjusts equity/debt allocation based on market valuation. Smooth ride!</div>
+          </div>
+        </div>`,
+        function(){
+          const inc = Number.isFinite(userProfile.monthlyIncome) ? userProfile.monthlyIncome : 25000;
+          const savedBudget = (()=>{ try { return JSON.parse(localStorage.getItem('fin2edge-budget-state') || '{}'); } catch(e) { return {}; } })();
+          const allocations = savedBudget.allocations || {};
+          const plannedInvesting = (allocations.savings || 0) + (allocations.investments || 0);
+          const safetyFirst = (allocations.emergency || 0) > 0;
+          const investable = plannedInvesting || Math.round(inc * 0.10);
+          const recSip = Math.max(500, Math.round(Math.min(inc * 0.15, investable * 0.70) / 500) * 500);
+          const budgetNote = plannedInvesting
+            ? `I used the ₹${plannedInvesting.toLocaleString('en-IN')} you already marked for savings/investments in your budget.`
+            : 'No completed budget was found, so I used a conservative 10% of income starting point.';
+          return `<div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+              <span style="background:rgba(52,211,153,0.15);color:#34d399;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;">7. SIP Amount</span>
+              <span style="font-size:13px;color:var(--gold-soft);">50:30:20 Rule & Step-Up</span>
+            </div>
+            <p style="font-size:14px;">Saashya checks your salary and your saved budget before suggesting an amount—not a random percentage.</p>
+            <div class="sip-example-box" style="font-size:13.5px;margin:6px 0;">
+              💡 On your monthly income of <strong>₹${inc.toLocaleString('en-IN')}</strong>, a comfortable educational starting <mark class="hl-gold">SIP</mark> is <strong>₹${recSip.toLocaleString('en-IN')}</strong>. ${budgetNote}
+            </div>
+            <p style="font-size:13px;">${safetyFirst ? '🛡️ You have allocated an emergency buffer—excellent foundation before equity investing.' : '🛡️ Before increasing this amount, build an emergency buffer so a surprise bill does not force you to stop your SIP.'}</p>
+            <p style="font-size:13px;"><strong>🚀 Step-Up SIP Magic:</strong> Increasing your SIP by just 10% every year as your income grows can significantly increase long-term wealth through compounding.</p>
+            <div class="sip-choice-row">
+              <button class="sip-choice-btn primary" onclick="saashyaNextStep()">Show Launch Steps! ➔</button>
+              <button class="sip-choice-btn" onclick="saashyaExplainAgain('Step-Up SIP')">🔄 Explain Step-Up SIP</button>
+            </div>
+          </div>`;
+        },
+        `<div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="background:rgba(167,139,250,0.15);color:#a78bfa;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;">8. How to Start</span>
+            <span style="font-size:13px;color:var(--gold-soft);">7-Step Launch Checklist</span>
+          </div>
+          <ol style="font-size:13px;line-height:1.5;margin:4px 0 0 16px;">
+            <li><strong>Complete KYC:</strong> PAN, Aadhaar & video verification.</li>
+            <li><strong>Choose Platform:</strong> Trusted AMC app or Direct MF platform.</li>
+            <li><strong>Select Fund:</strong> Direct Plan, Growth Option.</li>
+            <li><strong>Set SIP Amount:</strong> Start comfortable (e.g. ₹500 or ₹1,000).</li>
+            <li><strong>Choose SIP Date:</strong> Right after salary (e.g., 5th of month).</li>
+            <li><strong>Enable AutoPay:</strong> e-NACH mandate for hassle-free debits.</li>
+            <li><strong>Review Yearly:</strong> Check performance once a year!</li>
+          </ol>
+        </div>`,
+        `<div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="background:rgba(251,113,133,0.15);color:#fb7185;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;">9. Mistakes to Avoid</span>
+            <span style="font-size:13px;color:#fb7185;font-weight:700;">5 Pitfalls</span>
+          </div>
+          <div style="font-size:13px;line-height:1.5;">
+            <div>❌ <strong>Stopping SIPs in crashes:</strong> Market dips are sales! Stopping means missing cheap units.</div>
+            <div>❌ <strong>Chasing 1-year returns:</strong> Past 1-year winners often underperform next year.</div>
+            <div>❌ <strong>No emergency fund:</strong> Keep 3–6 months expenses in savings before equity investing.</div>
+            <div>❌ <strong>Timing the market:</strong> Waiting for dips loses valuable compounding time.</div>
+            <div>❌ <strong>Over-diversifying:</strong> 3–4 good funds are more than enough.</div>
+          </div>
+        </div>`,
+        `<div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <span style="background:rgba(52,211,153,0.15);color:#34d399;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;">10. Ready to Invest!</span>
+            <span style="font-size:13px;color:var(--gold-soft);">Branch Simulation</span>
+          </div>
+          <p style="font-size:14.5px;line-height:1.55;"><strong>🌟 Incredible!</strong> You have now mastered mutual fund concepts, risk levels, compounding, and key terms better than 90% of retail investors.</p>
+          <p style="font-size:13.5px;margin-top:6px;">You are now fully prepared to walk into our 2D SBI Branch Simulation, complete your registration step-by-step, and test your live compounding returns!</p>
+        </div>`
       ],
       liveDemo:{
         title:"Now, at the desk — live",
@@ -546,7 +854,7 @@
   });})();/* =========================================================
    GUIDE PORTRAIT — real character art, with a simulated-3D
    mouse tilt (perspective transform) so it feels alive even
-   as a static image, plus an idle float handled in CSS.========================================================= */document.getElementById('guidePortraitImg').src = GUIDE_IMG;document.getElementById('academyAvatarSlot').innerHTML = `<img src="${GUIDE_IMG}" alt="Saashya" />`;document.getElementById('guideFloatImg').src = GUIDE_IMG;(function guideTilt(){
+   as a static image, plus an idle float handled in CSS.========================================================= */document.getElementById('guidePortraitImg').src = GUIDE_IMG;document.getElementById('academyAvatarSlot').innerHTML = `<img src="${GUIDE_IMG}" alt="Saashya" />`;document.getElementById('guideFloatImg').src = GUIDE_IMG;document.getElementById('bankSaashyaFull').src = GUIDE_IMG;(function guideTilt(){
   const wrap = document.getElementById('guidePortrait');
   const inner = document.getElementById('guidePortraitInner');
   if(!wrap || !inner) return;
@@ -639,7 +947,7 @@
   counter.position.set(0,-1.4,-1.6); scene.add(counter);
   const counterTrim = new THREE.Mesh(new THREE.BoxGeometry(6.5,0.08,1.5), new THREE.MeshStandardMaterial({ color:0xc9a24d, metalness:0.9, roughness:0.2 }));
   counterTrim.position.set(0,-0.83,-1.6); scene.add(counterTrim);
-  // Saashya's real portrait, rendered as a lit, gently-animated 3D plane behind the counter
+  // Saashya's real portrait — hidden per user preference
   const tex = new THREE.TextureLoader().load(GUIDE_IMG);
   tex.colorSpace = THREE.SRGBColorSpace || tex.colorSpace;
   const bankerAspect = 558/1000;
@@ -649,6 +957,7 @@
     new THREE.MeshStandardMaterial({ map:tex, transparent:true, roughness:0.6, metalness:0.05 })
   );
   banker.position.set(-1.5, 0.55, -2.7);
+  banker.visible = false;
   scene.add(banker);
   // A second, abstract "customer" figure — a simple faceted silhouette in the house palette,
   // standing opposite Saashya at the counter for the live two-person demo scene.
@@ -738,7 +1047,7 @@
   } else {
     bankScene.camera.position.set(0, 1.15, 5.4);
   }
-  setTimeout(()=>bankScene.resize(), 60);}function openBank(schemeId){
+  setTimeout(()=>bankScene.resize(), 60);}function _doOpenBank(schemeId){
   showModal('bankModal');
   ensureBankScene();
   playBankIntro();
@@ -756,7 +1065,12 @@
   } else {
     bankView = 'category';
     renderBankPicker();
-  }}function renderBankPicker(){
+  }
+}
+function openBank(schemeId){
+  requireAuth(() => _doOpenBank(schemeId), 'Sign in or create an investor profile to step into the 3D Bank Hall.');
+}
+function renderBankPicker(){
   document.getElementById('bankNavRow').style.display = 'none';
   const picker = document.getElementById('bankPicker');
   picker.style.display = 'grid';
@@ -787,7 +1101,220 @@
         renderBankStep();
       });
     });
-  }}function renderBankStep(){
+  }}/* =========================================================
+   SAASHYA VOICE & INTERACTIVE TUTOR ENGINE
+   (Text-to-Speech narration, Speech-to-Text interaction,
+   and interactive checkpoint controls)
+========================================================= */
+/* Voice narration and speech-input controls removed.
+let saashyaVoiceState = {
+  autoVoice: true,
+  isSpeaking: false,
+  isListening: false,
+  synth: window.speechSynthesis || null,
+  recognition: null,
+  initialized: false
+};
+
+function initSaashyaVoiceEngine() {
+  if (saashyaVoiceState.initialized) return;
+  saashyaVoiceState.initialized = true;
+
+  const speakBtn = document.getElementById('saashyaSpeakBtn');
+  const muteBtn = document.getElementById('saashyaMuteBtn');
+  const micBtn = document.getElementById('saashyaMicBtn');
+
+  if (speakBtn) {
+    speakBtn.addEventListener('click', () => {
+      if (saashyaVoiceState.synth && saashyaVoiceState.synth.speaking) {
+        saashyaVoiceState.synth.cancel();
+        saashyaVoiceState.isSpeaking = false;
+        speakBtn.textContent = '🔊 Speak';
+        speakBtn.classList.remove('speaking');
+      } else {
+        const stepEl = document.getElementById('bankStepText');
+        if (stepEl) speakSaashyaText(stepEl.innerHTML);
+      }
+    });
+  }
+
+  if (muteBtn) {
+    muteBtn.addEventListener('click', () => {
+      saashyaVoiceState.autoVoice = !saashyaVoiceState.autoVoice;
+      muteBtn.textContent = saashyaVoiceState.autoVoice ? '🔔 Voice: ON' : '🔕 Voice: OFF';
+      if (!saashyaVoiceState.autoVoice && saashyaVoiceState.synth) {
+        saashyaVoiceState.synth.cancel();
+        if (speakBtn) {
+          speakBtn.textContent = '🔊 Speak';
+          speakBtn.classList.remove('speaking');
+        }
+      }
+    });
+  }
+
+  if (micBtn) {
+    micBtn.addEventListener('click', () => {
+      toggleSaashyaVoiceInput();
+    });
+  }
+}
+
+function speakSaashyaText(htmlText) {
+  if (!saashyaVoiceState.synth) return;
+  try { saashyaVoiceState.synth.cancel(); } catch(e){}
+
+  const temp = document.createElement('div');
+  temp.innerHTML = htmlText;
+
+  const choiceRow = temp.querySelector('.sip-choice-row');
+  if (choiceRow) choiceRow.remove();
+
+  let text = temp.textContent || temp.innerText || '';
+  text = text.replace(/[\n\r]+/g, ' ').replace(/\s+/g, ' ').trim();
+
+  if (!text) return;
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.rate = 0.98;
+  utterance.pitch = 1.05;
+
+  const voices = saashyaVoiceState.synth.getVoices();
+  const femaleVoice = voices.find(v => 
+    v.lang.startsWith('en') && (v.name.includes('Female') || v.name.includes('Samantha') || v.name.includes('Zira') || v.name.includes('Karen') || v.name.includes('Victoria') || v.name.includes('Google UK English Female'))
+  ) || voices.find(v => v.lang.startsWith('en'));
+
+  if (femaleVoice) utterance.voice = femaleVoice;
+
+  const speakBtn = document.getElementById('saashyaSpeakBtn');
+
+  utterance.onstart = () => {
+    saashyaVoiceState.isSpeaking = true;
+    if (speakBtn) {
+      speakBtn.textContent = '⏸️ Speaking...';
+      speakBtn.classList.add('speaking');
+    }
+  };
+
+  utterance.onend = utterance.onerror = () => {
+    saashyaVoiceState.isSpeaking = false;
+    if (speakBtn) {
+      speakBtn.textContent = '🔊 Speak';
+      speakBtn.classList.remove('speaking');
+    }
+  };
+
+  saashyaVoiceState.synth.speak(utterance);
+}
+
+function toggleSaashyaVoiceInput() {
+  const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRec) {
+    toast("Voice input isn't supported in this browser. Try Chrome/Edge.");
+    return;
+  }
+
+  const micBtn = document.getElementById('saashyaMicBtn');
+
+  if (saashyaVoiceState.isListening && saashyaVoiceState.recognition) {
+    saashyaVoiceState.recognition.stop();
+    return;
+  }
+
+  try {
+    const rec = new SpeechRec();
+    rec.lang = 'en-IN';
+    rec.continuous = false;
+    rec.interimResults = false;
+
+    rec.onstart = () => {
+      saashyaVoiceState.isListening = true;
+      if (micBtn) {
+        micBtn.textContent = '🎙️ Listening...';
+        micBtn.classList.add('listening');
+      }
+      toast('🎙️ Saashya is listening... Speak your reply or question!');
+    };
+
+    rec.onresult = (e) => {
+      const transcript = e.results[0][0].transcript;
+      handleSaashyaVoiceQuery(transcript);
+    };
+
+    rec.onerror = rec.onend = () => {
+      saashyaVoiceState.isListening = false;
+      if (micBtn) {
+        micBtn.textContent = '🎙️ Ask';
+        micBtn.classList.remove('listening');
+      }
+    };
+
+    saashyaVoiceState.recognition = rec;
+    rec.start();
+  } catch (e) {
+    console.warn('Voice input error:', e);
+  }
+}
+
+function handleSaashyaVoiceQuery(queryText) {
+  const q = queryText.toLowerCase().trim();
+  toast(`You asked: "${queryText}"`);
+
+  let reply = "";
+
+  if (q.includes("yes") || q.includes("understand") || q.includes("got it") || q.includes("next") || q.includes("continue") || q.includes("ready")) {
+    reply = "Wonderful! Let's move to the next concept.";
+    speakSaashyaText(reply);
+    setTimeout(() => {
+      if (simStepIndex < currentSim.steps.length - 1) {
+        simStepIndex++;
+        renderBankStep();
+      }
+    }, 1200);
+    return;
+  } else if (q.includes("again") || q.includes("explain") || q.includes("confused") || q.includes("example") || q.includes("no") || q.includes("repeat")) {
+    reply = "No problem at all! Let me break it down with a simple analogy. Think of it like putting money into a garden where each plant grows fruit every season!";
+  } else if (q.includes("nav")) {
+    reply = "NAV or Net Asset Value is simply the price of one single unit of a mutual fund. Just like buying a kilo of apples, NAV tells you how much one share costs today.";
+  } else if (q.includes("sip")) {
+    reply = "SIP stands for Systematic Investment Plan. It auto-debits a fixed small amount every month so you build wealth consistently without worrying about market timing!";
+  } else if (q.includes("compounding") || q.includes("compound")) {
+    reply = "Compounding is earning interest on interest! Over 15 to 20 years, your investment growth outpaces what you originally put in.";
+  } else {
+    reply = `Great question about "${queryText}"! In mutual funds, consistency and time in the market matter most. Let's keep exploring step by step!`;
+  }
+
+  const stepText = document.getElementById('bankStepText');
+  if (stepText) {
+    const box = document.createElement('div');
+    box.className = 'sip-analogy-box';
+    box.style.marginTop = '10px';
+    box.innerHTML = `<strong>🎙️ Saashya answers:</strong> ${reply}`;
+    stepText.appendChild(box);
+  }
+  speakSaashyaText(reply);
+}
+
+*/
+window.saashyaNextStep = function() {
+  if (simStepIndex < currentSim.steps.length - 1) {
+    simStepIndex++;
+    renderBankStep();
+  }
+};
+
+window.saashyaExplainAgain = function(topicName) {
+  const reply = `Let me explain ${topicName || 'this concept'} with another real-life example! Imagine buying 10 chocolates today at ₹10 each. Next month, if price drops to ₹5, your ₹100 buys 20 chocolates! That is Rupee Cost Averaging — buying more when cheap, fewer when expensive.`;
+  const stepText = document.getElementById('bankStepText');
+  if (stepText) {
+    const box = document.createElement('div');
+    box.className = 'sip-example-box';
+    box.style.marginTop = '10px';
+    box.innerHTML = `<strong>🔄 Simplified Explanation:</strong> ${reply}`;
+    stepText.appendChild(box);
+  }
+};
+
+function renderBankStep(){
   document.getElementById('bankPicker').style.display = 'none';
   document.getElementById('bankNavRow').style.display = 'flex';
   document.getElementById('bankHud').classList.remove('live-demo-hud');
@@ -796,7 +1323,10 @@
   document.getElementById('bankRisk').className = 'risk-tag ' + riskClassFor(currentSim);
   document.getElementById('bankTitle').textContent = currentSim.name;
   document.getElementById('bankStepTag').textContent = `Step ${simStepIndex+1} of ${total}`;
-  document.getElementById('bankStepText').textContent = currentSim.steps[simStepIndex];
+  const rawStep = currentSim.steps[simStepIndex];
+  const stepContent = typeof rawStep === 'function' ? rawStep() : rawStep;
+  document.getElementById('bankStepText').innerHTML = stepContent;
+
   const dots = document.getElementById('bankDots');
   dots.innerHTML = currentSim.steps.map((_,i)=>{
     let cls = 'sim-dot';
@@ -808,7 +1338,7 @@
   document.getElementById('bankBack').style.opacity = '1';
   const isLastStep = simStepIndex === total-1;
   document.getElementById('bankNext').textContent = isLastStep
-    ? (currentSim.liveDemo ? 'See it live' : 'Finish')
+    ? (currentSim.id === 'sip' ? 'Start Branch Simulation ➔' : (currentSim.liveDemo ? 'See it live' : 'Finish'))
     : 'Next';}document.getElementById('bankBack').addEventListener('click', ()=>{
   if(bankView==='liveDemo'){
     simStepIndex = currentSim.steps.length - 1;
@@ -823,7 +1353,10 @@
     return;
   }
   if(bankView==='steps' && simStepIndex === currentSim.steps.length-1){
-    if(currentSim.liveDemo){
+    if(currentSim.id === 'sip'){
+      closeModal('bankModal');
+      if(window.sipOpenModal) window.sipOpenModal();
+    } else if(currentSim.liveDemo){
       openLiveDemo();
     } else {
       closeModal('bankModal');
@@ -923,7 +1456,9 @@
   });
   document.getElementById('ldExitBtn').addEventListener('click', ()=>{
     closeModal('bankModal');
-    toast(`Saashya: "Come back and open this SIP for real whenever you're ready."`);
+    celebrateFinish('Live SIP demo complete', 'Great job exploring compounding.', ()=>{
+      toast(`Saashya: "Come back and open this SIP for real whenever you're ready."`);
+    });
   });
   document.getElementById('ldConfirmBtn').addEventListener('click', runLiveDemoConfirm);}function syncLiveDemoChips(){
   const demo = currentSim.liveDemo;
@@ -1005,6 +1540,79 @@
     }
     m++;
   }, 260);}/* =========================================================
+   LIVE MARKETS — read-only reference data========================================================= */
+const REAL_WATCHLIST = [
+  {symbol:'RELIANCE.NS', name:'Reliance Industries', currency:'INR'},
+  {symbol:'TCS.NS', name:'Tata Consultancy Services', currency:'INR'},
+  {symbol:'HDFCBANK.NS', name:'HDFC Bank', currency:'INR'},
+  {symbol:'INFY.NS', name:'Infosys', currency:'INR'},
+  {symbol:'AAPL', name:'Apple', currency:'USD'},
+  {symbol:'MSFT', name:'Microsoft', currency:'USD'}
+];
+const FALLBACK_REAL_DATA = {
+  'RELIANCE.NS': {price:2945, changePct:.42, pe:24.1, marketCap:'₹19.9L Cr', low52:2220, high52:3218, spark:[2870,2905,2890,2920,2960,2935,2945]},
+  'TCS.NS': {price:4082, changePct:-.31, pe:27.8, marketCap:'₹14.8L Cr', low52:3540, high52:4592, spark:[4110,4095,4070,4060,4090,4102,4082]},
+  'HDFCBANK.NS': {price:1712, changePct:.65, pe:19.4, marketCap:'₹13.1L Cr', low52:1420, high52:1795, spark:[1680,1690,1702,1695,1708,1715,1712]},
+  'INFY.NS': {price:1874, changePct:-.18, pe:26.3, marketCap:'₹7.8L Cr', low52:1420, high52:1988, spark:[1890,1880,1865,1870,1882,1878,1874]},
+  'AAPL': {price:229.5, changePct:.85, pe:34.2, marketCap:'$3.5T', low52:164.1, high52:237.2, spark:[221,224,226,223,228,231,229.5]},
+  'MSFT': {price:441.2, changePct:.22, pe:35.6, marketCap:'$3.3T', low52:385.6, high52:468.4, spark:[432,436,438,435,440,443,441.2]}
+};
+const realMarketState = {status:'loading', updatedAt:null, quotes:{}};
+function fmtReal(n, cur){
+  if(n === null || n === undefined || Number.isNaN(Number(n))) return '—';
+  return (cur === 'USD' ? '$' : '₹') + Number(n).toLocaleString(cur === 'USD' ? 'en-US' : 'en-IN', {maximumFractionDigits:n < 1000 ? 2 : 0});
+}
+function fetchWithTimeout(url, ms){
+  const ctrl = new AbortController(), timer = setTimeout(()=>ctrl.abort(), ms);
+  return fetch(url, {signal:ctrl.signal}).finally(()=>clearTimeout(timer));
+}
+async function fetchRealMarketData(){
+  const symbols = REAL_WATCHLIST.map(item=>item.symbol).join(',');
+  const yahooUrl = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${encodeURIComponent(symbols)}`;
+  const proxies = [
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(yahooUrl)}`,
+    `https://corsproxy.io/?url=${encodeURIComponent(yahooUrl)}`
+  ];
+  try {
+    let data;
+    for(const url of proxies){
+      try { const response = await fetchWithTimeout(url, 6000); if(!response.ok) throw new Error('market response unavailable'); data = await response.json(); break; } catch(error) { /* try next public proxy */ }
+    }
+    const results = data && data.quoteResponse && data.quoteResponse.result;
+    if(!results || !results.length) throw new Error('no market quotes');
+    REAL_WATCHLIST.forEach(item=>{
+      const quote = results.find(result=>result.symbol === item.symbol) || {};
+      const fallback = FALLBACK_REAL_DATA[item.symbol];
+      realMarketState.quotes[item.symbol] = {name:quote.longName || quote.shortName || item.name, price:quote.regularMarketPrice, changePct:quote.regularMarketChangePercent, pe:quote.trailingPE, marketCap:quote.marketCap, low52:quote.fiftyTwoWeekLow, high52:quote.fiftyTwoWeekHigh, currency:item.currency, spark:fallback.spark};
+    });
+    realMarketState.status = 'live';
+  } catch(error) {
+    REAL_WATCHLIST.forEach(item=>{ const f = FALLBACK_REAL_DATA[item.symbol]; realMarketState.quotes[item.symbol] = {...f, name:item.name, currency:item.currency}; });
+    realMarketState.status = 'sample';
+  }
+  realMarketState.updatedAt = new Date();
+}
+function sparklineSvg(points, up){
+  const min = Math.min(...points), range = (Math.max(...points) - min) || 1;
+  const path = points.map((point, index)=>`${index ? 'L' : 'M'}${(3 + index * 194 / (points.length - 1)).toFixed(1)},${(3 + 28 * (1 - (point - min) / range)).toFixed(1)}`).join(' ');
+  return `<svg class="lm-spark" viewBox="0 0 200 34" preserveAspectRatio="none"><path d="${path}" fill="none" stroke="${up ? 'var(--emerald-soft)' : 'var(--wine-soft)'}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>`;
+}
+function renderLiveMarketBoard(){
+  const panel = document.getElementById('liveMarketPanel'); if(!panel) return;
+  if(!Array.isArray(state.watchlist)) state.watchlist = [];
+  const status = document.getElementById('lmStatus'), statusText = document.getElementById('lmStatusText');
+  if(status && statusText){ status.className = `lm-status ${realMarketState.status}`; statusText.textContent = realMarketState.status === 'live' ? `Live · updated ${realMarketState.updatedAt.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})}` : realMarketState.status === 'sample' ? 'Sample data — live feed unavailable right now' : 'Loading market prices…'; }
+  panel.innerHTML = REAL_WATCHLIST.map(item=>{
+    const quote = realMarketState.quotes[item.symbol]; if(!quote) return '';
+    const up = (quote.changePct || 0) >= 0, watched = state.watchlist.includes(item.symbol);
+    const marketCap = typeof quote.marketCap === 'number' ? (item.currency === 'USD' ? `$${(quote.marketCap / 1e12).toFixed(2)}T` : `₹${(quote.marketCap / 1e12 * 8.3).toFixed(1)}L Cr`) : (quote.marketCap || '—');
+    return `<div class="lm-card"><div class="lm-card-top"><div><div class="lm-name">${quote.name}</div><span class="lm-symbol">${item.symbol.replace('.NS','')} · ${item.currency}</span></div><button class="lm-watch-btn ${watched ? 'on' : ''}" data-watchbtn="${item.symbol}" title="Watch this stock">${watched ? '★' : '☆'}</button></div><div class="lm-price-row"><span class="lm-price">${fmtReal(quote.price,item.currency)}</span><span class="lm-change ${up ? 'up' : 'down'}">${up ? '+' : ''}${(quote.changePct || 0).toFixed(2)}%</span></div>${sparklineSvg(quote.spark,up)}<div class="lm-metrics"><div><span>P/E</span><br>${quote.pe ? Number(quote.pe).toFixed(1) : '—'}</div><div><span>Market cap</span><br>${marketCap}</div><div><span>52w low</span><br>${fmtReal(quote.low52,item.currency)}</div><div><span>52w high</span><br>${fmtReal(quote.high52,item.currency)}</div></div></div>`;
+  }).join('') + '<div class="lm-note">For learning only — reference data, not a recommendation to buy or sell.</div>';
+  panel.querySelectorAll('[data-watchbtn]').forEach(button=>button.addEventListener('click', ()=>{ const symbol = button.dataset.watchbtn, index = state.watchlist.indexOf(symbol); index === -1 ? state.watchlist.push(symbol) : state.watchlist.splice(index,1); saveState(); renderLiveMarketBoard(); }));
+}
+function initLiveMarkets(){ renderLiveMarketBoard(); fetchRealMarketData().then(renderLiveMarketBoard); setInterval(()=>fetchRealMarketData().then(renderLiveMarketBoard), 90000); }
+initLiveMarkets();
+/* =========================================================
    EXCHANGE: ASSETS========================================================= */const ASSETS = [
   {id:'NIRA', name:'Nira Technologies', type:'stock', price:842, vol:0.016, change:0},
   {id:'GOLDLEAF', name:'GoldLeaf Pharma', type:'stock', price:315, vol:0.013, change:0},
@@ -1080,7 +1688,7 @@
     logEl.innerHTML = '<div class="pf-empty">Your trades will appear here.</div>';
   } else {
     logEl.innerHTML = state.history.slice(-8).reverse().map(h=>`<div>${h}</div>`).join('');
-  }}updatePortfolioUI();/* ---------- TRADE MODAL ---------- */function openTrade(assetId){
+  }}updatePortfolioUI();/* ---------- TRADE MODAL ---------- */function _doOpenTrade(assetId){
   currentTrade.assetId = assetId;
   currentTrade.mode = 'buy';
   currentTrade.qty = 1;
@@ -1090,7 +1698,11 @@
   document.getElementById('toggleBuy').classList.add('active');
   document.getElementById('toggleSell').classList.remove('active');
   updateTradeUI();
-  showModal('tradeModal');}function updateTradeUI(){
+  showModal('tradeModal');
+}
+function openTrade(assetId){
+  requireAuth(() => _doOpenTrade(assetId), 'Sign in or create an investor profile to trade simulated assets on the Exchange.');
+}function updateTradeUI(){
   const a = findAsset(currentTrade.assetId);
   if(!a) return;
   document.getElementById('tradePrice').textContent = fmt(a.price);
@@ -1162,7 +1774,7 @@
   const threshold = state.startingCapital * 0.05;
   if(nw < threshold){
     openQuiz('recovery');
-  }}function openQuiz(type){
+  }}function _doOpenQuiz(type){
   quizContext.type = type;
   const alertEl = document.getElementById('quizAlert');
   const tagEl = document.getElementById('quizTag');
@@ -1177,7 +1789,11 @@
     closeBtn.style.display = 'block';
   }
   askQuizQuestion();
-  showModal('quizModal');}function askQuizQuestion(){
+  showModal('quizModal');
+}
+function openQuiz(type){
+  requireAuth(() => _doOpenQuiz(type), 'Sign in or create an investor profile to take quizzes & claim capital boosts.');
+}function askQuizQuestion(){
   const q = nextQuizQuestion();
   quizContext.current = q;
   document.getElementById('quizQ').textContent = q.q;
@@ -1283,15 +1899,27 @@ function answerQuiz(idx){
   }}document.getElementById('quizBoostBtn').addEventListener('click', ()=> openQuiz('boost'));/* =========================================================
    TRADING ACADEMY — teach terms & rules by demonstration first========================================================= */const TUTORIAL_STEPS = [
   {tag:'What is an exchange?', text:"An exchange is a supervised marketplace where buyers and sellers agree on a price for a share of a company, in real time — nothing more mysterious than that."},
-  {tag:'What is a share?', text:"A share (or stock) is one unit of ownership in a company. Own one share of a company with 1,000 shares total, and you technically own 0.1% of it."},
+  {tag:'What is a share?', text:"A share (or stock) is one small slice of ownership in a real company. Own one share out of 1,000 total, and you own 0.1% of it — its profits, and its losses.", demo:'ownership'},
+  {tag:'Demat account', text:"A Demat account is the digital locker that holds shares in your name. A broker connects that locker to the exchange. In this academy, we use play money so you can learn the process safely."},
+  {tag:'Why prices move', text:"A price rises when more people want to buy than sell at that moment, and falls when the opposite is true. Earnings reports, news, interest rates, even rumours — it all shows up as buying or selling pressure."},
+  {tag:'Reading a real quote', text:"These are real market numbers for a company people recognise. Learn to read them before you ever place an order.", demo:'metrics'},
+  {tag:'What those numbers mean', text:"P/E tells you how many rupees investors pay for every rupee the company earns. Market cap is the company's total value. The 52-week range shows its price floor and ceiling over the past year."},
+  {tag:"How to judge a stock", text:"There is no universally best stock. What suits someone depends on their goal, time horizon, and risk comfort. Saashya can teach you a consistent way to evaluate any company.", demo:'framework'},
+  {tag:'Time horizon matters', text:"Ask yourself when you need this money. A short-term goal should not depend on a volatile share price; a longer horizon gives a good business more time to grow through market ups and downs."},
   {tag:'Market Order', text:"A Market Order buys or sells immediately, at whatever the current price is. It's fast, but you accept the price as-is — useful when speed matters more than the exact number."},
   {tag:'Limit Order', text:"A Limit Order only executes at a price you set, or better. You might decide: \"only buy if it drops to ₹800.\" It waits — you control the price, not the timing."},
   {tag:'Reading the ticker', text:"Watch this live price for a moment. Green means it's risen since the last tick, wine-red means it's fallen. Neither, on its own, tells you what to do next.", demo:'ticker'},
   {tag:'Risk & diversification', text:"Never place all your capital on one asset. A spread across a few, unrelated ones means one bad move doesn't decide your whole outcome."},
-  {tag:"You're ready", text:"Saashya hands you ₹1,00,000 in practice capital. Trade freely — if it runs low, she'll be at the counter with a quiz to top you back up."}];let academyStepIndex = 0;function openAcademy(){
+  {tag:'Protect your downside', text:"Decide in advance how much loss you can handle. A stop-loss can limit damage, but it cannot guarantee a price in a fast-moving market. Position size and diversification are your first safety tools."},
+  {tag:'Common traps to avoid', text:"Do not chase a stock just because it is trending, trade from a rumour, or put emergency money into the market. A calm plan beats a rushed decision far more often than a hot tip."},
+  {tag:"You're ready", text:"Saashya hands you ₹1,00,000 in practice capital. Trade freely on the simulated board below — if it runs low, she'll be at the counter with a quiz to top you back up. The real-markets board stays alongside for reading practice any time."}];let academyStepIndex = 0;function _doOpenAcademy(){
   academyStepIndex = 0;
   renderAcademyStep();
-  showModal('academyModal');}function renderAcademyStep(){
+  showModal('academyModal');
+}
+function openAcademy(){
+  requireAuth(() => _doOpenAcademy(), 'Sign in or create an investor profile to access Saashya\'s Trading Academy.');
+}function renderAcademyStep(){
   const step = TUTORIAL_STEPS[academyStepIndex];
   document.getElementById('academyStepTag').textContent = `Step ${academyStepIndex+1} of ${TUTORIAL_STEPS.length} · ${step.tag}`;
   document.getElementById('academyStepText').textContent = step.text;
@@ -1306,6 +1934,13 @@ function answerQuiz(idx){
   if(step.demo === 'ticker'){
     const a = ASSETS[0];
     demoEl.innerHTML = `<div style="text-align:center;padding:14px 0;border-top:1px solid var(--line-soft);"><div style="font-family:var(--sans-ui);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">${a.name} — live</div><div id="academyTickerPrice" style="font-family:var(--serif-display);font-size:36px;color:var(--gold-soft);">${fmt(a.price)}</div></div>`;
+  } else if(step.demo === 'ownership'){
+    demoEl.innerHTML = `<div class="academy-visual"><div class="av-pie-row"><svg width="120" height="120" viewBox="0 0 42 42"><circle cx="21" cy="21" r="15.9" fill="transparent" stroke="var(--line-soft)" stroke-width="6"></circle><circle cx="21" cy="21" r="15.9" fill="transparent" stroke="var(--gold-soft)" stroke-width="6" stroke-dasharray="0.1 99.9" stroke-dashoffset="25" stroke-linecap="round"></circle></svg><div class="av-pie-legend">The gold sliver is <b>one share</b> out of 1,000 total shares. Own it, and you own <b>0.1%</b> of the company.</div></div></div>`;
+  } else if(step.demo === 'metrics'){
+    const quote = realMarketState.quotes['RELIANCE.NS'];
+    demoEl.innerHTML = quote ? `<div class="academy-visual"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;"><div class="lm-name" style="font-size:19px;">${quote.name}</div><div><span class="lm-price" style="font-size:22px;">${fmtReal(quote.price,'INR')}</span> <span class="lm-change ${(quote.changePct||0)>=0?'up':'down'}">${(quote.changePct||0)>=0?'+':''}${(quote.changePct||0).toFixed(2)}%</span></div></div><div class="av-metrics-grid"><div class="av-metric-card"><div class="lbl">P/E ratio</div><div class="val">${quote.pe?Number(quote.pe).toFixed(1):'—'}</div><div class="hint">Price ÷ earnings per share.</div></div><div class="av-metric-card"><div class="lbl">Market cap</div><div class="val">${typeof quote.marketCap==='number'?'₹'+(quote.marketCap/1e12*8.3).toFixed(1)+'L Cr':quote.marketCap||'—'}</div><div class="hint">The company’s total market value.</div></div><div class="av-metric-card"><div class="lbl">52-week low</div><div class="val">${fmtReal(quote.low52,'INR')}</div></div><div class="av-metric-card"><div class="lbl">52-week high</div><div class="val">${fmtReal(quote.high52,'INR')}</div></div></div></div>` : '<div class="academy-visual">Loading a live example…</div>';
+  } else if(step.demo === 'framework'){
+    demoEl.innerHTML = `<div class="academy-visual"><div class="av-framework"><div class="av-framework-card"><div class="q">1. Do you understand the business?</div><div class="a">Can you explain how this company makes money?</div></div><div class="av-framework-card"><div class="q">2. Are earnings consistent?</div><div class="a">Has it grown profits steadily, or is every year a surprise?</div></div><div class="av-framework-card"><div class="q">3. Is the price fair?</div><div class="a">Compare its P/E with similar companies in its industry.</div></div><div class="av-framework-card"><div class="q">4. Would you hold it for 5+ years?</div><div class="a">If not, today’s price should not decide your choice.</div></div></div></div>`;
   } else {
     demoEl.innerHTML = '';
   }
@@ -1406,97 +2041,2844 @@ function answerQuiz(idx){
       if(img) img.style.transform = `rotateY(${px*8}deg) rotateX(${-py*6}deg)`;
     });
   });})();/* =========================================================
+   USER PROFILE & AUTHENTICATION PORTAL (On-Demand Flow)
+   ========================================================= */
+const USER_PROFILE_KEY = 'fin2edge-user-profile';
+let userProfile = {
+  isLoggedIn: false,
+  fullName: '',
+  email: '',
+  avatar: '👑',
+  goal: 'Wealth Creation & Growth',
+  experience: 'Beginner Investor',
+  age: null,
+  profession: 'Student',
+  monthlyIncome: 20000,
+  personalGoals: '',
+  ambitions: '',
+  fiveYearPlan: '',
+  createdAt: null
+};
+
+let pendingAuthAction = null;
+
+function loadUserProfile(){
+  try {
+    const raw = localStorage.getItem(USER_PROFILE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === 'object') {
+        userProfile = Object.assign(userProfile, parsed);
+      }
+    }
+  } catch (e) {
+    console.warn('Could not load user profile', e);
+  }
+}
+
+function saveUserProfile(){
+  try {
+    localStorage.setItem(USER_PROFILE_KEY, JSON.stringify(userProfile));
+  } catch (e) {
+    console.warn('Could not save user profile', e);
+  }
+}
+
+function showAuthPortal(reasonMsg){
+  const portal = document.getElementById('authPortal');
+  const subEl = document.getElementById('authSubtitle');
+  if (reasonMsg && subEl) {
+    subEl.textContent = reasonMsg;
+  }
+  if (portal) portal.classList.add('show');
+}
+
+function hideAuthPortal(){
+  const portal = document.getElementById('authPortal');
+  if (portal) portal.classList.remove('show');
+}
+
+function requireAuth(actionFn, reasonMsg){
+  if (userProfile.isLoggedIn) {
+    actionFn();
+  } else {
+    pendingAuthAction = actionFn;
+    showAuthPortal(reasonMsg || 'Sign in or create an investor profile to unlock this personalized feature.');
+  }
+}
+
+function executePendingAuth(){
+  hideAuthPortal();
+  if (pendingAuthAction) {
+    const action = pendingAuthAction;
+    pendingAuthAction = null;
+    setTimeout(() => { action(); }, 120);
+  }
+  const subEl = document.getElementById('authSubtitle');
+  if (subEl) {
+    subEl.textContent = 'Sign in to your private desk or create an investor profile to unlock personalized features.';
+  }
+}
+
+function cancelAuthModal(){
+  pendingAuthAction = null;
+  hideAuthPortal();
+  const subEl = document.getElementById('authSubtitle');
+  if (subEl) {
+    subEl.textContent = 'Sign in to your private desk or create an investor profile to unlock personalized features.';
+  }
+}
+
+function updateProfileUI(){
+  const pill = document.getElementById('navProfilePill');
+  const signInBtn = document.getElementById('navSignInBtn');
+  const avatarEl = document.getElementById('navProfileAvatar');
+  const nameEl = document.getElementById('navProfileName');
+
+  if (userProfile.isLoggedIn && userProfile.fullName) {
+    const firstName = userProfile.fullName.trim().split(' ')[0] || userProfile.fullName;
+    if (pill) pill.style.display = 'flex';
+    if (signInBtn) signInBtn.style.display = 'none';
+    if (avatarEl) avatarEl.textContent = userProfile.avatar || '👑';
+    if (nameEl) nameEl.textContent = firstName;
+
+    // Personalize Saashya greetings
+    SECTION_LINES.hero = `Welcome back, ${firstName}! I'm Saashya — follow me down the page, or step straight into the bank with me.`;
+    const speechEl = document.querySelector('.guide-speech');
+    if (speechEl) {
+      speechEl.innerHTML = `"Namaste, ${firstName} — I'm Saashya. Fifteen years on trading floors taught me that the biggest risk isn't the market. Let's build your portfolio today."`;
+    }
+  } else {
+    if (pill) pill.style.display = 'none';
+    if (signInBtn) signInBtn.style.display = 'inline-flex';
+  }
+}
+
+function initAuthPortal(){
+  const tabLogin = document.getElementById('authTabLogin');
+  const tabRegister = document.getElementById('authTabRegister');
+  const loginForm = document.getElementById('loginForm');
+  const registerForm = document.getElementById('registerForm');
+  const linkReg = document.getElementById('linkToRegister');
+  const linkLog = document.getElementById('linkToLogin');
+  const quickDemo = document.getElementById('btnQuickDemo');
+  const avatarOpts = document.querySelectorAll('#avatarSelector .avatar-opt');
+  const navSignInBtn = document.getElementById('navSignInBtn');
+
+  const btnClose1 = document.getElementById('btnContinueExploring');
+  const btnClose2 = document.getElementById('btnContinueExploringLink');
+  const btnClose3 = document.getElementById('btnContinueExploringLink2');
+
+  let selectedAvatar = '👑';
+
+  if (btnClose1) btnClose1.addEventListener('click', cancelAuthModal);
+  if (btnClose2) btnClose2.addEventListener('click', cancelAuthModal);
+  if (btnClose3) btnClose3.addEventListener('click', cancelAuthModal);
+  if (navSignInBtn) navSignInBtn.addEventListener('click', () => showAuthPortal());
+
+  function switchToLogin(){
+    if (tabLogin) tabLogin.classList.add('active');
+    if (tabRegister) tabRegister.classList.remove('active');
+    if (loginForm) loginForm.classList.add('active');
+    if (registerForm) registerForm.classList.remove('active');
+  }
+
+  function switchToRegister(){
+    if (tabRegister) tabRegister.classList.add('active');
+    if (tabLogin) tabLogin.classList.remove('active');
+    if (registerForm) registerForm.classList.add('active');
+    if (loginForm) loginForm.classList.remove('active');
+  }
+
+  if (tabLogin) tabLogin.addEventListener('click', switchToLogin);
+  if (tabRegister) tabRegister.addEventListener('click', switchToRegister);
+  if (linkReg) linkReg.addEventListener('click', (e) => { e.preventDefault(); switchToRegister(); });
+  if (linkLog) linkLog.addEventListener('click', (e) => { e.preventDefault(); switchToLogin(); });
+
+  avatarOpts.forEach(opt => {
+    opt.addEventListener('click', () => {
+      avatarOpts.forEach(o => o.classList.remove('active'));
+      opt.classList.add('active');
+      selectedAvatar = opt.getAttribute('data-avatar') || '👑';
+    });
+  });
+
+  // Login form handler
+  if (loginForm) {
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const emailVal = document.getElementById('loginEmail').value.trim();
+      const passVal = document.getElementById('loginPassword').value;
+      const errEl = document.getElementById('loginError');
+
+      if (!emailVal || !passVal) {
+        if (errEl) { errEl.textContent = 'Please enter your email/username and password.'; errEl.style.display = 'block'; }
+        return;
+      }
+      if (errEl) errEl.style.display = 'none';
+
+      // Login success
+      const derivedName = emailVal.includes('@') ? emailVal.split('@')[0] : emailVal;
+      userProfile.isLoggedIn = true;
+      userProfile.fullName = userProfile.fullName || (derivedName.charAt(0).toUpperCase() + derivedName.slice(1));
+      userProfile.email = emailVal;
+      userProfile.createdAt = userProfile.createdAt || new Date().toISOString();
+
+      saveUserProfile();
+      updateProfileUI();
+      toast(`Welcome back to Fin2edge, ${userProfile.fullName}!`);
+      executePendingAuth();
+    });
+  }
+
+  // Register / Profile Creation form handler
+  if (registerForm) {
+    registerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nameVal = document.getElementById('regFullName').value.trim();
+      const emailVal = document.getElementById('regEmail').value.trim();
+      const passVal = document.getElementById('regPassword').value;
+      const goalVal = document.getElementById('regGoal').value;
+      const expVal = document.getElementById('regExperience').value;
+      const ageVal = parseInt(document.getElementById('regAge').value, 10);
+      const professionVal = document.getElementById('regProfession').value;
+      const incomeVal = parseInt(document.getElementById('regMonthlyIncome').value, 10);
+      const personalGoalsVal = document.getElementById('regPersonalGoals').value.trim();
+      const ambitionsVal = document.getElementById('regAmbitions').value.trim();
+      const fiveYearPlanVal = document.getElementById('regFiveYearPlan').value.trim();
+      const errEl = document.getElementById('registerError');
+
+      if (!nameVal || !emailVal || !passVal || !ageVal || incomeVal < 0 || !personalGoalsVal || !ambitionsVal || !fiveYearPlanVal) {
+        if (errEl) { errEl.textContent = 'Please complete all required fields.'; errEl.style.display = 'block'; }
+        return;
+      }
+      if (passVal.length < 4) {
+        if (errEl) { errEl.textContent = 'Password must be at least 4 characters long.'; errEl.style.display = 'block'; }
+        return;
+      }
+      if (errEl) errEl.style.display = 'none';
+
+      userProfile = {
+        isLoggedIn: true,
+        fullName: nameVal,
+        email: emailVal,
+        avatar: selectedAvatar,
+        goal: goalVal,
+        experience: expVal,
+        age: ageVal,
+        profession: professionVal,
+        monthlyIncome: incomeVal,
+        personalGoals: personalGoalsVal,
+        ambitions: ambitionsVal,
+        fiveYearPlan: fiveYearPlanVal,
+        createdAt: new Date().toISOString()
+      };
+
+      saveUserProfile();
+      updateProfileUI();
+      toast(`Profile created! Welcome to Fin2edge, ${nameVal}.`);
+      executePendingAuth();
+    });
+  }
+
+  // Quick Demo Access
+  if (quickDemo) {
+    quickDemo.addEventListener('click', () => {
+      userProfile = {
+        isLoggedIn: true,
+        fullName: 'Aaradhya Sharma',
+        email: 'aaradhya@fin2edge.com',
+        avatar: '👑',
+        goal: 'Wealth Creation & Growth',
+        experience: 'Empress Investor',
+        age: 24,
+        profession: 'Software Engineer',
+        monthlyIncome: 80000,
+        personalGoals: 'Build long-term financial security and support my family.',
+        ambitions: 'Grow into a technology leader and invest with confidence.',
+        fiveYearPlan: 'Own a home, maintain a strong emergency fund, and build a diversified portfolio.',
+        createdAt: new Date().toISOString()
+      };
+      saveUserProfile();
+      updateProfileUI();
+      toast('Signed in as Demo User (Aaradhya S.)');
+      executePendingAuth();
+    });
+  }
+
+  // Navbar Profile Dropdown toggle
+  const navPill = document.getElementById('navProfilePill');
+  if (navPill) {
+    navPill.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navPill.classList.toggle('active');
+    });
+    document.addEventListener('click', () => {
+      navPill.classList.remove('active');
+    });
+  }
+
+  // The profile menu intentionally opens only the learning progress dashboard.
+  const btnOpenProgress = document.getElementById('btnOpenProgress');
+  if (btnOpenProgress) {
+    btnOpenProgress.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (navPill) navPill.classList.remove('active');
+      openProgressDashboard();
+    });
+  }
+}
+
+/* =========================================================
+   BUDGET SIMULATOR & FINANCIAL PASSPORT ENGINE
+   ========================================================= */
+const BUDGET_STORAGE_KEY = 'fin2edge-budget-state';
+
+const PROFESSION_PRESETS = {
+  'Software Engineer': {
+    defaultIncome: 80000,
+    categories: [
+      { id: 'rent', name: '🏠 Rent & Utilities', icon: '🏠', pct: 0.30 },
+      { id: 'food', name: '🍛 Food & Dining', icon: '🍛', pct: 0.20 },
+      { id: 'transport', name: '🚗 Transport & Commute', icon: '🚗', pct: 0.10 },
+      { id: 'entertainment', name: '🎉 Entertainment', icon: '🎉', pct: 0.15 },
+      { id: 'savings', name: '💰 Long-term Savings', icon: '💰', pct: 0.15 },
+      { id: 'emergency', name: '🚑 Emergency Fund', icon: '🚑', pct: 0.10 }
+    ]
+  },
+  'Student': {
+    defaultIncome: 20000,
+    categories: [
+      { id: 'education', name: '📚 Books & Fees', icon: '📚', pct: 0.35 },
+      { id: 'food', name: '🍛 Canteen & Food', icon: '🍛', pct: 0.25 },
+      { id: 'travel', name: '🚌 Bus & Travel', icon: '🚌', pct: 0.15 },
+      { id: 'entertainment', name: '🎉 Outings & Movies', icon: '🎉', pct: 0.10 },
+      { id: 'savings', name: '💰 Starter Savings', icon: '💰', pct: 0.10 },
+      { id: 'emergency', name: '🚑 Emergency Reserve', icon: '🚑', pct: 0.05 }
+    ]
+  },
+  'Teacher': {
+    defaultIncome: 45000,
+    categories: [
+      { id: 'rent', name: '🏠 House Rent', icon: '🏠', pct: 0.30 },
+      { id: 'food', name: '🛒 Groceries & Supplies', icon: '🛒', pct: 0.25 },
+      { id: 'commute', name: '🚌 Daily Commute', icon: '🚌', pct: 0.10 },
+      { id: 'personal', name: '👕 Family & Personal', icon: '👕', pct: 0.15 },
+      { id: 'savings', name: '💰 Retirement Savings', icon: '💰', pct: 0.10 },
+      { id: 'emergency', name: '🚑 Emergency Jar', icon: '🚑', pct: 0.10 }
+    ]
+  },
+  'Doctor': {
+    defaultIncome: 90000,
+    categories: [
+      { id: 'housing', name: '🏠 Housing & Bills', icon: '🏠', pct: 0.25 },
+      { id: 'food', name: '🍛 Dining & Living', icon: '🍛', pct: 0.20 },
+      { id: 'loan', name: '🎓 Medical Loan EMI', icon: '🎓', pct: 0.20 },
+      { id: 'personal', name: '👕 Personal & Travel', icon: '👕', pct: 0.10 },
+      { id: 'savings', name: '💰 Wealth Investments', icon: '💰', pct: 0.15 },
+      { id: 'emergency', name: '🚑 Medical Emergency Jar', icon: '🚑', pct: 0.10 }
+    ]
+  },
+  'Freelancer': {
+    defaultIncome: 65000,
+    categories: [
+      { id: 'business', name: '💻 Workstation & Software', icon: '💻', pct: 0.20 },
+      { id: 'taxes', name: '🏛️ Advance Tax Jar', icon: '🏛️', pct: 0.15 },
+      { id: 'living', name: '🏠 Rent & Groceries', icon: '🏠', pct: 0.25 },
+      { id: 'savings', name: '💰 Long-term Portfolio', icon: '💰', pct: 0.20 },
+      { id: 'emergency', name: '🚑 Cashflow Buffer', icon: '🚑', pct: 0.20 }
+    ]
+  },
+  'Business Owner': {
+    defaultIncome: 110000,
+    categories: [
+      { id: 'inventory', name: '📦 Stock & Operations', icon: '📦', pct: 0.30 },
+      { id: 'taxes', name: '🏛️ GST & Business Tax', icon: '🏛️', pct: 0.15 },
+      { id: 'living', name: '🏠 Personal Living', icon: '🏠', pct: 0.25 },
+      { id: 'savings', name: '💰 Business Reserve', icon: '💰', pct: 0.15 },
+      { id: 'emergency', name: '🚑 Crisis Fund', icon: '🚑', pct: 0.15 }
+    ]
+  },
+  'Homemaker': {
+    defaultIncome: 40000,
+    categories: [
+      { id: 'bills', name: '🏠 Utility & House Bills', icon: '🏠', pct: 0.35 },
+      { id: 'groceries', name: '🛒 Kitchen & Groceries', icon: '🛒', pct: 0.30 },
+      { id: 'childcare', name: '👶 Child Education & Care', icon: '👶', pct: 0.15 },
+      { id: 'savings', name: '💰 Home Savings', icon: '💰', pct: 0.10 },
+      { id: 'emergency', name: '🚑 Family Safety Net', icon: '🚑', pct: 0.10 }
+    ]
+  },
+  'Entrepreneur': {
+    defaultIncome: 100000,
+    categories: [
+      { id: 'startup', name: '🚀 Startup Buffer', icon: '🚀', pct: 0.30 },
+      { id: 'living', name: '🏠 Personal Expenses', icon: '🏠', pct: 0.30 },
+      { id: 'learning', name: '📚 Seminars & Network', icon: '📚', pct: 0.10 },
+      { id: 'savings', name: '💰 Equity Investments', icon: '💰', pct: 0.15 },
+      { id: 'emergency', name: '🚑 Runway Protection', icon: '🚑', pct: 0.15 }
+    ]
+  },
+  'Government Employee': {
+    defaultIncome: 70000,
+    categories: [
+      { id: 'housing', name: '🏠 Quarter Maintenance', icon: '🏠', pct: 0.30 },
+      { id: 'family', name: '🛒 Household Expenses', icon: '🛒', pct: 0.25 },
+      { id: 'transport', name: '🚗 Vehicle Maintenance', icon: '🚗', pct: 0.10 },
+      { id: 'savings', name: '💰 Pension & PPF Contribution', icon: '💰', pct: 0.20 },
+      { id: 'emergency', name: '🚑 Medical & Contingency', icon: '🚑', pct: 0.15 }
+    ]
+  }
+};
+
+const LIFE_SCENARIOS = [
+  {
+    id: 'medical_emergency',
+    name: 'Medical Emergency',
+    icon: '🚑',
+    category: 'Health Crisis',
+    desc: 'An unexpected health issue required an immediate hospital checkup and pharmacy bill.',
+    impactPct: 0.15,
+    professions: ['all'],
+    advice: "Health emergencies test even the best budgets. Using your Emergency Fund jar prevents you from breaking long-term savings!"
+  },
+  {
+    id: 'laptop_repair',
+    name: 'Laptop & Hardware Repair',
+    icon: '💻',
+    category: 'Equipment Failure',
+    desc: 'Your main computer component failed and needed urgent repair to continue working.',
+    impactPct: 0.12,
+    professions: ['Software Engineer', 'Freelancer', 'Entrepreneur', 'Student'],
+    advice: "For tech-driven careers, allocating an equipment buffer inside your budget avoids work downtime."
+  },
+  {
+    id: 'client_delay',
+    name: 'Client Payment Delay',
+    icon: '⏳',
+    category: 'Income Shortfall',
+    desc: 'A major client delayed their invoice payment by 3 weeks, creating a temporary cash gap.',
+    impactPct: 0.18,
+    professions: ['Freelancer', 'Business Owner', 'Entrepreneur'],
+    advice: "Variable income requires a thicker 3-6 month Emergency Reserve jar to smooth out dry spells."
+  },
+  {
+    id: 'rent_increase',
+    name: 'Utility & Rent Adjustment',
+    icon: '🏠',
+    category: 'Cost Adjustment',
+    desc: 'Electricity tariff hike and landlord maintenance fee increased this month\'s fixed costs.',
+    impactPct: 0.08,
+    professions: ['all'],
+    advice: "When fixed costs rise, trimming flexible jars (like Entertainment) helps maintain your savings rate."
+  },
+  {
+    id: 'unexpected_bonus',
+    name: 'Performance Bonus Received',
+    icon: '🎁',
+    category: 'Income Reward',
+    desc: 'Outstanding performance yielded an unexpected single-month cash bonus!',
+    impactPct: -0.15,
+    professions: ['all'],
+    advice: "Windfall Rule: Put 50% into Emergency/Savings jars, and use 50% to celebrate your hard work!"
+  },
+  {
+    id: 'car_repair',
+    name: 'Vehicle Maintenance',
+    icon: '🚗',
+    category: 'Transport Cost',
+    desc: 'Annual vehicle service and tire replacements were due earlier than planned.',
+    impactPct: 0.10,
+    professions: ['Software Engineer', 'Doctor', 'Teacher', 'Government Employee', 'Business Owner'],
+    advice: "Commute costs can spike unexpectedly. Setting aside transport savings keeps you mobile without stress."
+  },
+  {
+    id: 'certification_course', name: 'Career Certification Opportunity', icon: '📚', category: 'Growth Opportunity',
+    desc: 'A time-sensitive certification aligned with your ambition is available at a discounted fee this month.', impactPct: 0.10,
+    professions: ['Student', 'Software Engineer', 'Teacher', 'Freelancer'],
+    advice: 'This is a useful investment only when it fits your goal and does not empty your emergency reserve.'
+  },
+  {
+    id: 'college_relocation', name: 'Internship Relocation', icon: '🧳', category: 'Career Transition',
+    desc: 'A promising internship requires a short relocation and deposit before your first stipend arrives.', impactPct: 0.14,
+    professions: ['Student'],
+    advice: 'Use a planned buffer first, then trim flexible spending. Protecting your learning goal keeps this decision strategic.'
+  }
+];
+
+let budgetState = {
+  profession: 'Software Engineer',
+  income: 80000,
+  goal: 'Build Emergency Fund',
+  experience: 'Beginner',
+  currentMonth: 1,
+  allocations: {},
+  activeScenario: null,
+  reallocations: {},
+  score: 85,
+  savingsDisciplinePct: 80,
+  emergencyReadiness: 'Strong',
+  xp: 300,
+  level: 1,
+  streak: 1,
+  badges: ['🏆 Budget Master', '🛡️ Shield Bearer']
+};
+
+const SALARY_NOTE_CATEGORIES = [
+  { id: 'essentials', name: 'Essentials', icon: '🏠', color: '#c9a24d' },
+  { id: 'emergency', name: 'Emergency Fund', icon: '🛡️', color: '#a78bfa' },
+  { id: 'investments', name: 'Investments', icon: '📈', color: '#34d399' },
+  { id: 'insurance', name: 'Insurance', icon: '❤️', color: '#fb7185' },
+  { id: 'lifestyle', name: 'Lifestyle', icon: '🍕', color: '#f472b6' },
+  { id: 'travel', name: 'Travel', icon: '✈️', color: '#60a5fa' },
+  { id: 'learning', name: 'Learning', icon: '📚', color: '#fb923c' }
+];
+const GOAL_STRATEGIES = {
+  'Build Emergency Fund': { target: 120000, tip: 'Build protection first: aim for 15% to your emergency fund.', emphasis: 'emergency' },
+  'Save for a Trip': { target: 150000, tip: 'Keep your trip fund separate and protect your investment habit.', emphasis: 'travel' },
+  'Buy a Gadget': { target: 60000, tip: 'Save deliberately for your gadget without borrowing from your safety net.', emphasis: 'lifestyle' },
+  'Start Investing': { target: 100000, tip: 'Start simply: direct at least 20% toward investments and stay consistent.', emphasis: 'investments' },
+  'Pay Existing Expenses': { target: 80000, tip: 'Cover the essentials first, then build a small emergency cushion.', emphasis: 'essentials' },
+  'Skill Development': { target: 100000, tip: 'A dedicated learning allocation turns skills into long-term earning power.', emphasis: 'learning' },
+  'Higher Education': { target: 800000, tip: 'A learning goal works best with a dedicated monthly contribution.', emphasis: 'learning' },
+  'Family Support': { target: 200000, tip: 'Balance family support with an emergency buffer of your own.', emphasis: 'essentials' },
+  'Wealth Creation': { target: 1000000, tip: 'Balance essentials with 20%+ investments and a safety buffer.', emphasis: 'investments' }
+};
+let salaryNotes = [];
+let pendingAllocation = null;
+let selectedNoteId = null;
+let selectedGoal = 'Wealth Creation';
+let budgetInsightRequestId = 0;
+
+function profileRiskAppetite(){
+  const experience = String(userProfile.experience || budgetState.experience || '').toLowerCase();
+  if (experience.includes('advanced')) return 'growth-oriented';
+  if (experience.includes('intermediate')) return 'balanced';
+  return 'cautious';
+}
+
+function normalizeProfileGoal(goal){
+  const value = String(goal || '').toLowerCase();
+  if (value.includes('safety') || value.includes('scheme')) return 'Build Emergency Fund';
+  if (value.includes('trading')) return 'Skill Development';
+  return 'Wealth Creation';
+}
+
+function refreshAdaptiveCategories(){
+  const student = budgetState.profession === 'Student';
+  const categories = student ? [
+    { id:'education', name:'Education', icon:'📚', color:'#fb923c' },
+    { id:'food', name:'Food', icon:'🍛', color:'#c9a24d' },
+    { id:'transport', name:'Transport', icon:'🚌', color:'#60a5fa' },
+    { id:'lifestyle', name:'Entertainment', icon:'🎉', color:'#f472b6' },
+    { id:'investments', name:'Savings & Goals', icon:'💰', color:'#34d399' },
+    { id:'emergency', name:'Emergency Fund', icon:'🛡️', color:'#a78bfa' }
+  ] : [
+    { id:'rent', name:'Rent & Utilities', icon:'🏠', color:'#c9a24d' },
+    { id:'food', name:'Food', icon:'🍛', color:'#fb923c' },
+    { id:'transport', name:'Transport', icon:'🚗', color:'#60a5fa' },
+    { id:'lifestyle', name:'Lifestyle', icon:'✨', color:'#f472b6' },
+    { id:'investments', name:'Investments', icon:'📈', color:'#34d399' },
+    { id:'insurance', name:'Insurance', icon:'❤️', color:'#fb7185' },
+    { id:'emergency', name:'Emergency Fund', icon:'🛡️', color:'#a78bfa' }
+  ];
+  SALARY_NOTE_CATEGORIES.splice(0, SALARY_NOTE_CATEGORIES.length, ...categories);
+}
+
+function makeSalaryNotes(income) {
+  const denominations = [5000, 2000, 1000, 500];
+  const grouped = new Map(denominations.map(value => [value, 0]));
+  let remaining = income; let index = 0;
+  while (remaining > 0) {
+    const orderedNotes = denominations.map((_, offset) => denominations[(index + offset) % denominations.length]);
+    const denomination = orderedNotes.find(value => value <= remaining) || remaining;
+    grouped.set(denomination, (grouped.get(denomination) || 0) + 1);
+    remaining -= denomination; index++;
+  }
+  return denominations.filter(denomination => grouped.get(denomination)).map((denomination, stackIndex) => ({
+    id: `cash-stack-${Date.now()}-${stackIndex}`,
+    denomination,
+    count: grouped.get(denomination),
+    amount: denomination * grouped.get(denomination)
+  }));
+}
+
+function loadBudgetState(){
+  try {
+    const raw = localStorage.getItem(BUDGET_STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === 'object') {
+        budgetState = Object.assign(budgetState, parsed);
+      }
+    }
+  } catch (e) {
+    console.warn('Could not load budget state', e);
+  }
+}
+
+function saveBudgetState(){
+  try {
+    localStorage.setItem(BUDGET_STORAGE_KEY, JSON.stringify(budgetState));
+  } catch (e) {
+    console.warn('Could not save budget state', e);
+  }
+}
+
+function updateBudgetLandingUI(){
+  const lvlEl = document.getElementById('statBudgetLevel');
+  const strkEl = document.getElementById('statBudgetStreak');
+  const xpEl = document.getElementById('statBudgetXp');
+
+  if (lvlEl) lvlEl.textContent = `Level ${budgetState.level}`;
+  if (strkEl) strkEl.textContent = `${budgetState.streak} Month${budgetState.streak === 1 ? '' : 's'}`;
+  if (xpEl) xpEl.textContent = `${budgetState.xp} XP`;
+}
+
+function openBudgetSetupStage(){
+  const setupStage = document.getElementById('budgetStageSetup');
+  const jarsStage = document.getElementById('budgetStageJars');
+  const scenStage = document.getElementById('budgetStageScenario');
+  const repStage = document.getElementById('budgetStageReport');
+
+  [setupStage, jarsStage, scenStage, repStage].forEach(s => s && s.classList.remove('active'));
+  if (setupStage) setupStage.classList.add('active');
+
+  syncBudgetWithProfile();
+  updateIncomeLanguage();
+  const firstName = (userProfile.fullName || 'there').trim().split(' ')[0];
+  const amount = fmt(budgetState.income);
+  const greeting = document.getElementById('cinematicGreeting');
+  const credit = document.getElementById('salaryCreditAmount');
+  const reveal = document.getElementById('walletRevealAmount');
+  const month = document.getElementById('cinematicMonth');
+  if (greeting) greeting.textContent = `Namaste, ${firstName}! Your ${budgetState.goal} ambition is the plan for this month.`;
+  if (credit) credit.textContent = amount;
+  if (reveal) reveal.textContent = '₹0';
+  if (month) month.textContent = budgetState.currentMonth;
+  const envelope = document.getElementById('salaryEnvelope');
+  if (envelope) envelope.classList.remove('opened');
+  selectedGoal = GOAL_STRATEGIES[budgetState.goal] ? budgetState.goal : normalizeProfileGoal(budgetState.goal);
+  renderGoalPicker();
+
+  showModal('budgetModal');
+}
+
+function renderGoalPicker(){
+  const chips = document.getElementById('goalChips'); const recommendation = document.getElementById('goalRecommendation');
+  if (!chips) return;
+  chips.innerHTML = '';
+  const chip = document.createElement('span'); chip.textContent = selectedGoal; chip.className = 'goal-chip active'; chips.appendChild(chip);
+  if (recommendation) recommendation.textContent = `Saashya: ${GOAL_STRATEGIES[selectedGoal].tip} Your saved risk comfort is ${budgetState.riskAppetite}.`;
+}
+
+function syncBudgetWithProfile(){
+  const preset = PROFESSION_PRESETS[userProfile.profession] || PROFESSION_PRESETS['Student'];
+  budgetState.profession = userProfile.profession || 'Student';
+  budgetState.income = 20000;
+  budgetState.goal = userProfile.goal || budgetState.goal;
+  budgetState.experience = userProfile.experience || budgetState.experience;
+  budgetState.riskAppetite = profileRiskAppetite();
+  refreshAdaptiveCategories();
+}
+
+function updateIncomeLanguage(){
+  const isStudent = budgetState.profession === 'Student';
+  const incomeName = isStudent ? 'pocket money' : 'salary';
+  const capitalized = incomeName[0].toUpperCase() + incomeName.slice(1);
+  const set = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
+  set('incomeDayLabel', `${capitalized} day`);
+  set('incomeCreditLabel', `✓ ${capitalized} credited successfully`);
+  set('incomeEnvelopeLabel', `Monthly ${incomeName}`);
+  set('cinematicLine', `Your simulated monthly ${incomeName} of ${fmt(budgetState.income)} is now credited. Every allocation below uses this exact amount.`);
+}
+
+function initPresetAllocations(profName, incomeAmt){
+  const preset = PROFESSION_PRESETS[profName] || PROFESSION_PRESETS['Software Engineer'];
+  budgetState.allocations = {};
+  preset.categories.forEach(cat => {
+    budgetState.allocations[cat.id] = Math.round(incomeAmt * cat.pct);
+  });
+}
+
+function renderJarsStage(){
+  const setupStage = document.getElementById('budgetStageSetup');
+  const jarsStage = document.getElementById('budgetStageJars');
+  const scenStage = document.getElementById('budgetStageScenario');
+  const repStage = document.getElementById('budgetStageReport');
+
+  [setupStage, jarsStage, scenStage, repStage].forEach(s => s && s.classList.remove('active'));
+  if (jarsStage) jarsStage.classList.add('active');
+
+  const grid = document.getElementById('jarsGrid');
+  if (!grid) return;
+
+  const totalInc = budgetState.income;
+  const lblInc = document.getElementById('lblTotalIncome');
+  const monthTag = document.getElementById('budgetMonthTag');
+
+  if (lblInc) lblInc.textContent = fmt(totalInc);
+  if (monthTag) monthTag.textContent = `Month ${budgetState.currentMonth} · Budget Allocation`;
+
+  grid.innerHTML = '';
+  SALARY_NOTE_CATEGORIES.forEach(cat => {
+    const allocated = budgetState.allocations[cat.id] || 0;
+    const pct = totalInc > 0 ? Math.round((allocated / totalInc) * 100) : 0;
+
+    const card = document.createElement('div');
+    card.className = 'jar-card';
+    card.innerHTML = `
+      <div class="jar-header-row">
+        <div class="jar-icon-name">
+          <span class="jar-icon">${cat.icon}</span>
+          <span class="jar-name">${cat.name}</span>
+        </div>
+        <span class="jar-percent-badge" id="badge-${cat.id}">${pct}%</span>
+      </div>
+      <div class="jar-glass-wrap">
+        <div class="jar-glass-liquid" id="liquid-${cat.id}" style="height: ${Math.min(pct * 1.5, 100)}%;"></div>
+        <div class="jar-glass-amt" id="amt-${cat.id}">${fmt(allocated)}</div>
+      </div>
+      <div class="jar-drop-hint">Drop a salary note here</div>
+    `;
+    card.dataset.categoryId = cat.id;
+    grid.appendChild(card);
+  });
+
+  updateAllocationProgress();
+  renderSalaryNotes();
+  grid.querySelectorAll('.jar-card').forEach(card => {
+    card.addEventListener('dragover', e => { e.preventDefault(); card.classList.add('drop-hover'); });
+    card.addEventListener('dragleave', () => card.classList.remove('drop-hover'));
+    card.addEventListener('drop', e => {
+      e.preventDefault(); card.classList.remove('drop-hover');
+      const noteId = e.dataTransfer.getData('text/plain');
+      if (noteId) allocateOneNote(noteId, card.dataset.categoryId);
+    });
+    card.addEventListener('click', () => {
+      const note = salaryNotes.find(item => item.id === selectedNoteId) || salaryNotes[0];
+      if (note) openAllocationPopup(note.id, card.dataset.categoryId);
+    });
+  });
+}
+
+function renderSalaryNotes(){
+  const wallet = document.getElementById('notesWallet');
+  if (!wallet) return;
+  wallet.innerHTML = '';
+  salaryNotes.forEach(note => {
+    const el = document.createElement('div');
+    el.className = 'salary-note note-stack'; el.draggable = true; el.dataset.noteId = note.id;
+    const stackDepth = Math.min(note.count, 5);
+    el.style.marginTop = `${stackDepth}px`;
+    el.style.boxShadow = `${-stackDepth * .55}px ${stackDepth * .55}px 0 rgba(201,162,77,.18), ${-stackDepth * .25}px ${stackDepth * .25}px 0 rgba(201,162,77,.25), 0 4px 18px rgba(0,0,0,.5), 0 0 8px rgba(201,162,77,.12)`;
+    el.innerHTML = `<span class="note-stack-count">${note.count} notes</span><span class="note-denomination">${fmt(note.denomination)}</span><span class="note-label">${note.count} × ${fmt(note.denomination)} · ${fmt(note.amount)} total</span><button class="note-split-btn" type="button">Split one</button>`;
+    el.addEventListener('dragstart', e => { e.dataTransfer.setData('text/plain', note.id); e.dataTransfer.effectAllowed = 'move'; el.classList.add('note-dragging'); });
+    el.addEventListener('dragend', () => el.classList.remove('note-dragging'));
+    el.addEventListener('click', e => { e.stopPropagation(); selectedNoteId = note.id; wallet.querySelectorAll('.salary-note').forEach(item => item.classList.toggle('note-selected', item.dataset.noteId === note.id)); toast(`One ${fmt(note.denomination)} note selected. Click a category to allocate it.`); });
+    el.querySelector('.note-split-btn').addEventListener('click', e => { e.stopPropagation(); selectedNoteId = note.id; toast(`One ${fmt(note.denomination)} note selected. Click a category to split it.`); });
+    wallet.appendChild(el);
+  });
+}
+
+function updateAllocationProgress(){
+  const totalInc = budgetState.income;
+  let sum = 0;
+  Object.values(budgetState.allocations).forEach(v => { sum += v; });
+
+  const remaining = totalInc - sum;
+  const pctAllocated = Math.min(Math.round((sum / totalInc) * 100), 100);
+
+  const lblAlloc = document.getElementById('lblAllocatedAmt');
+  const lblRem = document.getElementById('lblRemainingAmt');
+  const fill = document.getElementById('btProgressFill');
+  const lockBtn = document.getElementById('btnLockBudget');
+  const walletBalance = document.getElementById('notesWalletBalance');
+
+  if (lblAlloc) lblAlloc.textContent = fmt(sum);
+  if (lblRem) {
+    lblRem.textContent = fmt(remaining);
+    lblRem.style.color = remaining === 0 ? 'var(--emerald-soft)' : (remaining < 0 ? 'var(--wine-soft)' : 'var(--gold-bright)');
+  }
+  if (fill) fill.style.width = `${pctAllocated}%`;
+  if (walletBalance) walletBalance.textContent = fmt(remaining);
+  renderDonutChart(sum, totalInc);
+  updateSaashyaLiveFeedback(totalInc);
+  renderForecast(totalInc);
+  renderProjectionDashboard();
+
+  if (lockBtn) {
+    if (sum === totalInc) {
+      lockBtn.disabled = false;
+      lockBtn.textContent = 'See Your Budget Health Score ➔';
+    } else if (sum > totalInc) {
+      lockBtn.disabled = true;
+      lockBtn.textContent = `Over-allocated by ${fmt(sum - totalInc)}`;
+    } else {
+      lockBtn.disabled = true;
+      lockBtn.textContent = `Allocate ${fmt(remaining)} to complete`;
+    }
+  }
+}
+
+function allocateOneNote(noteId, categoryId){
+  const note = salaryNotes.find(item => item.id === noteId); if (!note) return;
+  budgetState.allocations[categoryId] = (budgetState.allocations[categoryId] || 0) + note.denomination;
+  note.count -= 1; note.amount -= note.denomination;
+  if (note.count <= 0) salaryNotes = salaryNotes.filter(item => item.id !== noteId);
+  selectedNoteId = null; renderJarsStage();
+}
+
+function renderDonutChart(totalAllocated, income){
+  const svg = document.getElementById('donutSvg'); const legend = document.getElementById('donutLegend');
+  const pct = income ? Math.round(totalAllocated / income * 100) : 0;
+  const pctEl = document.getElementById('donutPct'); if (pctEl) pctEl.textContent = `${pct}%`;
+  if (!svg || !legend) return;
+  svg.querySelectorAll('.donut-segment').forEach(el => el.remove()); legend.innerHTML = '';
+  const circumference = 2 * Math.PI * 70; let offset = 0;
+  SALARY_NOTE_CATEGORIES.forEach(cat => {
+    const amount = budgetState.allocations[cat.id] || 0; if (!amount) return;
+    const length = amount / income * circumference;
+    const segment = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    segment.classList.add('donut-segment'); segment.setAttribute('cx', 100); segment.setAttribute('cy', 100); segment.setAttribute('r', 70);
+    segment.setAttribute('fill', 'none'); segment.setAttribute('stroke', cat.color); segment.setAttribute('stroke-width', 28);
+    segment.setAttribute('stroke-dasharray', `${length} ${circumference - length}`); segment.setAttribute('stroke-dashoffset', -offset); segment.style.transition = 'stroke-dasharray .45s ease, stroke-dashoffset .45s ease'; svg.appendChild(segment); offset += length;
+    const item = document.createElement('div'); item.className = 'dl-item'; item.innerHTML = `<i class="dl-dot" style="background:${cat.color}"></i>${cat.name} · ${Math.round(amount / income * 100)}%`; legend.appendChild(item);
+  });
+}
+
+function updateSaashyaLiveFeedback(income){
+  const tip = document.getElementById('saashyaLiveTip'); const text = document.getElementById('saashyaLiveTipText');
+  if (!tip || !text) return;
+  const investments = (budgetState.allocations.investments || 0) / income * 100;
+  const lifestyle = (budgetState.allocations.lifestyle || 0) / income * 100;
+  const emergency = (budgetState.allocations.emergency || 0) / income * 100;
+  tip.classList.remove('tip-ok', 'tip-warn');
+  if (investments >= 20) { tip.classList.add('tip-ok'); text.textContent = 'Excellent! You’re investing 20% or more of your income — that supports long-term wealth.'; }
+  else if (emergency > 0 && emergency < 10) { tip.classList.add('tip-warn'); text.textContent = 'Your emergency fund may not cover unexpected expenses. Try building it toward 10–15%.'; }
+  else if (lifestyle > 15) { tip.classList.add('tip-warn'); text.textContent = 'Lifestyle spending is higher than recommended. A small shift can accelerate your goal.'; }
+  else if ((budgetState.allocations[GOAL_STRATEGIES[selectedGoal].emphasis] || 0) > 0) { tip.classList.add('tip-ok'); text.textContent = 'This allocation aligns well with your goal. Keep every rupee intentional.'; }
+  else text.textContent = `Saashya: ${GOAL_STRATEGIES[selectedGoal].tip}`;
+}
+
+function openAllocationPopup(noteId, categoryId){
+  const note = salaryNotes.find(item => item.id === noteId); if (!note) return;
+  pendingAllocation = { noteId, categoryId, amount: note.denomination, noteValue: note.denomination };
+  const overlay = document.getElementById('noteAllocOverlay'); const slider = document.getElementById('napSlider');
+  const category = SALARY_NOTE_CATEGORIES.find(item => item.id === categoryId);
+  document.getElementById('napNoteChip').textContent = `${fmt(note.denomination)} note`;
+  document.getElementById('napTargetChip').textContent = category ? `${category.icon} ${category.name}` : 'Choose a category';
+  slider.max = note.denomination; slider.step = 500; slider.value = note.denomination; document.getElementById('napMaxLabel').textContent = fmt(note.denomination);
+  document.getElementById('napCustomInput').value = note.denomination; updateAllocationPreview(note.denomination); overlay.style.display = 'flex';
+}
+
+function updateAllocationPreview(value){
+  if (!pendingAllocation) return; const note = salaryNotes.find(item => item.id === pendingAllocation.noteId); if (!note) return;
+  const noteValue = pendingAllocation.noteValue;
+  const amount = Math.max(0, Math.min(noteValue, Math.round((Number(value) || 0) / 500) * 500)); pendingAllocation.amount = amount;
+  document.getElementById('napAllocLabel').textContent = fmt(amount); document.getElementById('napReturnLabel').textContent = fmt(noteValue - amount);
+}
+
+function confirmAllocation(){
+  if (!pendingAllocation) return;
+  if (!pendingAllocation.categoryId) return toast('Drop the note on a category to select where it goes.');
+  const note = salaryNotes.find(item => item.id === pendingAllocation.noteId); const amount = pendingAllocation.amount; const noteValue = pendingAllocation.noteValue;
+  if (!note || amount <= 0) return;
+  budgetState.allocations[pendingAllocation.categoryId] = (budgetState.allocations[pendingAllocation.categoryId] || 0) + amount;
+  note.count -= 1; note.amount -= noteValue;
+  const remainder = noteValue - amount;
+  if (note.count <= 0) salaryNotes = salaryNotes.filter(item => item.id !== note.id);
+  if (remainder) salaryNotes.push({ id: `note-${Date.now()}`, amount: remainder, denomination: remainder, count: 1 });
+  document.getElementById('noteAllocOverlay').style.display = 'none'; pendingAllocation = null; renderJarsStage();
+}
+
+function scoreBudgetAllocation(allocations, includeBorrowing = true){
+  const income = Math.max(budgetState.income, 1);
+  const investments = allocations.investments || allocations.savings || 0;
+  const emergency = allocations.emergency || 0;
+  const lifestyle = allocations.lifestyle || allocations.entertainment || 0;
+  const goal = GOAL_STRATEGIES[selectedGoal] || GOAL_STRATEGIES['Wealth Creation'];
+  const savingsRate = Math.round(((investments + emergency) / income) * 100);
+  const emergencyScore = Math.min(100, Math.round((emergency / (income * .15)) * 100));
+  const goalContribution = allocations[goal.emphasis] || investments;
+  const goalScore = Math.min(100, Math.round((goalContribution / Math.max(income * .2, 1)) * 70 + savingsRate));
+  let health = Math.round((savingsRate * 1.5 + emergencyScore + goalScore) / 3);
+  if (lifestyle / income > .25) health -= 8;
+  if (includeBorrowing && budgetState.usedBorrowing) health -= 14;
+  health = Math.max(25, Math.min(99, health));
+  const goalMonths = goalContribution > 0 ? Math.ceil(goal.target / goalContribution) : null;
+  const tone = health >= 75 ? 'strong' : health >= 55 ? 'improving' : 'fragile';
+  return { health, savingsRate, emergencyScore, goalScore, goalMonths, investments, emergency, tone,
+    recommendation: emergencyScore < 70 ? 'Build the emergency fund before increasing lifestyle spending.' : goalScore < 70 ? `Direct more to ${goal.emphasis} to shorten your ${selectedGoal} timeline.` : 'Your allocation supports your ambition. Keep the plan consistent through the next salary cycle.' };
+}
+
+function getBudgetEvaluation(){
+  const allocations = budgetState.reallocations && Object.keys(budgetState.reallocations).length ? budgetState.reallocations : budgetState.allocations;
+  return scoreBudgetAllocation(allocations);
+}
+
+function getImprovedBudgetAllocation(){
+  const isStudent = budgetState.profession === 'Student';
+  const targetPercentages = isStudent ? {
+    education: 25, food: 20, transport: 10, lifestyle: 10, investments: 20, emergency: 15
+  } : {
+    rent: 35, food: 15, transport: 10, lifestyle: 10, investments: 15, insurance: 5, emergency: 10
+  };
+  const current = budgetState.reallocations && Object.keys(budgetState.reallocations).length ? budgetState.reallocations : budgetState.allocations;
+  const goalCategory = (GOAL_STRATEGIES[selectedGoal] || GOAL_STRATEGIES['Wealth Creation']).emphasis;
+  const improved = {};
+  SALARY_NOTE_CATEGORIES.forEach(category => {
+    improved[category.id] = Math.round(budgetState.income * (targetPercentages[category.id] || 0) / 100);
+  });
+  // Prioritise the user's chosen ambition without increasing the total budget.
+  if (improved[goalCategory] !== undefined && goalCategory !== 'lifestyle') {
+    const uplift = Math.min(1000, improved.lifestyle || 0);
+    improved[goalCategory] += uplift;
+    if (improved.lifestyle !== undefined) improved.lifestyle -= uplift;
+  }
+  return { current, improved };
+}
+
+function renderAllocationComparison(){
+  const table = document.getElementById('comparisonTable');
+  const chart = document.getElementById('allocationChart');
+  const scoreComparison = document.getElementById('budgetScoreComparison');
+  const detailedInsights = document.getElementById('detailedBudgetInsights');
+  if (!table) return;
+  const { current, improved } = getImprovedBudgetAllocation();
+  const currentScore = scoreBudgetAllocation(current);
+  const improvedScore = scoreBudgetAllocation(improved);
+  const goal = GOAL_STRATEGIES[selectedGoal] || GOAL_STRATEGIES['Wealth Creation'];
+  const differences = SALARY_NOTE_CATEGORIES.map(category => ({ category, difference: (improved[category.id] || 0) - (current[category.id] || 0) }));
+  const biggestIncrease = differences.filter(item => item.difference > 0).sort((a, b) => b.difference - a.difference)[0];
+  const biggestReduction = differences.filter(item => item.difference < 0).sort((a, b) => a.difference - b.difference)[0];
+
+  if (scoreComparison) {
+    const healthChange = improvedScore.health - currentScore.health;
+    const timelineChange = currentScore.goalMonths && improvedScore.goalMonths ? currentScore.goalMonths - improvedScore.goalMonths : 0;
+    scoreComparison.innerHTML = `
+      <div><span>Financial health</span><strong>${currentScore.health} → ${improvedScore.health}</strong><em>${healthChange >= 0 ? '+' : ''}${healthChange} points</em></div>
+      <div><span>Savings rate</span><strong>${currentScore.savingsRate}% → ${improvedScore.savingsRate}%</strong><em>${improvedScore.savingsRate - currentScore.savingsRate >= 0 ? '+' : ''}${improvedScore.savingsRate - currentScore.savingsRate}% monthly buffer</em></div>
+      <div><span>Emergency readiness</span><strong>${currentScore.emergencyScore} → ${improvedScore.emergencyScore}</strong><em>out of 100</em></div>
+      <div><span>Goal timeline</span><strong>${currentScore.goalMonths || '—'} → ${improvedScore.goalMonths || '—'} mo.</strong><em>${timelineChange > 0 ? `${timelineChange} months faster` : 'steady progress'}</em></div>`;
+  }
+
+  if (chart) {
+    const totalCurrent = SALARY_NOTE_CATEGORIES.reduce((sum, c) => sum + (current[c.id] || 0), 0);
+    const totalImproved = SALARY_NOTE_CATEGORIES.reduce((sum, c) => sum + (improved[c.id] || 0), 0);
+    const explainer = `<div class="allocation-chart-explain">Each row compares two versions of the same ₹${fmt(budgetState.income).replace('₹','')} income: the <b>gold bar</b> is what you actually allocated this month, the <b>green bar</b> is Saashya's suggested plan for your ${selectedGoal} goal. Bar length shows each category's share of income — a longer bar means a bigger slice of your salary is going there. The line beneath each pair tells you exactly how much to shift, and which direction.</div>`;
+    const rows = SALARY_NOTE_CATEGORIES.map(category => {
+      const currentAmount = current[category.id] || 0;
+      const improvedAmount = improved[category.id] || 0;
+      const currentPct = budgetState.income ? Math.round(currentAmount / budgetState.income * 100) : 0;
+      const improvedPct = budgetState.income ? Math.round(improvedAmount / budgetState.income * 100) : 0;
+      const diff = improvedAmount - currentAmount;
+      const diffPct = improvedPct - currentPct;
+      let deltaLabel;
+      if (Math.abs(diff) < 50) {
+        deltaLabel = `<span class="allocation-bar-delta on-target">✓ Already on target</span>`;
+      } else if (diff > 0) {
+        deltaLabel = `<span class="allocation-bar-delta needs-more">▲ Move ${fmt(diff)} more here (+${diffPct} pt of income)</span>`;
+      } else {
+        deltaLabel = `<span class="allocation-bar-delta can-reduce">▼ Free up ${fmt(Math.abs(diff))} from here (${diffPct} pt of income)</span>`;
+      }
+      return `<div class="allocation-bar-row"><span class="allocation-bar-label">${category.icon} ${category.name}</span><div class="allocation-bar-pair"><div class="allocation-bar"><b>You</b><div class="allocation-bar-track"><div class="allocation-bar-fill current" style="width:${currentPct}%"></div></div><span class="allocation-bar-value">${fmt(currentAmount)} · ${currentPct}%</span></div><div class="allocation-bar"><b>Plan</b><div class="allocation-bar-track"><div class="allocation-bar-fill improved" style="width:${improvedPct}%"></div></div><span class="allocation-bar-value">${fmt(improvedAmount)} · ${improvedPct}%</span></div>${deltaLabel}</div></div>`;
+    }).join('');
+    const totalsRow = `<div class="allocation-chart-totals">Total allocated — You: <strong>${fmt(totalCurrent)}</strong> &nbsp;·&nbsp; Suggested plan: <strong>${fmt(totalImproved)}</strong> &nbsp;·&nbsp; Both plans use your full ${fmt(budgetState.income)} income, just split differently across categories.</div>`;
+    chart.innerHTML = explainer + rows + totalsRow;
+  }
+
+  table.innerHTML = SALARY_NOTE_CATEGORIES.map(category => {
+    const currentAmount = current[category.id] || 0;
+    const improvedAmount = improved[category.id] || 0;
+    const difference = improvedAmount - currentAmount;
+    const direction = difference === 0 ? 'On target' : difference > 0 ? `Add ${fmt(difference)}` : `Free up ${fmt(Math.abs(difference))}`;
+    return `<div><span>${category.icon} ${category.name}</span><strong>${fmt(currentAmount)} → ${fmt(improvedAmount)}</strong><small class="allocation-delta ${difference > 0 ? 'needs-more' : difference < 0 ? 'can-reduce' : 'on-target'}">${direction}</small></div>`;
+  }).join('');
+
+  if (detailedInsights) {
+    const eventImpact = budgetState.usedBorrowing ? 'Because borrowing was used, your score reflects the future repayment pressure that comes with it — that debt has to be repaid out of a future month\'s income.' : 'You covered the event within this month\'s plan, avoiding a new repayment obligation — a real strength worth protecting.';
+    const CATEGORY_RATIONALE = {
+      essentials: 'Rent, groceries, bills — the costs that don\'t flex much month to month. Underfunding this category is what usually forces borrowing later.',
+      emergency: 'A cushion for the unexpected. Below 15% of income here means the next surprise expense likely gets funded by debt instead of savings.',
+      investments: 'Money working for your future self. Every rupee delayed here is a rupee that compounds for one month less — small each month, large over years.',
+      insurance: 'Protection against a single bad event undoing months of saving. Often skipped early on, which is exactly when it matters most.',
+      lifestyle: 'Discretionary spending — dining out, entertainment, small treats. Healthy in moderation, the first place to trim when a category is underfunded.',
+      travel: 'A specific, planned goal. Underfunding it just pushes the trip further away; overfunding it usually means squeezing essentials or investments.',
+      learning: 'Skills and courses that raise future earning power. Easy to deprioritise short-term, but often the highest long-run return in the whole budget.'
+    };
+    const categoryRows = SALARY_NOTE_CATEGORIES.map(category => {
+      const currentAmount = current[category.id] || 0;
+      const improvedAmount = improved[category.id] || 0;
+      const currentPct = budgetState.income ? Math.round(currentAmount / budgetState.income * 100) : 0;
+      const improvedPct = budgetState.income ? Math.round(improvedAmount / budgetState.income * 100) : 0;
+      const diff = improvedAmount - currentAmount;
+      const verdict = Math.abs(diff) < 50 ? 'On target — no change needed.' : diff > 0 ? `Underfunded by ${fmt(diff)} (${currentPct}% vs a suggested ${improvedPct}%).` : `Overfunded by ${fmt(Math.abs(diff))} (${currentPct}% vs a suggested ${improvedPct}%) — safe to trim.`;
+      return `<div class="cat-breakdown-row"><span class="cat-breakdown-name">${category.icon} ${category.name}</span><span class="cat-breakdown-verdict">${verdict}</span><span class="cat-breakdown-why">${CATEGORY_RATIONALE[category.id] || ''}</span></div>`;
+    }).join('');
+
+    const lifestylePct = budgetState.income ? Math.round(((current.lifestyle || 0) / budgetState.income) * 100) : 0;
+    const lifestylePenalty = lifestylePct > 25 ? -8 : 0;
+    const borrowingPenalty = budgetState.usedBorrowing ? -14 : 0;
+
+    const scoreJustification = `
+      <div class="score-justification-block" style="margin-top:14px;padding:12px 14px;background:rgba(201,162,77,0.06);border:1px solid var(--line-soft);border-radius:8px;">
+        <h5 style="margin:0 0 8px;color:var(--gold-soft);font-size:13px;letter-spacing:0.5px;">📊 Point Allotment & Score Calculation Justification</h5>
+        <ul style="margin:0;padding-left:18px;font-size:12px;color:var(--cream-dim);line-height:1.6;">
+          <li><strong>Savings Rate (${currentScore.savingsRate}%):</strong> Contributes <em>+${Math.round(currentScore.savingsRate * 1.5)}</em> base points (${currentScore.investments + currentScore.emergency > 0 ? 'allocating to growth & safety' : 'underfunded'}).</li>
+          <li><strong>Emergency Readiness (${currentScore.emergencyScore}/100):</strong> Contributes <em>+${currentScore.emergencyScore}</em> points (based on allocating 15% of income to liquid emergency reserves).</li>
+          <li><strong>Goal Alignment (${currentScore.goalScore}/100):</strong> Contributes <em>+${currentScore.goalScore}</em> points for funding your <strong>${selectedGoal}</strong> (${goal.emphasis}) category.</li>
+          ${lifestylePenalty < 0 ? `<li style="color:#f87171;"><strong>Lifestyle Penalty (${lifestylePct}% of income):</strong> <em>${lifestylePenalty} points</em> for spending over 25% on non-essential lifestyle.</li>` : '<li style="color:#4ade80;"><strong>Lifestyle Spending:</strong> <em>No penalty</em> (kept within healthy ≤25% limits).</li>'}
+          ${borrowingPenalty < 0 ? `<li style="color:#f87171;"><strong>Debt / Borrowing Penalty:</strong> <em>${borrowingPenalty} points</em> due to relying on borrowing for unexpected events.</li>` : '<li style="color:#4ade80;"><strong>Debt Prevention:</strong> <em>No penalty</em> (covered event without taking on new debt).</li>'}
+        </ul>
+      </div>`;
+
+    detailedInsights.innerHTML = `
+      <div><h5>What worked</h5><p>${currentScore.emergencyScore >= 70 ? `Your emergency fund sits at ${currentScore.emergencyScore}/100 — a genuinely useful first line of defence after this event, and worth maintaining at this level going forward.` : `You responded to the event, but your emergency buffer is now at ${currentScore.emergencyScore}/100, below the safer 15%-of-income target. That's the first gap to close before anything else.`}</p></div>
+      <div><h5>Best next move</h5><p>${biggestIncrease && biggestReduction ? `Move ${fmt(biggestIncrease.difference)} toward ${biggestIncrease.category.name} (currently ${Math.round((current[biggestIncrease.category.id]||0)/budgetState.income*100)}% of income) by freeing the same amount from ${biggestReduction.category.name} (currently ${Math.round((current[biggestReduction.category.id]||0)/budgetState.income*100)}% of income). This is a same-total reshuffle — your spending stays at ${fmt(budgetState.income)}, only the split changes.` : 'Your allocations already closely match the suggested balance for your goal. The best move this month is simply maintaining this split.'}</p></div>
+      <div><h5>Long-term effect</h5><p>${eventImpact} Carrying a stronger ${goal.emphasis} contribution consistently can move your ${selectedGoal} plan from a ${currentScore.goalMonths || 'currently unfunded'}-month timeline to a ${improvedScore.goalMonths || 'funded'}-month timeline — a difference that compounds every month you sustain it, not just this one.</p></div>
+      ${scoreJustification}
+      <div class="cat-breakdown-block"><h5>Category-by-category comparison</h5><div class="cat-breakdown-list">${categoryRows}</div></div>`;
+  }
+}
+
+async function requestGeminiBudgetInsight(evaluation){
+  const insight = document.getElementById('geminiBudgetInsight');
+  if (!insight) return;
+  const buildLocalReview = () => {
+    const { current, improved } = getImprovedBudgetAllocation();
+    const differences = SALARY_NOTE_CATEGORIES.map(category => ({ category, difference: (improved[category.id] || 0) - (current[category.id] || 0) }));
+    const add = differences.filter(item => item.difference > 0).sort((a, b) => b.difference - a.difference)[0];
+    const reduce = differences.filter(item => item.difference < 0).sort((a, b) => a.difference - b.difference)[0];
+    const goal = GOAL_STRATEGIES[selectedGoal] || GOAL_STRATEGIES['Wealth Creation'];
+    return `Your reallocation leaves your financial health at ${evaluation.health}/100 and your emergency readiness at ${evaluation.emergencyScore}/100. ${add && reduce ? `The clearest improvement is to move ${fmt(add.difference)} from ${reduce.category.name} to ${add.category.name}.` : 'Your allocation is already close to the recommended balance.'} This keeps the total at ${fmt(budgetState.income)} while giving more purpose to each rupee. ${evaluation.savingsRate < 20 ? 'Build savings and emergency funding steadily over the next salary cycle before increasing flexible spending.' : 'Your savings habit is a strength; protect it through the next cycle.'} A stronger ${goal.emphasis} allocation makes progress toward ${selectedGoal} more dependable after this unexpected event.`;
+  };
+  const gemini = window.Fin2edgeModules && window.Fin2edgeModules.geminiService;
+  if (!gemini) {
+    insight.innerHTML = '<strong>Saashya’s detailed review</strong><p></p>';
+    insight.querySelector('p').textContent = buildLocalReview();
+    return;
+  }
+  const requestId = ++budgetInsightRequestId;
+  const allocations = budgetState.reallocations && Object.keys(budgetState.reallocations).length ? budgetState.reallocations : budgetState.allocations;
+  const allocationText = SALARY_NOTE_CATEGORIES.map(category => `${category.name}: ${fmt(allocations[category.id] || 0)}`).join(', ');
+  insight.classList.add('loading');
+  insight.textContent = 'Gemini is reviewing your reallocation…';
+  const prompt = `Review my completed monthly budget after an unexpected event. Profile: profession ${budgetState.profession}; monthly budget ₹${budgetState.income}; goal ${selectedGoal}; risk comfort ${budgetState.riskAppetite}. My current allocation is: ${allocationText}. Scores: financial health ${evaluation.health}/100, goal alignment ${evaluation.goalScore}/100, savings rate ${evaluation.savingsRate}%, emergency readiness ${evaluation.emergencyScore}/100. Compare what I allocated with a stronger version of this plan. Give a detailed but easy-to-read review in 6–8 short sentences: explain what is working, identify the two most important gaps, specify exactly where to shift money from and to, explain immediate and long-term impact after this event, and conclude with one practical action for the next month. Do not use a table or repeat every number.`;
+  try {
+    const response = gemini.generateBudgetAnalysis ? await gemini.generateBudgetAnalysis(prompt) : await gemini.askSaashya(prompt, 'Budget simulator — post-event reallocation evaluation');
+    if (requestId !== budgetInsightRequestId) return;
+    insight.innerHTML = '<strong>Gemini’s personalised review</strong><p></p>';
+    insight.querySelector('p').textContent = response || buildLocalReview();
+  } catch (error) {
+    if (requestId !== budgetInsightRequestId) return;
+    insight.innerHTML = '<strong>Saashya’s local review</strong><p></p>';
+    insight.querySelector('p').textContent = buildLocalReview();
+  } finally {
+    if (requestId === budgetInsightRequestId) insight.classList.remove('loading');
+  }
+}
+
+function renderAiEvaluation(){
+  const evaluation = getBudgetEvaluation();
+  const el = document.getElementById('budgetEvaluation');
+  if (el) el.textContent = `Saashya AI sees a ${evaluation.tone} plan for a ${budgetState.riskAppetite} ${budgetState.profession}. Health ${evaluation.health}/100 · Goal alignment ${evaluation.goalScore}/100. ${evaluation.recommendation}`;
+  renderAllocationComparison();
+  requestGeminiBudgetInsight(evaluation);
+  return evaluation;
+}
+
+function selectPersonalizedScenario(){
+  const applicable = LIFE_SCENARIOS.filter(s => s.professions.includes('all') || s.professions.includes(budgetState.profession));
+  const seed = `${budgetState.profession}|${budgetState.goal}|${budgetState.currentMonth}|${budgetState.riskAppetite}`;
+  const score = [...seed].reduce((sum, char) => sum + char.charCodeAt(0), 0);
+  return applicable[score % applicable.length] || LIFE_SCENARIOS[0];
+}
+
+function applyEventDecision(decision){
+  const cost = Math.max(0, budgetState.scenarioCost || 0);
+  if (!cost) return;
+  const source = decision === 'emergency' ? 'emergency' : decision === 'lifestyle' ? 'lifestyle' : 'investments';
+  const available = budgetState.reallocations[source] || 0;
+  const applied = decision === 'delay' ? cost : Math.min(cost, available);
+  if (!applied) return toast(`There is no available ${source} allocation to use.`);
+  if (decision !== 'delay') budgetState.reallocations[source] -= applied;
+  budgetState.scenarioCovered = Math.min(cost, (budgetState.scenarioCovered || 0) + applied);
+  if (decision === 'delay') budgetState.goalDelayMonths = (budgetState.goalDelayMonths || 0) + 1;
+  budgetState.lastEventDecision = { decision, applied, source };
+  document.querySelectorAll('.event-decision').forEach(btn => btn.classList.toggle('active', btn.dataset.eventDecision === decision));
+  triggerScenarioStage(true);
+}
+
+function triggerScenarioStage(preserveDecision = false){
+  const chosen = preserveDecision ? budgetState.activeScenario : selectPersonalizedScenario();
+  budgetState.activeScenario = chosen;
+  if (!preserveDecision) budgetState.usedBorrowing = false;
+
+  const setupStage = document.getElementById('budgetStageSetup');
+  const jarsStage = document.getElementById('budgetStageJars');
+  const scenStage = document.getElementById('budgetStageScenario');
+  const repStage = document.getElementById('budgetStageReport');
+
+  [setupStage, jarsStage, scenStage, repStage].forEach(s => s && s.classList.remove('active'));
+  if (scenStage) scenStage.classList.add('active');
+
+  const iconEl = document.getElementById('scenarioIcon');
+  const nameEl = document.getElementById('scenarioName');
+  const descEl = document.getElementById('scenarioDesc');
+  const impactEl = document.getElementById('scenarioImpact');
+  const saashyaText = document.getElementById('saashyaScenarioText');
+  const catTag = document.getElementById('scenarioCategoryTag');
+
+  if (iconEl) iconEl.textContent = chosen.icon;
+  if (nameEl) nameEl.textContent = chosen.name;
+  if (descEl) descEl.textContent = chosen.desc;
+  if (catTag) catTag.textContent = chosen.category;
+
+  const cost = Math.round(budgetState.income * Math.abs(chosen.impactPct));
+  if (impactEl) {
+    if (chosen.impactPct < 0) {
+      impactEl.textContent = `+ ${fmt(cost)} Bonus Cash!`;
+      impactEl.style.color = 'var(--emerald-soft)';
+    } else {
+      impactEl.textContent = `- ${fmt(cost)} Required Impact`;
+      impactEl.style.color = 'var(--wine-soft)';
+    }
+  }
+
+  if (saashyaText) saashyaText.textContent = 'Reallocate the notes below to respond to this situation. Your personalised insight will appear in the evaluation dashboard once you review your completed reallocation.';
+
+  const list = document.getElementById('reallocateJarsList');
+  if (list) {
+    list.innerHTML = '';
+    if (!preserveDecision) {
+      budgetState.reallocations = Object.assign({}, budgetState.allocations);
+      budgetState.scenarioCost = chosen.impactPct > 0 ? cost : 0;
+      budgetState.scenarioCovered = chosen.impactPct < 0 ? cost : 0;
+      budgetState.goalDelayMonths = 0;
+      budgetState.lastEventDecision = null;
+    }
+
+    SALARY_NOTE_CATEGORIES.forEach(cat => {
+      const curAmt = budgetState.reallocations[cat.id] || 0;
+      const item = document.createElement('div');
+      item.className = 'reallocate-item';
+      item.innerHTML = `
+        <span>${cat.icon} ${cat.name}</span>
+        <strong id="realloc-val-${cat.id}">${fmt(curAmt)}</strong>
+        <span class="reallocate-controls"><button data-reduce="${cat.id}">−₹500</button><button data-return="${cat.id}">+₹500</button></span>
+      `;
+      list.appendChild(item);
+    });
+    const complete = document.getElementById('btnCompleteMonth');
+    const refreshCrisis = () => {
+      const remaining = Math.max(0, budgetState.scenarioCost - budgetState.scenarioCovered);
+      if (complete) {
+        complete.disabled = remaining > 0;
+        complete.textContent = remaining ? `Cover ${fmt(remaining)} to complete month` : 'Complete Month & View Financial Report ➔';
+      }
+      if (saashyaText && chosen.impactPct > 0) saashyaText.textContent = remaining
+        ? `Reallocate ${fmt(remaining)} more, then select Review my reallocation for your dashboard insight.`
+        : 'Your reallocation is complete. Select Review my reallocation to view your personalised evaluation dashboard.';
+    };
+    list.querySelectorAll('[data-reduce]').forEach(button => button.addEventListener('click', () => {
+      const id = button.dataset.reduce;
+      if ((budgetState.reallocations[id] || 0) < 500) return toast('There is no ₹500 bundle left in this jar.');
+      budgetState.reallocations[id] -= 500;
+      budgetState.scenarioCovered += 500;
+      const val = document.getElementById(`realloc-val-${id}`); if (val) val.textContent = fmt(budgetState.reallocations[id]);
+      refreshCrisis();
+    }));
+    list.querySelectorAll('[data-return]').forEach(button => button.addEventListener('click', () => {
+      const id = button.dataset.return;
+      if (budgetState.scenarioCovered <= 0) return;
+      budgetState.reallocations[id] += 500;
+      budgetState.scenarioCovered = Math.max(0, budgetState.scenarioCovered - 500);
+      const val = document.getElementById(`realloc-val-${id}`); if (val) val.textContent = fmt(budgetState.reallocations[id]);
+      refreshCrisis();
+    }));
+    refreshCrisis();
+  }
+}
+
+function renderReportStage(){
+  const setupStage = document.getElementById('budgetStageSetup');
+  const jarsStage = document.getElementById('budgetStageJars');
+  const scenStage = document.getElementById('budgetStageScenario');
+  const repStage = document.getElementById('budgetStageReport');
+
+  [setupStage, jarsStage, scenStage, repStage].forEach(s => s && s.classList.remove('active'));
+  if (repStage) repStage.classList.add('active');
+
+  const totalInc = budgetState.income;
+  budgetState.allocations = Object.assign({}, budgetState.reallocations || budgetState.allocations);
+  const evaluation = getBudgetEvaluation();
+  const savingsPct = evaluation.savingsRate;
+  budgetState.score = evaluation.health;
+  budgetState.xp += 300;
+  budgetState.streak += 1;
+  budgetState.level = Math.floor(budgetState.xp / 500) + 1;
+
+  if (budgetState.streak >= 1 && !budgetState.badges.includes('🏆 Budget Master')) {
+    budgetState.badges.push('🏆 Budget Master');
+  }
+  if (savingsPct >= 20 && !budgetState.badges.includes('🛡️ Shield Bearer')) {
+    budgetState.badges.push('🛡️ Shield Bearer');
+  }
+
+  saveBudgetState();
+  updateBudgetLandingUI();
+
+  const rMonthTag = document.getElementById('reportMonthTag');
+  const rScoreNum = document.getElementById('reportScoreNum');
+  const rSavingsVal = document.getElementById('reportSavingsVal');
+  const rEmergencyVal = document.getElementById('reportEmergencyVal');
+  const rGoalAlignVal = document.getElementById('reportGoalAlignmentVal');
+  const rGoalProbabilityVal = document.getElementById('reportGoalProbabilityVal');
+
+  if (rMonthTag) rMonthTag.textContent = `Month ${budgetState.currentMonth} Evaluation`;
+  if (rScoreNum) rScoreNum.textContent = budgetState.score;
+  if (rGoalAlignVal) rGoalAlignVal.textContent = `${evaluation.goalScore}/100`;
+  if (rSavingsVal) rSavingsVal.textContent = `${savingsPct}/100`;
+  if (rEmergencyVal) rEmergencyVal.textContent = `${evaluation.emergencyScore}/100`;
+  if (rGoalProbabilityVal) rGoalProbabilityVal.textContent = evaluation.goalScore >= 75 ? 'On track' : evaluation.goalScore >= 50 ? 'Needs focus' : 'At risk';
+
+  const saashyaReview = document.getElementById('saashyaReportText');
+  if (saashyaReview) {
+    saashyaReview.textContent = `“Your financial health is ${evaluation.health}/100. ${evaluation.recommendation} ${budgetState.goalDelayMonths ? `Your event decision adds about ${budgetState.goalDelayMonths} month to the goal timeline.` : ''}”`;
+  }
+  renderForecast(totalInc);
+  renderProjectionDashboard(evaluation);
+}
+
+function renderForecast(income){
+  const investments = budgetState.allocations.investments || 0; const emergency = budgetState.allocations.emergency || 0;
+  const goal = GOAL_STRATEGIES[selectedGoal] || GOAL_STRATEGIES['Wealth Creation'];
+  const oneYearSavings = (investments + emergency) * 12;
+  const investmentCorpus = Math.round(investments * 12 * 1.07);
+  const goalProgress = Math.min(100, Math.round((oneYearSavings / goal.target) * 100));
+  const set = (id, value) => { const el = document.getElementById(id); if (el) el.textContent = value; };
+  set('forecastSavings', fmt(oneYearSavings)); set('forecastEmergency', `${Math.max(0, Math.round(emergency / Math.max(income * .5, 1)))} months`);
+  set('forecastInvestments', fmt(investmentCorpus)); set('forecastGoal', `${goalProgress}%`);
+}
+
+function renderProjectionDashboard(evaluation = getBudgetEvaluation()){
+  const svg = document.getElementById('budgetProjectionChart');
+  const goal = GOAL_STRATEGIES[selectedGoal] || GOAL_STRATEGIES['Wealth Creation'];
+  const monthlySavings = evaluation.investments + evaluation.emergency;
+  const values = Array.from({length:13}, (_, month) => Math.round(monthlySavings * month + evaluation.investments * Math.max(0, month - 1) * .006));
+  if (svg) {
+    const max = Math.max(goal.target * .12, ...values, 1); const width = 560; const height = 190; const pad = {l:42,r:12,t:16,b:28};
+    const point = (value, index) => `${pad.l + index * ((width - pad.l - pad.r) / 12)},${height - pad.b - value / max * (height - pad.t - pad.b)}`;
+    const goalY = height - pad.b - Math.min(goal.target, max) / max * (height - pad.t - pad.b);
+    svg.innerHTML = `<line x1="${pad.l}" y1="${height-pad.b}" x2="${width-pad.r}" y2="${height-pad.b}" stroke="rgba(255,255,255,.2)"/><line x1="${pad.l}" y1="${goalY}" x2="${width-pad.r}" y2="${goalY}" stroke="rgba(201,162,77,.55)" stroke-dasharray="5 5"/><polyline points="${values.map(point).join(' ')}" fill="none" stroke="#7ec4a5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><text x="${pad.l}" y="${height-7}" fill="#9aa0ad" font-size="11">Now</text><text x="${width-pad.r-50}" y="${height-7}" fill="#9aa0ad" font-size="11">12 months</text><text x="${pad.l+6}" y="${Math.max(14,goalY-6)}" fill="#e6cd8d" font-size="11">Goal pace</text>`;
+  }
+  const emergencyMonths = Math.round(evaluation.emergency / Math.max(budgetState.income * .5, 1));
+  const goalMonths = evaluation.goalMonths ? evaluation.goalMonths + (budgetState.goalDelayMonths || 0) : null;
+  const set = (id, value) => { const el=document.getElementById(id); if(el) el.textContent=value; };
+  set('projectionSavingsGrowth', fmt(monthlySavings * 12));
+  set('projectionInvestmentGrowth', fmt(Math.round(evaluation.investments * 12 * 1.07)));
+  set('projectionEmergencyProgress', `${emergencyMonths} months`);
+  set('projectionGoalTimeline', goalMonths ? `${goalMonths} months` : 'Needs funding');
+}
+
+function runWhatIf(type){
+  const income = budgetState.income; const investments = budgetState.allocations.investments || 0; const lifestyle = budgetState.allocations.lifestyle || 0;
+  const result = document.getElementById('whatIfResult'); if (!result) return;
+  const scenarios = {
+    iphone: { impact: -6000, text: `Buying an iPhone delays your ${selectedGoal} plan by about 1 month and reduces this month’s future allocation by ₹6,000.` },
+    sip: { impact: 3000, text: `An extra ₹3,000 SIP could grow to about ${fmt(Math.round(3000 * 12 * 1.07))} in one year and lifts your health score.` },
+    dining: { impact: 2000, text: `Redirecting ₹2,000 from dining to investments can add ${fmt(Math.round(2000 * 12 * 1.07))} to your one-year corpus.` }
+  };
+  const chosen = scenarios[type]; const scoreShift = chosen.impact > 0 ? '+4' : '−5';
+  result.textContent = `${chosen.text} Financial Health Score impact: ${scoreShift}.`;
+  result.classList.toggle('positive', chosen.impact > 0);
+}
+
+function updatePassportUI(){
+  const avatar = document.getElementById('passportAvatar');
+  const name = document.getElementById('passportName');
+  const lvlPill = document.getElementById('passportLevelPill');
+  const xpText = document.getElementById('passportXpText');
+  const xpFill = document.getElementById('passportXpFill');
+  const badgesGrid = document.getElementById('passportBadgesGrid');
+
+  if (avatar) avatar.textContent = userProfile.avatar || '👑';
+  if (name) name.textContent = userProfile.fullName || 'Aaradhya Sharma';
+  if (lvlPill) lvlPill.textContent = `Level ${budgetState.level} · Financial Strategist`;
+  
+  const currentXpInLevel = budgetState.xp % 500;
+  if (xpText) xpText.textContent = `${currentXpInLevel} / 500 XP`;
+  if (xpFill) xpFill.style.width = `${Math.min(Math.round((currentXpInLevel / 500) * 100), 100)}%`;
+
+  if (badgesGrid) {
+    badgesGrid.innerHTML = '';
+    const allPossibleBadges = [
+      { title: '🏆 Budget Master', desc: 'Completed 100% budget allocation', icon: '🏆', unlocked: budgetState.badges.includes('🏆 Budget Master') },
+      { title: '🛡️ Shield Bearer', desc: 'Maintained 20%+ Emergency Fund', icon: '🛡️', unlocked: budgetState.badges.includes('🛡️ Shield Bearer') },
+      { title: '👑 Wealth Empress', desc: 'Achieved 3 Month Budget Streak', icon: '👑', unlocked: budgetState.streak >= 3 }
+    ];
+
+    allPossibleBadges.forEach(b => {
+      const card = document.createElement('div');
+      card.className = `badge-card ${b.unlocked ? 'unlocked' : ''}`;
+      card.innerHTML = `
+        <span class="badge-icon">${b.icon}</span>
+        <span class="badge-title">${b.title}</span>
+        <span class="badge-desc">${b.desc}</span>
+      `;
+      badgesGrid.appendChild(card);
+    });
+  }
+}
+
+function renderProgressDashboard(){
+  const avatar = document.getElementById('passportAvatar');
+  const name = document.getElementById('passportName');
+  const level = document.getElementById('passportLevelPill');
+  const xpText = document.getElementById('passportXpText');
+  const xpFill = document.getElementById('passportXpFill');
+  const summary = document.getElementById('progressDashboardSummary');
+  const list = document.getElementById('progressLessonList');
+  const progress = window.Fin2edgeLearningProgress?.getSnapshot?.() || { lessons: [], completed: [], xp: 0 };
+  const lessons = progress.lessons;
+  const completed = progress.completed;
+  const xp = progress.xp;
+  const playerLevel = Math.floor(xp / 150) + 1;
+
+  if (avatar) avatar.textContent = userProfile.avatar || '👑';
+  if (name) name.textContent = userProfile.fullName || 'Player';
+  if (level) level.textContent = `Level ${playerLevel} · Learning journey`;
+  if (xpText) xpText.textContent = `${xp} XP collected`;
+  if (xpFill) xpFill.style.width = `${Math.min(100, Math.round((xp % 150) / 150 * 100))}%`;
+  if (summary) summary.textContent = `${completed.length} of ${lessons.length} lessons complete · ${xp} XP collected`;
+  if (!list) return;
+  if (!completed.length) {
+    list.innerHTML = '<p class="progress-empty">No lessons completed yet. Start your first lesson in Financial Literacy to collect XP.</p>';
+    return;
+  }
+  list.innerHTML = completed
+    .slice()
+    .sort((a, b) => a - b)
+    .map(index => {
+      const lesson = lessons[index];
+      return lesson ? `<div class="progress-lesson-item"><span class="progress-lesson-icon">${lesson.icon}</span><span><strong>${lesson.title}</strong><small>Lesson ${index + 1} · +${lesson.xp} XP</small></span><span class="progress-lesson-check">✓</span></div>` : '';
+    })
+    .join('');
+}
+
+function openProgressDashboard(){
+  renderProgressDashboard();
+  showModal('passportModal');
+}
+
+window.renderProgressDashboard = renderProgressDashboard;
+
+function initBudgetSimulatorEngine(){
+  loadBudgetState();
+  updateBudgetLandingUI();
+
+  const btnStart = document.getElementById('btnStartBudgetSim');
+  const btnContinue = document.getElementById('btnContinueBudgetSim');
+
+  if (btnStart) {
+    btnStart.addEventListener('click', () => {
+      requireAuth(openBudgetSetupStage, 'Create your investor profile first so Saashya can personalize your salary and budget.');
+    });
+  }
+
+  if (btnContinue) {
+    btnContinue.addEventListener('click', () => {
+      requireAuth(() => {
+        syncBudgetWithProfile();
+        updateIncomeLanguage();
+        renderJarsStage();
+        showModal('budgetModal');
+      }, 'Sign in to continue your personalized Budget Simulation.');
+    });
+  }
+
+  const envelope = document.getElementById('salaryEnvelope');
+  if (envelope) envelope.addEventListener('click', () => {
+    envelope.classList.add('opened');
+    budgetState.allocations = {};
+    SALARY_NOTE_CATEGORIES.forEach(cat => { budgetState.allocations[cat.id] = 0; });
+    salaryNotes = makeSalaryNotes(budgetState.income);
+    const reveal = document.getElementById('walletRevealAmount');
+    let shown = 0;
+    const tick = Math.max(500, Math.ceil(budgetState.income / 24 / 500) * 500);
+    const timer = setInterval(() => {
+      shown = Math.min(budgetState.income, shown + tick);
+      if (reveal) reveal.textContent = fmt(shown);
+      if (shown >= budgetState.income) {
+        clearInterval(timer);
+        saveBudgetState();
+        setTimeout(renderJarsStage, 520);
+      }
+    }, 35);
+  });
+
+  const btnReset = document.getElementById('btnResetJars');
+  if (btnReset) {
+    btnReset.addEventListener('click', () => {
+      SALARY_NOTE_CATEGORIES.forEach(cat => { budgetState.allocations[cat.id] = 0; });
+      salaryNotes = makeSalaryNotes(budgetState.income);
+      renderJarsStage();
+    });
+  }
+
+  const btnLock = document.getElementById('btnLockBudget');
+  if (btnLock) {
+    btnLock.addEventListener('click', () => {
+      triggerScenarioStage();
+    });
+  }
+
+  const napSlider = document.getElementById('napSlider');
+  const napCustom = document.getElementById('napCustomInput');
+  if (napSlider) napSlider.addEventListener('input', () => { if (napCustom) napCustom.value = napSlider.value; updateAllocationPreview(napSlider.value); });
+  if (napCustom) napCustom.addEventListener('input', () => { if (napSlider) napSlider.value = napCustom.value; updateAllocationPreview(napCustom.value); });
+  document.querySelectorAll('.nap-q').forEach(button => button.addEventListener('click', () => {
+    const note = pendingAllocation && salaryNotes.find(item => item.id === pendingAllocation.noteId); if (!note) return;
+    const value = Math.round(pendingAllocation.noteValue * Number(button.dataset.pct) / 100 / 500) * 500;
+    if (napSlider) napSlider.value = value; if (napCustom) napCustom.value = value; updateAllocationPreview(value);
+  }));
+  const closeNotePopup = () => { const overlay = document.getElementById('noteAllocOverlay'); if (overlay) overlay.style.display = 'none'; pendingAllocation = null; };
+  ['napClose', 'napCancel'].forEach(id => { const el = document.getElementById(id); if (el) el.addEventListener('click', closeNotePopup); });
+  const napConfirm = document.getElementById('napConfirm'); if (napConfirm) napConfirm.addEventListener('click', confirmAllocation);
+  document.querySelectorAll('[data-whatif]').forEach(button => button.addEventListener('click', () => runWhatIf(button.dataset.whatif)));
+  document.querySelectorAll('[data-event-decision]').forEach(button => button.addEventListener('click', () => applyEventDecision(button.dataset.eventDecision)));
+
+  const btnComp = document.getElementById('btnCompleteMonth');
+  if (btnComp) {
+    btnComp.addEventListener('click', () => {
+      renderReportStage();
+    });
+  }
+
+  const btnReviewReallocation = document.getElementById('btnReviewReallocation');
+  if (btnReviewReallocation) {
+    btnReviewReallocation.addEventListener('click', () => {
+      if (!(budgetState.scenarioCovered > 0 || budgetState.lastEventDecision || budgetState.usedBorrowing)) {
+        return toast('Reallocate money first, then ask Saashya for your updated insight.');
+      }
+      renderAiEvaluation();
+    });
+  }
+
+  const btnBorrow = document.getElementById('btnBorrowBudget');
+  if (btnBorrow) {
+    btnBorrow.addEventListener('click', () => {
+      const remaining = Math.max(0, (budgetState.scenarioCost || 0) - (budgetState.scenarioCovered || 0));
+      if (!remaining) return toast('You have already covered this event without borrowing.');
+      budgetState.scenarioCovered = (budgetState.scenarioCovered || 0) + remaining;
+      budgetState.usedBorrowing = true;
+      document.getElementById('btnCompleteMonth').disabled = false;
+      document.getElementById('btnCompleteMonth').textContent = 'Complete Month & View Financial Report ➔';
+      const advice = document.getElementById('saashyaScenarioText');
+      if (advice) advice.textContent = '"Borrowing covers today, but it creates a future obligation. Next month, rebuild an emergency buffer first."';
+    });
+  }
+
+  const btnNextM = document.getElementById('btnNextMonth');
+  if (btnNextM) {
+    btnNextM.addEventListener('click', () => {
+      budgetState.currentMonth += 1;
+      saveBudgetState();
+      openBudgetSetupStage();
+    });
+  }
+
+}
+
+/* =========================================================
    INIT========================================================= */async function init(){
   await loadState();
+  loadUserProfile();
+  initAuthPortal();
+  initBudgetSimulatorEngine();
+  updateProfileUI();
   updatePortfolioUI();
+  hideAuthPortal();
   if(state.academyDone){
     const banner = document.getElementById('academyBanner');
     if(banner) banner.style.display = 'none';
   }
-  setTimeout(()=>{ if(!seenSections.has('hero')){ seenSections.add('hero'); showGuideCallout(SECTION_LINES.hero, 5200); } }, 900);}
+  setTimeout(()=>{ if(!seenSections.has('hero')){ seenSections.add('hero'); showGuideCallout(SECTION_LINES.hero, 5200); } }, 900);
+}
 /* =========================================================
-   AI ASSISTANT — Gemini-powered chat, bottom-left
-   IMPORTANT: This is a static, client-side site. Any API key placed
-   here ships inside script.js and is visible to anyone who views
-   source or opens dev tools — including on a public GitHub Pages
-   repo. Do NOT put a real production key in a public repo. For a
-   real deployment, proxy this call through a small server/serverless
-   function that holds the key secret, and call that instead.
-   Replace the placeholder below with your own key only in a private
-   or local environment. ========================================================= */
-const GEMINI_API_KEY = "YOUR_GEMINI_API_KEY_HERE";
-const GEMINI_MODEL = "gemini-2.0-flash";
+   AI ASSISTANT
+   Requests go through /api/assistant. The local server keeps the
+   Gemini key in .env, so it never reaches the browser. ========================================================= */
 const aiChatHistory = [];
 function aiAppendMessage(role, text, isError){
   const box = document.getElementById('aiChatMessages');
+  if (!box) return null;
   const el = document.createElement('div');
   el.className = 'ai-msg ' + (role==='user' ? 'user' : 'bot') + (isError ? ' error' : '');
   el.textContent = text;
   box.appendChild(el);
   box.scrollTop = box.scrollHeight;
-  return el;}
-function aiOpenPanel(){
+  return el;
+}
+function aiRenderChips() {
+  const box = document.getElementById('aiChatMessages');
+  if (!box || box.querySelector('.ai-chips-wrap')) return;
+  const wrap = document.createElement('div');
+  wrap.className = 'ai-chips-wrap';
+  const chips = [
+    "What is SIP?",
+    "Explain Compounding",
+    "Tax Saving ELSS",
+    "50/30/20 Budget Rule",
+    "Stock Exchange Basics"
+  ];
+  chips.forEach(chipText => {
+    const btn = document.createElement('button');
+    btn.className = 'ai-chip';
+    btn.textContent = chipText;
+    btn.onclick = () => {
+      const input = document.getElementById('aiChatInput');
+      if (input) {
+        input.value = chipText;
+        aiSendMessage();
+      }
+    };
+    wrap.appendChild(btn);
+  });
+  box.appendChild(wrap);
+  box.scrollTop = box.scrollHeight;
+}
+
+function _doAiOpenPanel(){
   const panel = document.getElementById('aiChatPanel');
+  if (!panel) return;
   panel.classList.add('show');
   if(!aiChatHistory.length){
-    aiAppendMessage('bot', "Hi, I'm the Fin2edge assistant. Ask me about a scheme, a term from the glossary, or how the Exchange works.");
+    aiAppendMessage('bot', "Namaste! I am Saashya, your AI Financial Guide. Ask me anything about savings, SIPs, compounding, taxes, stock trading, or budget rules!");
+    aiRenderChips();
   }
-  document.getElementById('aiChatInput').focus();}
-function aiClosePanel(){ document.getElementById('aiChatPanel').classList.remove('show'); }
+  const savedKey = localStorage.getItem('fin2edge_gemini_api_key') || '';
+  const keyInput = document.getElementById('aiApiKeyInput');
+  if (keyInput) keyInput.value = savedKey;
+  document.getElementById('aiChatInput').focus();
+}
+function aiOpenPanel(){
+  requireAuth(() => _doAiOpenPanel(), 'Sign in or create an investor profile to chat with Saashya, your AI Financial Guide.');
+}
+function aiClosePanel(){ 
+  const panel = document.getElementById('aiChatPanel');
+  if (panel) panel.classList.remove('show'); 
+}
+
+function getSaashyaSmartFallbackResponse(userQuery) {
+  const q = (userQuery || '').toLowerCase().trim();
+
+  if (q.includes('hello') || q.includes('hi') || q.includes('namaste') || q.includes('hey') || q.includes('who are you')) {
+    return "Namaste! I am Saashya, your AI Financial Guide on Fin2edge. Ask me anything about savings, SIPs, compounding, stock exchange trading, bank schemes, or managing your personal budget!";
+  }
+  if (q.includes('yes') || q.includes('understand') || q.includes('got it') || q.includes('next') || q.includes('continue') || q.includes('ready')) {
+    return "Wonderful! I'm so glad that made sense. Consistency is the secret ingredient to building wealth!";
+  }
+  if (q.includes('again') || q.includes('explain') || q.includes('confused') || q.includes('example') || q.includes('repeat')) {
+    return "No worries at all! Imagine planting a banyan tree: you water it regularly with small amounts (SIP), and as years go by, its roots spread and yield abundant shade (compound growth).";
+  }
+  if (q.includes('nav')) {
+    return "NAV (Net Asset Value) is simply the price of 1 unit of a mutual fund. Just like buying fruit by the kilogram, NAV tells you how much one fund unit costs today!";
+  }
+  if (q.includes('sip') || q.includes('systematic')) {
+    return "SIP (Systematic Investment Plan) lets you automatically invest a small fixed sum every month into a mutual fund. It removes emotional stress and takes advantage of rupee cost averaging!";
+  }
+  if (q.includes('compound') || q.includes('compounding')) {
+    return "Compounding is earning interest on interest! Albert Einstein called it the 8th wonder of the world. Over 10 to 20 years, your reinvested growth outpaces your original deposits dramatically.";
+  }
+  if (q.includes('tax') || q.includes('elss') || q.includes('80c')) {
+    return "ELSS (Equity Linked Savings Scheme) is a mutual fund that offers tax deductions up to ₹1.5 Lakh under Section 80C, with the shortest lock-in period of just 3 years!";
+  }
+  if (q.includes('risk') || q.includes('safe') || q.includes('roscope')) {
+    return "Every investment carries some risk. Equity funds have higher market volatility but yield 12–15% long-term growth, whereas Debt funds offer steady 6–7% capital protection.";
+  }
+  if (q.includes('ppf') || q.includes('public provident fund')) {
+    return "PPF is a government-backed long-term scheme offering guaranteed tax-free returns (~7.1% p.a.) with a 15-year tenure. It's ideal for risk-free retirement savings!";
+  }
+  if (q.includes('fd') || q.includes('fixed deposit') || q.includes('rd') || q.includes('recurring')) {
+    return "Fixed Deposits (FD) lock in a lump sum for a fixed rate, while Recurring Deposits (RD) build savings monthly. They offer low risk and steady bank-guaranteed returns.";
+  }
+  if (q.includes('budget') || q.includes('50/30/20') || q.includes('50 30 20') || q.includes('salary')) {
+    return "The 50/30/20 budget rule suggests allocating 50% of income to Needs (rent, food), 30% to Wants (dining, hobbies), and 20% directly into Savings & Investments!";
+  }
+  if (q.includes('stock') || q.includes('share') || q.includes('exchange') || q.includes('trade')) {
+    return "Buying a stock means owning a tiny share of a company. On our simulated Exchange, you can practice buying and selling stock shares risk-free with virtual capital!";
+  }
+  if (q.includes('bull') || q.includes('bear')) {
+    return "A Bull market refers to prices climbing up with optimism (like a bull charging upward), while a Bear market means prices are falling down.";
+  }
+  if (q.includes('inflation')) {
+    return "Inflation is the gradual decrease in purchasing power over time. Staying in plain cash erodes your money's value, which is why investing in growth assets is essential to beat inflation!";
+  }
+  if (q.includes('emergency') || q.includes('fund')) {
+    return "An Emergency Fund is 3 to 6 months of living expenses kept in liquid, easily accessible funds to protect you against unexpected job changes or medical bills.";
+  }
+
+  return `Great question about "${userQuery}"! Building financial security is about small, consistent habits. Ask me about SIPs, compounding, tax-saving ELSS, or stock trading basics!`;
+}
+
 async function aiSendMessage(){
   const input = document.getElementById('aiChatInput');
-  const text = input.value.trim();
+  const text = input ? input.value.trim() : '';
   if(!text) return;
   const sendBtn = document.getElementById('aiChatSend');
-  input.value = '';
-  input.disabled = true;
-  sendBtn.disabled = true;
+  if (input) { input.value = ''; input.disabled = true; }
+  if (sendBtn) sendBtn.disabled = true;
+
+  const chipsWrap = document.querySelector('.ai-chips-wrap');
+  if (chipsWrap) chipsWrap.remove();
+
   aiAppendMessage('user', text);
   aiChatHistory.push({ role:'user', parts:[{ text }] });
   const typingEl = aiAppendMessage('bot', 'Thinking…');
-  typingEl.classList.add('typing');
-  try{
-    if(!GEMINI_API_KEY || GEMINI_API_KEY === 'YOUR_GEMINI_API_KEY_HERE'){
-      throw new Error('missing-key');
-    }
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
+  if (typingEl) typingEl.classList.add('typing');
+
+  const clientApiKey = localStorage.getItem('fin2edge_gemini_api_key') || '';
+  let reply = '';
+
+  // 1. Try local server proxy or API endpoint
+  try {
     const body = {
       contents: aiChatHistory,
-      systemInstruction: {
-        parts: [{ text: "You are the Fin2edge site assistant. Answer briefly and clearly about financial literacy, Indian government/bank savings schemes, loans, insurance, market terminology, and the simulated trading Exchange on this site. All trading data on this site is simulated for education only — never give real investment advice or real-time market data." }]
-      }
+      apiKey: clientApiKey || undefined
     };
-    const res = await fetch(url, {
+    const res = await fetch('/api/assistant', {
       method:'POST',
       headers:{ 'Content-Type':'application/json' },
       body: JSON.stringify(body)
     });
-    if(!res.ok){
-      const errText = await res.text().catch(()=> '');
-      throw new Error('http-' + res.status + (errText ? (': ' + errText) : ''));
+    if(res.ok){
+      const data = await res.json();
+      reply = data?.candidates?.[0]?.content?.parts?.map(p=>p.text).join('') || data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
     }
-    const data = await res.json();
-    const reply = data?.candidates?.[0]?.content?.parts?.map(p=>p.text).join('') || "Sorry, I couldn't put together an answer for that.";
-    typingEl.remove();
-    aiAppendMessage('bot', reply);
-    aiChatHistory.push({ role:'model', parts:[{ text: reply }] });
-  }catch(err){
-    typingEl.remove();
-    if(err && err.message === 'missing-key'){
-      aiAppendMessage('bot', "The assistant needs a Gemini API key set in script.js (GEMINI_API_KEY) before it can answer. Ask whoever runs this site to add one.", true);
+  } catch(err) {
+    // Network / static / file:// protocol server error
+  }
+
+  // 2. Try window.Fin2edgeModules.geminiService if available
+  if (!reply && window.Fin2edgeModules && window.Fin2edgeModules.geminiService) {
+    try {
+      reply = await window.Fin2edgeModules.geminiService.askSaashya(text);
+    } catch(e) {}
+  }
+
+  // 3. Try direct Gemini API call if API key stored in localStorage
+  if (!reply && clientApiKey) {
+    try {
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${clientApiKey}`;
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ contents: aiChatHistory })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+      }
+    } catch (e) {}
+  }
+
+  // 4. Standalone Smart Local Fallback Response (works everywhere including file://)
+  if (!reply) {
+    const gemini = window.Fin2edgeModules && window.Fin2edgeModules.geminiService;
+    if (gemini && typeof gemini.getFallbackSaashyaResponse === 'function') {
+      reply = gemini.getFallbackSaashyaResponse(text);
     } else {
-      aiAppendMessage('bot', "Something went wrong reaching the assistant. Please try again in a moment.", true);
+      reply = getSaashyaSmartFallbackResponse(text);
     }
-  }finally{
-    input.disabled = false;
-    sendBtn.disabled = false;
-    input.focus();
-  }}
-document.getElementById('aiToggleBtn').addEventListener('click', ()=>{
-  const panel = document.getElementById('aiChatPanel');
-  if(panel.classList.contains('show')) aiClosePanel(); else aiOpenPanel();});
-document.getElementById('aiChatClose').addEventListener('click', aiClosePanel);
-document.getElementById('aiChatSend').addEventListener('click', aiSendMessage);
-document.getElementById('aiChatInput').addEventListener('keydown', (e)=>{
-  if(e.key === 'Enter'){ e.preventDefault(); aiSendMessage(); }});
+  }
+
+  if (typingEl) typingEl.remove();
+  aiAppendMessage('bot', reply);
+  aiChatHistory.push({ role:'model', parts:[{ text: reply }] });
+
+  if (input) { input.disabled = false; input.focus(); }
+  if (sendBtn) sendBtn.disabled = false;
+}
+
+// API Key settings toggle & listeners
+document.addEventListener('DOMContentLoaded', () => {
+  const keyToggle = document.getElementById('aiKeyToggle');
+  const keyPanel = document.getElementById('aiKeyPanel');
+  const keyInput = document.getElementById('aiApiKeyInput');
+  const keySave = document.getElementById('aiApiKeySave');
+  const keyClear = document.getElementById('aiApiKeyClear');
+
+  if (keyToggle && keyPanel) {
+    keyToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      keyPanel.style.display = keyPanel.style.display === 'none' ? 'block' : 'none';
+    });
+  }
+
+  if (keySave && keyInput) {
+    keySave.addEventListener('click', () => {
+      const val = keyInput.value.trim();
+      localStorage.setItem('fin2edge_gemini_api_key', val);
+      if (window.Fin2edgeModules && window.Fin2edgeModules.geminiService) {
+        window.Fin2edgeModules.geminiService.setApiKey(val);
+      }
+      if (keyPanel) keyPanel.style.display = 'none';
+      alert(val ? 'Gemini API Key saved successfully!' : 'API key cleared.');
+    });
+  }
+
+  if (keyClear && keyInput) {
+    keyClear.addEventListener('click', () => {
+      keyInput.value = '';
+      localStorage.removeItem('fin2edge_gemini_api_key');
+      if (window.Fin2edgeModules && window.Fin2edgeModules.geminiService) {
+        window.Fin2edgeModules.geminiService.setApiKey('');
+      }
+      if (keyPanel) keyPanel.style.display = 'none';
+      alert('API key cleared. Saashya will use built-in offline mentor mode.');
+    });
+  }
+});
+
+const aiToggleBtnEl = document.getElementById('aiToggleBtn');
+if (aiToggleBtnEl) {
+  aiToggleBtnEl.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    const panel = document.getElementById('aiChatPanel');
+    if(panel && panel.classList.contains('show')) aiClosePanel(); else aiOpenPanel();
+  });
+}
+
+const aiChatCloseEl = document.getElementById('aiChatClose');
+if (aiChatCloseEl) aiChatCloseEl.addEventListener('click', aiClosePanel);
+
+const aiChatSendEl = document.getElementById('aiChatSend');
+if (aiChatSendEl) aiChatSendEl.addEventListener('click', aiSendMessage);
+
+const aiChatInputEl = document.getElementById('aiChatInput');
+if (aiChatInputEl) {
+  aiChatInputEl.addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter'){ e.preventDefault(); aiSendMessage(); }
+  });
+}
+window.openLiveDemoForSIP = function(){
+  currentSim = findScheme('sip');
+  showModal('bankModal');
+  ensureBankScene();
+  if(bankScene){
+    bankScene.customerGroup.visible = false;
+    bankScene.jar.visible = false;
+    bankScene.jarFill.visible = false;
+  }
+  playBankIntro();
+  openLiveDemo();
+};
 init();})();
+
+/* ================================================================
+   SIP SIMULATOR MODULE  — fully self-contained, prefixed sip*
+================================================================ */
+(function(){
+'use strict';
+
+/* ── Character SVGs (same as original standalone) ── */
+const SIP_SVG = {
+  saashya:`<svg viewBox="0 0 100 170" xmlns="http://www.w3.org/2000/svg"><rect x="33" y="138" width="14" height="22" rx="4" fill="#2d3a8c"/><rect x="53" y="138" width="14" height="22" rx="4" fill="#2d3a8c"/><ellipse cx="40" cy="160" rx="9" ry="4" fill="#1a1a4e"/><ellipse cx="60" cy="160" rx="9" ry="4" fill="#1a1a4e"/><rect x="26" y="84" width="48" height="58" rx="9" fill="#1a237e"/><rect x="44" y="84" width="12" height="58" fill="#0d1a5e"/><polygon points="44,84 50,96 56,84" fill="#ffd700"/><rect x="58" y="90" width="10" height="8" rx="2" fill="#ffd700"/><text x="63" y="97" text-anchor="middle" font-size="4" font-weight="900" fill="#1a237e">SBI</text><rect x="12" y="86" width="16" height="36" rx="6" fill="#1a237e"/><rect x="72" y="86" width="16" height="36" rx="6" fill="#1a237e"/><ellipse cx="20" cy="124" rx="7" ry="6" fill="#f5c6a0"/><ellipse cx="80" cy="124" rx="7" ry="6" fill="#f5c6a0"/><rect x="44" y="74" width="12" height="14" rx="4" fill="#f5c6a0"/><ellipse cx="50" cy="60" rx="24" ry="22" fill="#f5c6a0"/><ellipse cx="50" cy="41" rx="22" ry="14" fill="#3d2314"/><ellipse cx="28" cy="56" rx="7" ry="12" fill="#3d2314"/><ellipse cx="72" cy="56" rx="7" ry="12" fill="#3d2314"/><circle cx="50" cy="48" r="2" fill="#dc2626"/><ellipse cx="42" cy="58" rx="4" ry="4.5" fill="#fff"/><ellipse cx="58" cy="58" rx="4" ry="4.5" fill="#fff"/><circle cx="43" cy="59" r="2.5" fill="#3d2314"/><circle cx="59" cy="59" r="2.5" fill="#3d2314"/><path d="M38 52 Q42 49 46 52" stroke="#3d2314" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M54 52 Q58 49 62 52" stroke="#3d2314" stroke-width="1.5" fill="none" stroke-linecap="round"/><ellipse cx="50" cy="65" rx="2" ry="1.5" fill="#e0a070"/><path d="M44 71 Q50 76 56 71" stroke="#c07850" stroke-width="1.5" fill="none" stroke-linecap="round"/><circle cx="26" cy="64" r="3" fill="#ffd700"/><circle cx="74" cy="64" r="3" fill="#ffd700"/></svg>`,
+  guard:`<svg viewBox="0 0 100 170" xmlns="http://www.w3.org/2000/svg"><rect x="33" y="138" width="13" height="22" rx="3" fill="#16283f"/><rect x="54" y="138" width="13" height="22" rx="3" fill="#16283f"/><ellipse cx="39" cy="161" rx="9" ry="4" fill="#0d0d0d"/><ellipse cx="61" cy="161" rx="9" ry="4" fill="#0d0d0d"/><rect x="25" y="84" width="50" height="58" rx="10" fill="#1e3a5f"/><rect x="25" y="128" width="50" height="8" fill="#0d0d0d"/><rect x="46" y="128" width="8" height="8" fill="#d4af37"/><rect x="27" y="84" width="14" height="6" rx="2" fill="#d4af37"/><rect x="59" y="84" width="14" height="6" rx="2" fill="#d4af37"/><circle cx="62" cy="98" r="6" fill="#d4af37"/><text x="62" y="100" text-anchor="middle" font-size="5" font-weight="900" fill="#1e3a5f">★</text><rect x="11" y="88" width="15" height="34" rx="6" fill="#1e3a5f"/><rect x="74" y="88" width="15" height="34" rx="6" fill="#1e3a5f"/><rect x="76" y="92" width="7" height="16" rx="2" fill="#333"/><circle cx="79.5" cy="90" r="1.5" fill="#777"/><ellipse cx="18" cy="124" rx="6.5" ry="6" fill="#d9a373"/><ellipse cx="82" cy="124" rx="6.5" ry="6" fill="#d9a373"/><rect x="43" y="74" width="14" height="14" rx="4" fill="#d9a373"/><ellipse cx="50" cy="60" rx="23" ry="21" fill="#d9a373"/><path d="M27 50 Q50 25 73 50 L73 43 Q50 19 27 43 Z" fill="#16283f"/><rect x="26" y="41" width="48" height="6" rx="3" fill="#0d0d0d"/><circle cx="50" cy="41" r="4" fill="#d4af37"/><ellipse cx="42" cy="59" rx="3.5" ry="4" fill="#fff"/><ellipse cx="58" cy="59" rx="3.5" ry="4" fill="#fff"/><circle cx="42.7" cy="60" r="2.2" fill="#2b1810"/><circle cx="58.7" cy="60" r="2.2" fill="#2b1810"/><path d="M37 53 Q42 51 47 53" stroke="#2b1810" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M53 53 Q58 51 63 53" stroke="#2b1810" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M39 71 Q50 76 61 71 Q50 74.5 39 71" fill="#2b1810"/><ellipse cx="50" cy="66" rx="2" ry="1.5" fill="#c4906a"/><path d="M44 75 Q50 78 56 75" stroke="#8a5a3a" stroke-width="1.3" fill="none" stroke-linecap="round"/></svg>`,
+  banker:`<svg viewBox="0 0 100 170" xmlns="http://www.w3.org/2000/svg"><rect x="33" y="138" width="13" height="22" rx="3" fill="#1a1a1a"/><rect x="54" y="138" width="13" height="22" rx="3" fill="#1a1a1a"/><ellipse cx="39" cy="161" rx="9" ry="4" fill="#0d0d0d"/><ellipse cx="61" cy="161" rx="9" ry="4" fill="#0d0d0d"/><rect x="24" y="84" width="52" height="58" rx="10" fill="#14203f"/><polygon points="43,84 50,110 57,84" fill="#fff"/><polygon points="47,88 53,88 55,112 50,120 45,112" fill="#7a1f2b"/><polygon points="43,84 33,100 43,100" fill="#0d1730"/><polygon points="57,84 67,100 57,100" fill="#0d1730"/><rect x="60" y="96" width="11" height="8" rx="1.5" fill="#fff" stroke="#14203f" stroke-width="1"/><rect x="12" y="88" width="15" height="34" rx="6" fill="#14203f"/><rect x="73" y="88" width="15" height="34" rx="6" fill="#14203f"/><ellipse cx="19" cy="124" rx="6.5" ry="6" fill="#f0c8a0"/><ellipse cx="81" cy="124" rx="6.5" ry="6" fill="#f0c8a0"/><rect x="43" y="74" width="14" height="14" rx="4" fill="#f0c8a0"/><ellipse cx="50" cy="60" rx="23" ry="21" fill="#f0c8a0"/><ellipse cx="50" cy="43" rx="22" ry="13" fill="#241408"/><path d="M28 55 Q26 65 30 70" stroke="#241408" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M72 55 Q74 65 70 70" stroke="#241408" stroke-width="6" fill="none" stroke-linecap="round"/><ellipse cx="42" cy="59" rx="3.5" ry="4" fill="#fff"/><ellipse cx="58" cy="59" rx="3.5" ry="4" fill="#fff"/><circle cx="42.7" cy="60" r="2.2" fill="#241408"/><circle cx="58.7" cy="60" r="2.2" fill="#241408"/><circle cx="42" cy="59" r="6.4" fill="none" stroke="#333" stroke-width="1.3"/><circle cx="58" cy="59" r="6.4" fill="none" stroke="#333" stroke-width="1.3"/><line x1="48.4" y1="59" x2="51.6" y2="59" stroke="#333" stroke-width="1.3"/><path d="M37 53 Q42 51 47 53" stroke="#241408" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M53 53 Q58 51 63 53" stroke="#241408" stroke-width="1.4" fill="none" stroke-linecap="round"/><ellipse cx="50" cy="66" rx="2" ry="1.5" fill="#d9a878"/><path d="M44 73 Q50 77 56 73" stroke="#a8683f" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>`,
+  advisor:`<svg viewBox="0 0 100 170" xmlns="http://www.w3.org/2000/svg"><rect x="33" y="138" width="13" height="22" rx="3" fill="#3a1a3a"/><rect x="54" y="138" width="13" height="22" rx="3" fill="#3a1a3a"/><ellipse cx="39" cy="161" rx="9" ry="4" fill="#1a0a1a"/><ellipse cx="61" cy="161" rx="9" ry="4" fill="#1a0a1a"/><rect x="24" y="84" width="52" height="58" rx="10" fill="#6b2d6b"/><polygon points="43,84 50,106 57,84" fill="#f3e6d0"/><rect x="60" y="98" width="4" height="18" fill="#3a1a3a"/><rect x="57" y="113" width="10" height="10" rx="1.5" fill="#fff" stroke="#6b2d6b" stroke-width="1"/><rect x="12" y="88" width="15" height="34" rx="6" fill="#6b2d6b"/><rect x="73" y="88" width="15" height="34" rx="6" fill="#6b2d6b"/><ellipse cx="19" cy="124" rx="6.5" ry="6" fill="#e8b98a"/><ellipse cx="81" cy="124" rx="6.5" ry="6" fill="#e8b98a"/><rect x="43" y="74" width="14" height="14" rx="4" fill="#e8b98a"/><ellipse cx="50" cy="60" rx="23" ry="21" fill="#e8b98a"/><ellipse cx="50" cy="42" rx="21" ry="13" fill="#2b1710"/><ellipse cx="29" cy="58" rx="6" ry="11" fill="#2b1710"/><ellipse cx="71" cy="58" rx="6" ry="11" fill="#2b1710"/><circle cx="50" cy="26" r="8" fill="#2b1710"/><circle cx="50" cy="51" r="2" fill="#c0392b"/><ellipse cx="42" cy="59" rx="3.5" ry="4" fill="#fff"/><ellipse cx="58" cy="59" rx="3.5" ry="4" fill="#fff"/><circle cx="42.7" cy="60" r="2.2" fill="#2b1710"/><circle cx="58.7" cy="60" r="2.2" fill="#2b1710"/><path d="M37 53 Q42 51 47 53" stroke="#2b1710" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M53 53 Q58 51 63 53" stroke="#2b1710" stroke-width="1.4" fill="none" stroke-linecap="round"/><ellipse cx="50" cy="66" rx="2" ry="1.5" fill="#d19f6d"/><path d="M43 73 Q50 78 57 73" stroke="#b57a4f" stroke-width="1.4" fill="none" stroke-linecap="round"/><circle cx="27" cy="66" r="2.6" fill="#d4af37"/><circle cx="73" cy="66" r="2.6" fill="#d4af37"/></svg>`,
+  customer:`<svg viewBox="0 0 100 170" xmlns="http://www.w3.org/2000/svg"><rect x="33" y="138" width="13" height="22" rx="3" fill="#3d3d3d"/><rect x="54" y="138" width="13" height="22" rx="3" fill="#3d3d3d"/><ellipse cx="39" cy="161" rx="9" ry="4" fill="#5a4a2a"/><ellipse cx="61" cy="161" rx="9" ry="4" fill="#5a4a2a"/><rect x="26" y="86" width="48" height="60" rx="14" fill="#1f6b5c"/><path d="M40 86 Q50 96 60 86" stroke="#164e43" stroke-width="2" fill="none"/><rect x="13" y="90" width="15" height="34" rx="6" fill="#1f6b5c"/><rect x="72" y="90" width="15" height="30" rx="6" fill="#1f6b5c"/><ellipse cx="20" cy="126" rx="6.5" ry="6" fill="#c48a5a"/><ellipse cx="80" cy="118" rx="6.5" ry="6" fill="#c48a5a"/><rect x="75" y="104" width="8" height="14" rx="2" fill="#111"/><rect x="43" y="76" width="14" height="14" rx="4" fill="#c48a5a"/><ellipse cx="50" cy="60" rx="23" ry="21" fill="#c48a5a"/><ellipse cx="50" cy="42" rx="22" ry="13" fill="#1a1210"/><ellipse cx="42" cy="59" rx="3.5" ry="4" fill="#fff"/><ellipse cx="58" cy="59" rx="3.5" ry="4" fill="#fff"/><circle cx="42.7" cy="60" r="2.2" fill="#1a1210"/><circle cx="58.7" cy="60" r="2.2" fill="#1a1210"/><path d="M37 53 Q42 51 47 53" stroke="#1a1210" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M53 53 Q58 51 63 53" stroke="#1a1210" stroke-width="1.4" fill="none" stroke-linecap="round"/><ellipse cx="50" cy="66" rx="2" ry="1.5" fill="#a86c40"/><path d="M35 68 Q50 82 65 68 Q65 76 50 80 Q35 76 35 68" fill="#1a1210" opacity=".85"/><path d="M44 74 Q50 77 56 74" stroke="#8a5530" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>`
+};
+
+/* ── Simulation Data ── */
+const SIP_DATA = {
+  xp: 200,
+  intro: "Welcome to SBI! I'll guide you to register your first SIP. Click the glowing door to enter the bank!",
+  steps:[
+    {id:1,title:'Enter the Bank',desc:'Walk into the SBI branch',saashya:"First step — just walk in! Every SIP journey starts with entering a branch OR using the YONO app. Today we'll do it in person so you know exactly what happens.",scene:'door',action:{type:'click-hint',label:'Click the bank door to enter 🚪'}},
+    {id:2,title:'Take a Token',desc:'Collect your queue token from the counter',saashya:'Always take a token! This tells the bank staff when to serve you. Token counter is near the entrance. Look for the "New Account / Investment" category.',scene:'guard',action:{type:'info',content:'<div class="sip-info-card">📋 <strong>Token Categories at SBI</strong><br>• New Account Opening<br>• Deposits / FD / SIP<br>• Cash / Withdrawal<br>• Complaint / Query<br><br>You want: <strong style="color:#a78bfa">Deposits / SIP</strong> category.</div>',btn:{label:'Take Token — Got it! ✓',style:'sip-primary'}},npcLine:"Welcome! Take a token for Deposits counter. It's that machine on the left!"},
+    {id:3,title:'Talk to the Banker',desc:'Meet Banker Raj at the SIP counter',saashya:"Tell the banker you want to start a SIP. They'll ask for your documents first. You need: PAN Card + Aadhaar + Bank passbook. Did you bring them?",scene:'banker',action:{type:'choice',question:'Banker Raj asks: "Hello! First time starting a SIP?"',opts:[{label:"Yes, it's my first SIP. Please guide me.",val:'first',correct:true},{label:'No, I already have one. Want another.',val:'another',correct:true},{label:"I'm not sure what a SIP is.",val:'unsure'}],feedback:{first:"Great! He'll explain the basics and help you choose a fund.",another:"He'll ask which fund house and help you set up the new one.",unsure:'⚠️ It\'s okay to admit, but do your homework first! Saashya can explain SIP before you visit.'}},npcLine:'Hello! How can I help you today? I handle SIPs and mutual funds.'},
+    {id:4,title:'Submit KYC Documents',desc:'Hand over PAN + Aadhaar for verification',saashya:"KYC = Know Your Customer. The bank legally must verify your identity before investing your money. This protects YOU from fraud too! If your KYC is already done with SBI, this step is instant.",scene:'banker',action:{type:'form',title:'KYC Document Checklist',fields:[{label:'Full Name (as on PAN)',type:'text',placeholder:'e.g. Priya Sharma',id:'sip_kycName'},{label:'PAN Number',type:'text',placeholder:'e.g. ABCDE1234F',id:'sip_kycPan'},{label:'Aadhaar Last 4 digits',type:'text',placeholder:'e.g. 5678',id:'sip_kycAadhar'},{label:'Mobile linked to Aadhaar',type:'text',placeholder:'e.g. 98765XXXXX',id:'sip_kycMobile'}],btn:{label:'Submit Documents →',style:'sip-primary'}},npcLine:"Can I have your PAN and Aadhaar please? I'll verify it in the system."},
+    {id:5,title:'Choose Your SIP Fund',desc:'Select the right mutual fund for your SIP',saashya:'This is the most important choice! For beginners, Nifty 50 Index Fund is the safest bet — low cost (0.1% fee), maximum diversification, proven 13% average annual return over 20 years.',scene:'advisor',action:{type:'form',title:'Select SIP Fund',fields:[{label:'Fund Category',type:'select',options:['Nifty 50 Index Fund (Recommended for beginners)','Large Cap Fund — Stable, blue-chip companies','ELSS — Tax-saving, 3yr lock-in, good returns','Flexi Cap — Mix of large + mid + small cap','Mid Cap — Higher returns, higher risk'],id:'sip_fundType'},{label:'Monthly SIP Amount (Min ₹500)',type:'number',placeholder:'e.g. 1000',id:'sip_sipAmount'},{label:'SIP Date (auto-debit day)',type:'select',options:['1st of every month','5th of every month','10th of every month','15th of every month','25th of every month'],id:'sip_sipDate'}],btn:{label:'Confirm Fund Selection →',style:'sip-primary'}},npcLine:"I'd suggest starting with ₹500-₹2000/month in an index fund. Let me show you the options."},
+    {id:6,title:'Fill the SIP Form',desc:'Complete the official SIP registration form',saashya:'Almost done! This form is the legal agreement between you and the fund house. Read the auto-debit mandate carefully — it authorises the bank to deduct ₹X on the chosen date every month.',scene:'banker',action:{type:'form',title:'SIP Registration Form',fields:[{label:'Investor Name',type:'text',placeholder:'Your full name',id:'sip_invName'},{label:'Bank Account Number',type:'text',placeholder:'Your SBI account number',id:'sip_accNum'},{label:'IFSC Code',type:'text',placeholder:'e.g. SBIN0001234',id:'sip_ifsc'},{label:'Nominee Name',type:'text',placeholder:'e.g. Parent / Spouse name',id:'sip_nominee'},{label:'Nominee Relationship',type:'select',options:['Father','Mother','Spouse','Sibling','Child','Other'],id:'sip_nomRel'}],btn:{label:'Submit Registration Form →',style:'sip-amber'}},npcLine:'Please fill this form carefully. The auto-debit mandate will debit your account on the date you chose.'},
+    {id:7,title:'e-Mandate / OTP Approval',desc:'Approve the auto-debit mandate digitally',saashya:'Your bank will send an OTP to your registered mobile number. Enter it to activate the auto-debit. This is mandatory for digital SIP setup — it\'s your legal consent for monthly deductions.',scene:'atm',action:{type:'otp',title:'Approve Auto-Debit Mandate',instruction:'Enter the 6-digit OTP sent to your registered mobile number to activate your SIP auto-debit:',id:'sip_otpField',btn:{label:'Verify OTP & Activate SIP →',style:'sip-teal'}}},
+    {id:8,title:'SIP Confirmation',desc:'Receive your SIP registration confirmation',saashya:"🎉 You did it! Your SIP is now live. You'll receive an SMS + email with your folio number. Your first deduction happens on the date you chose. Come back every year to review your fund performance!",scene:'banker',action:{type:'summary',items:['✅ KYC verified successfully','✅ Nifty 50 Index Fund selected','✅ ₹1,000/month SIP activated','✅ Auto-debit mandate approved','📱 Confirmation SMS sent','📧 Email with folio number sent','💹 First SIP deduction: 1st next month']},npcLine:'Congratulations! Your SIP is registered. Folio No: SBI/MF/2024/48291. All the best!'},
+  ]
+};
+
+const SIP_NPCS = [
+  {id:'guard',  left:'8%', label:'Guard Rajan',       role:'Security',  idle:'Welcome! Please take a queue token from the machine on your right.'},
+  {id:'banker', left:'32%',label:'Banker Raj',        role:'SIP Counter',idle:'Hello! I handle SIPs and mutual funds. How can I help you today?'},
+  {id:'advisor',left:'54%',label:'Advisor Priya',     role:'MF Expert',  idle:'I specialise in mutual funds — happy to find the right one for your goals.'},
+  {id:'customer',left:'76%',label:'Existing SIP holder',role:'Customer', idle:"I'm here for my quarterly SIP review. Best decision I made — steady, stress-free growth!"},
+];
+
+let sipStep = 0;
+
+/* ── Helpers ── */
+function $s(id){ return document.getElementById(id); }
+function sipSetSaashya(text){ const el=$s('sipSaashyaGuideText'); if(el) el.textContent=text; }
+function sipShowToast(msg){
+  // reuse the existing Fin2edge toast element
+  const t=$s('toast');
+  if(!t) return;
+  t.textContent=msg; t.style.display='flex';
+  clearTimeout(t._sipTimer);
+  t._sipTimer=setTimeout(()=>{ t.style.display=''; },2800);
+}
+
+/* ── Boot: wire buttons ── */
+function sipWireButtons(){
+  const startBtn=$s('startSipSimBtn');
+  if(startBtn) startBtn.addEventListener('click', sipOpenModal);
+}
+
+function sipOpenModal(){
+  const modal=$s('sipSimModal');
+  if(!modal) return;
+  modal.classList.add('active');
+  sipInitSim();
+}
+window.sipOpenModal = sipOpenModal;
+
+/* ── Init simulation ── */
+function sipInitSim(){
+  const avatarEl=$s('sipPanelSaaAvatar');
+  if(avatarEl) avatarEl.innerHTML=SIP_SVG.saashya;
+  sipBuildStars();
+  sipBuildNPCs();
+  sipBuildPills();
+  sipBuildStepsList();
+  sipSetStep(0);
+  sipSetSaashya(SIP_DATA.intro);
+}
+
+function restartSipSim(){ sipInitSim(); sipShowToast('🔄 Simulation restarted'); }
+window.restartSipSim = restartSipSim;
+
+function sipSceneDoorClick(){
+  const step=SIP_DATA.steps[sipStep];
+  if(step && step.scene==='door'){
+    const door=$s('sipBankDoor');
+    if(door) door.classList.remove('sip-clickable-hint');
+    sipSetSaashya("You're in! Now look at the right panel and follow the steps. Click the glowing NPC next!");
+    sipAdvanceStep();
+  }
+}
+window.sipSceneDoorClick = sipSceneDoorClick;
+
+/* ── Stars ── */
+function sipBuildStars(){
+  const c=$s('sipSkyStars'); if(!c) return; c.innerHTML='';
+  for(let i=0;i<35;i++){
+    const s=document.createElement('div'); s.className='sip-star';
+    s.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*50}%;opacity:${.3+Math.random()*.5};width:${1+Math.random()*2}px;height:${1+Math.random()*2}px`;
+    c.appendChild(s);
+  }
+}
+
+/* ── NPCs ── */
+function sipBuildNPCs(){
+  const container=$s('sipSceneNPCs'); if(!container) return; container.innerHTML='';
+  SIP_NPCS.forEach(npc=>{
+    const el=document.createElement('div');
+    el.className='sip-sim-person'; el.id='sipNpc_'+npc.id; el.style.left=npc.left;
+    el.innerHTML=`
+      <div class="sip-speech-bubble" id="sipBubble_${npc.id}"><p>${npc.idle}</p></div>
+      <div class="sip-person-figure">${SIP_SVG[npc.id]||SIP_SVG.customer}</div>
+      <div class="sip-person-label">${npc.label}</div>
+      <div class="sip-person-role-badge">${npc.role}</div>`;
+    el.addEventListener('click',()=>sipNpcClick(npc.id));
+    container.appendChild(el);
+  });
+}
+
+function sipNpcClick(id){
+  document.querySelectorAll('.sip-sim-person').forEach(p=>p.classList.remove('sip-active-npc'));
+  const el=$s('sipNpc_'+id); if(el) el.classList.add('sip-active-npc');
+  const step=SIP_DATA.steps[sipStep];
+  if(step && step.scene===id && step.npcLine) sipSetSaashya(step.npcLine);
+  else { const npc=SIP_NPCS.find(n=>n.id===id); sipSetSaashya(npc?npc.idle:'Click on me to learn more!'); }
+  if(step && step.scene===id && step.action && step.action.type==='click-hint') sipAdvanceStep();
+  setTimeout(()=>{ if(el) el.classList.remove('sip-active-npc'); },3000);
+}
+
+/* ── Pills ── */
+function sipBuildPills(){
+  const c=$s('sipStepPills'); if(!c) return; c.innerHTML='';
+  SIP_DATA.steps.forEach((_,i)=>{ const p=document.createElement('div'); p.className='sip-step-pill'; p.id='sipPill_'+(i+1); p.textContent=i+1; c.appendChild(p); });
+}
+
+/* ── Steps list ── */
+function sipBuildStepsList(){
+  const c=$s('sipStepsList'); if(!c) return; c.innerHTML='';
+  SIP_DATA.steps.forEach((s,i)=>{
+    const d=document.createElement('div'); d.className='sip-step-item sip-pending'; d.id='sipItem_'+(i+1);
+    d.innerHTML=`<div class="sip-step-num">${i+1}</div><div class="sip-step-info"><h4>${s.title}</h4><p>${s.desc}</p></div>`;
+    c.appendChild(d);
+  });
+}
+
+/* ── Set step ── */
+function sipSetStep(idx){
+  sipStep=idx;
+  const steps=SIP_DATA.steps;
+  if(idx>=steps.length){ sipShowCompletion(); return; }
+  const step=steps[idx];
+
+  steps.forEach((_,i)=>{
+    const p=$s('sipPill_'+(i+1)); if(!p) return;
+    p.className='sip-step-pill'+(i<idx?' done':i===idx?' active':'');
+    p.textContent=i<idx?'✓':i+1;
+  });
+  steps.forEach((_,i)=>{
+    const d=$s('sipItem_'+(i+1)); if(!d) return;
+    d.className='sip-step-item'+(i<idx?' sip-completed':i===idx?' sip-current':' sip-pending');
+    const n=d.querySelector('.sip-step-num'); if(n) n.textContent=i<idx?'✓':i+1;
+  });
+  const cur=$s('sipItem_'+(idx+1)); if(cur) cur.scrollIntoView({behavior:'smooth',block:'nearest'});
+
+  const sl=$s('sipSceneLabel'); if(sl) sl.textContent=`Step ${idx+1} of ${steps.length}: ${step.title}`;
+  sipHighlightNPC(step.scene);
+
+  if(step.npcLine){
+    const bubble=$s('sipBubble_'+step.scene);
+    if(bubble) bubble.querySelector('p').textContent=step.npcLine;
+    const npcEl=$s('sipNpc_'+step.scene);
+    if(npcEl){ npcEl.classList.add('sip-active-npc'); setTimeout(()=>npcEl.classList.remove('sip-active-npc'),4000); }
+  }
+  sipSetSaashya(step.saashya);
+  sipBuildActionBox(step);
+}
+
+function sipHighlightNPC(scene){
+  document.querySelectorAll('.sip-sim-person').forEach(p=>p.classList.remove('sip-npc-highlight'));
+  const door=$s('sipBankDoor'); if(door) door.classList.remove('sip-clickable-hint');
+  const atm=document.querySelector('.sip-atm-machine'); if(atm) atm.style.filter='';
+  if(scene==='door'){ if(door) door.classList.add('sip-clickable-hint'); }
+  else if(scene==='atm'){ if(atm) atm.style.filter='brightness(1.5)'; }
+  else { const el=$s('sipNpc_'+scene); if(el) el.classList.add('sip-npc-highlight'); }
+}
+
+/* ── Action box ── */
+function sipBuildActionBox(step){
+  const box=$s('sipActionBox'); if(!box) return;
+  const a=step.action; if(!a){ box.innerHTML=''; return; }
+
+  if(a.type==='click-hint'){
+    box.innerHTML=`<div class="sip-step-action-box"><div class="sip-step-action-title">🖱️ Your Turn</div><div class="sip-info-card" style="text-align:center;font-size:13px;padding:14px">${a.label}</div></div>`;
+    return;
+  }
+  if(a.type==='info'){
+    box.innerHTML=`<div class="sip-step-action-box"><div class="sip-step-action-title">📖 Read & Understand</div>${a.content}<button class="sip-action-btn ${a.btn.style}" onclick="sipAdvanceStep()">${a.btn.label}</button></div>`;
+    return;
+  }
+  if(a.type==='choice'){
+    const opts=a.opts.map(o=>`<button class="sip-quiz-opt-btn" data-val="${o.val}" data-correct="${o.correct||false}">${o.label}</button>`).join('');
+    box.innerHTML=`<div class="sip-step-action-box"><div class="sip-step-action-title">🤔 Make a Decision</div><div style="font-size:11px;font-weight:700;margin-bottom:9px;color:#94a3b8;font-family:'Nunito',sans-serif">${a.question}</div>${opts}<div id="sipChoiceFeedback" style="display:none;margin-top:9px;padding:9px;border-radius:8px;font-size:11px;font-weight:700;font-family:'Nunito',sans-serif"></div></div>`;
+    box.querySelectorAll('.sip-quiz-opt-btn').forEach(btn=>{
+      btn.addEventListener('click',()=>sipHandleChoice(btn.dataset.val,btn.dataset.correct==='true',btn,a.feedback));
+    });
+    return;
+  }
+  if(a.type==='form'){
+    const fields=a.fields.map(f=>{
+      if(f.type==='select') return `<div class="sip-action-field"><label>${f.label}</label><select id="${f.id}">${f.options.map(o=>`<option>${o}</option>`).join('')}</select></div>`;
+      return `<div class="sip-action-field"><label>${f.label}</label><input type="${f.type}" id="${f.id}" placeholder="${f.placeholder||''}"></div>`;
+    }).join('');
+    box.innerHTML=`<div class="sip-step-action-box"><div class="sip-step-action-title">✏️ ${a.title}</div>${fields}<button class="sip-action-btn ${a.btn.style}" onclick="sipHandleForm()">${a.btn.label}</button></div>`;
+    return;
+  }
+  if(a.type==='otp'){
+    box.innerHTML=`<div class="sip-step-action-box"><div class="sip-step-action-title">🔐 ${a.title}</div><div class="sip-info-card">${a.instruction}</div><div class="sip-action-field"><input type="number" id="${a.id}" placeholder="Enter 6-digit OTP" style="font-size:18px;text-align:center;letter-spacing:7px;font-weight:900"></div><button class="sip-action-btn ${a.btn.style}" onclick="sipHandleOTP('${a.id}')">${a.btn.label}</button></div>`;
+    return;
+  }
+  if(a.type==='summary'){
+    const items=a.items.map(i=>`<div style="display:flex;gap:7px;padding:5px 0;border-bottom:1px solid #2d3748;font-size:11px;font-family:'Nunito',sans-serif"><span style="flex:1">${i}</span></div>`).join('');
+    box.innerHTML=`<div class="sip-step-action-box"><div class="sip-step-action-title">📄 Summary</div>${items}<button class="sip-action-btn sip-teal" onclick="sipAdvanceStep()" style="margin-top:9px">Confirm & Continue ✓</button></div>`;
+    return;
+  }
+  box.innerHTML='';
+}
+
+function sipHandleChoice(val,correct,btn,feedback){
+  document.querySelectorAll('.sip-quiz-opt-btn').forEach(b=>b.disabled=true);
+  btn.className='sip-quiz-opt-btn '+(correct?'sip-correct':'sip-wrong');
+  const fbEl=$s('sipChoiceFeedback');
+  if(fbEl){
+    fbEl.style.display='block';
+    fbEl.style.background=correct?'#0d2e24':'#2d1020';
+    fbEl.style.color=correct?'#34d399':'#fb7185';
+    fbEl.style.border='1px solid '+(correct?'#34d399':'#fb7185');
+    fbEl.textContent=(correct?'✅ ':'⚠️ ')+(feedback[val]||'Good thinking!');
+    setTimeout(()=>{
+      const cb=document.createElement('button');
+      cb.className='sip-action-btn sip-primary'; cb.style.marginTop='9px';
+      cb.textContent='Continue to next step →'; cb.addEventListener('click',sipAdvanceStep);
+      fbEl.parentElement.appendChild(cb);
+    },500);
+  }
+  if(correct) sipShowToast('✅ Smart choice! +20 XP');
+}
+window.sipHandleForm=function(){ sipShowToast('📝 Details submitted!'); setTimeout(sipAdvanceStep,600); };
+window.sipHandleOTP=function(id){ const v=$s(id)?.value; if(!v||v.length<4){ sipShowToast('⚠️ Enter a valid OTP'); return; } sipShowToast('🔐 OTP verified! ✓'); setTimeout(sipAdvanceStep,700); };
+window.sipAdvanceStep = sipAdvanceStep;
+
+function sipAdvanceStep(){
+  const pill=$s('sipPill_'+(sipStep+1));
+  if(pill){ pill.className='sip-step-pill done'; pill.textContent='✓'; }
+  const item=$s('sipItem_'+(sipStep+1));
+  if(item){ item.className='sip-step-item sip-completed'; const n=item.querySelector('.sip-step-num'); if(n) n.textContent='✓'; }
+  sipShowToast('✅ Step complete! +'+Math.round(SIP_DATA.xp/SIP_DATA.steps.length)+' XP');
+  const next=sipStep+1;
+  if(next>=SIP_DATA.steps.length) sipShowCompletion(); else sipSetStep(next);
+}
+
+function sipGoToLiveDemo(){
+  const modal = document.getElementById('sipSimModal');
+  if(modal) modal.classList.remove('active');
+  if(window.openLiveDemoForSIP){
+    window.openLiveDemoForSIP();
+  }
+}
+window.sipGoToLiveDemo = sipGoToLiveDemo;
+
+function sipShowCompletion(){
+  const ab=$s('sipActionBox'); if(ab) ab.innerHTML='';
+  const cb=$s('sipCompletionBox'); if(!cb) return;
+  cb.innerHTML=`<div class="sip-completion-card"><div class="sip-cc-icon">🎉</div><h3>Branch Simulation Complete!</h3><p>You've mastered the <strong>SIP Registration</strong> process end to end. Now, step up to the counter for your live desk calculation!</p><div class="sip-xp-burst">+${SIP_DATA.xp} XP</div><p style="font-size:10px;margin-bottom:12px;font-family:'Nunito',sans-serif">🏅 New badge unlocked!</p><button class="sip-action-btn sip-primary" onclick="sipGoToLiveDemo()" style="margin-bottom:8px">Proceed to Live Calculator Demo ➔</button><button class="sip-action-btn sip-amber" onclick="restartSipSim()">↺ Replay Branch Simulation</button></div>`;
+  cb.scrollIntoView({behavior:'smooth'});
+  sipSetSaashya('🌟 Incredible! You completed the entire branch simulation. Click below to step up to the desk for your live calculation demo!');
+  sipShowToast('🏅 Simulation complete! +'+SIP_DATA.xp+' XP earned!');
+  document.querySelectorAll('.sip-step-pill').forEach(p=>{ p.className='sip-step-pill done'; p.textContent='✓'; });
+}
+
+/* ── Bootstrap ── */
+document.addEventListener('DOMContentLoaded', sipWireButtons);
+// also wire immediately in case DOM is already ready
+if(document.readyState!=='loading') sipWireButtons();
+
+})();
+
+/* =========================================================
+   EXCHANGE ACADEMY — LEARNING WORLD ENGINE
+   Self-contained module. Reuses global toast()/celebrateFinish()/
+   showModal()/closeModal()/clamp() if present, degrades safely if not.
+   ========================================================= */
+(function(){
+
+const LW_STORE_KEY = 'fin2edge_academy_world_v1';
+
+const LW_BADGES = [
+  {at:5,  icon:'🌱', name:'Foundations'},
+  {at:10, icon:'📈', name:'Market Ready'},
+  {at:15, icon:'🎓', name:'Academy Graduate'}
+];
+
+const LW_LESSONS = [
+  { icon:'💰', title:'Money', blurb:'What it actually is, and why it works.',
+    story:"Before shares or funds or charts, there's just money — and money is really just a trust system. A hundred-rupee note isn't valuable because of the paper; it's valuable because everyone agrees it is. Understanding that agreement is where every good financial decision starts.",
+    xp:35,
+    interaction:{ type:'flip', title:'Tap each card to reveal the idea',
+      cards:[
+        {q:'Why does money have value?', a:"Not because of the paper or metal — because a whole society agrees to accept it in exchange for real things: food, time, work."},
+        {q:'What are the 3 jobs money does?', a:"It's a medium of exchange (buys things), a store of value (holds worth over time), and a unit of account (lets you compare prices)."},
+        {q:'Why not just barter?', a:"Barter needs a 'double coincidence of wants' — you'd need someone who has what you want AND wants exactly what you have. Money removes that problem."},
+        {q:'Is money the same as wealth?', a:"No. Money is a tool to move value around. Wealth is what you build by putting that tool to work — saving, investing, owning things that grow."}
+      ]
+    }
+  },
+  { icon:'🌱', title:'Saving', blurb:'Paying yourself first, before anything else.',
+    story:"Most people save whatever is left after spending — and most months, nothing is left. Saashya teaches it the other way round: the moment money arrives, a slice of it is paid to your future self first, automatically. Everything else adjusts around that, not the other way around.",
+    xp:35,
+    interaction:{ type:'quiz', title:'Quick check',
+      question:"You get paid today. In the 'pay yourself first' approach, what's the very first thing you do with it?",
+      options:[
+        {label:'Pay all your bills, then save whatever remains', correct:false},
+        {label:"Move a fixed percentage to savings immediately, then live on the rest", correct:true},
+        {label:'Wait until month-end to see how much is left', correct:false}
+      ],
+      explain:"Saving first — even a small, fixed percentage — turns saving into a habit instead of a hope. What's left simply becomes your real, honest budget."
+    }
+  },
+  { icon:'📉', title:'Inflation', blurb:'Why the same rupee buys less tomorrow.',
+    story:"Every year, prices tend to creep up — a cup of chai, a kilo of rice, a bus fare. That quiet creep is inflation, and it means cash sitting idle is actually losing purchasing power, even while the number on your bank statement stays the same. It's the single biggest reason 'just saving cash' isn't enough on its own.",
+    xp:35,
+    interaction:{ type:'predict', title:'Make a prediction, then see the answer',
+      question:"At roughly 6% average inflation, what will ₹1,00,000 in today's money be 'worth' — in real buying power — in 10 years?",
+      options:[
+        {label:'Still worth about ₹1,00,000', correct:false},
+        {label:'About ₹55,000 of today\'s buying power', correct:true},
+        {label:'About ₹80,000 of today\'s buying power', correct:false}
+      ],
+      reveal:"At 6% average inflation, prices roughly double every ~12 years. So ₹1,00,000 today buys only about half as much again in a little over a decade — its real buying power drops to roughly ₹55,000. This is exactly why money that only sits, never grows, quietly loses ground."
+    }
+  },
+  { icon:'📈', title:'Compounding', blurb:'The engine that turns time into money.',
+    story:"Compounding is simple in words and stunning in practice: you earn returns not just on what you put in, but on the returns you already earned. Left alone long enough, that small snowball becomes an avalanche. Time, not timing, is the real ingredient here — drag the slider and watch it work.",
+    xp:45,
+    interaction:{ type:'slider', title:'Simulate it — drag the years',
+      principal:10000, monthly:5000, ratePct:12, minYears:1, maxYears:30, defaultYears:10
+    }
+  },
+  { icon:'📒', title:'Budgeting', blurb:'Telling every rupee a job to do.',
+    story:"A budget isn't a cage — it's a plan that tells your money where to go before it quietly disappears on its own. A simple, well-known starting split is 50% needs, 30% wants, 20% savings & investing. Try balancing your own version below until it adds up to a whole plan.",
+    xp:40,
+    interaction:{ type:'allocate', title:'Balance the plan to 100%',
+      target:100, tolerance:2,
+      categories:[
+        {icon:'🏠', name:'Needs', def:50},
+        {icon:'🎬', name:'Wants', def:30},
+        {icon:'🌱', name:'Savings & Investing', def:20}
+      ]
+    }
+  },
+  { icon:'🧺', title:'Mutual Funds', blurb:'Pooling money with strangers, wisely.',
+    story:"A mutual fund gathers money from thousands of people and hands it to a professional manager, who invests the pooled amount across many companies at once. You own a small slice of the whole basket — and your risk is spread automatically across everything inside it.",
+    xp:40,
+    interaction:{ type:'flip', title:'Tap to reveal',
+      cards:[
+        {q:"Who actually picks the stocks?", a:"A professional fund manager and their research team — not you individually. You're paying a small fee for their expertise and time."},
+        {q:"What is NAV?", a:"Net Asset Value — the price of one unit of the fund, calculated once a day from the value of everything the fund holds."},
+        {q:"Active vs. Passive fund?", a:"Active funds try to beat the market by picking winners. Passive (index) funds simply copy a market index, usually at a much lower cost."},
+        {q:"What is an expense ratio?", a:"The annual fee the fund charges to manage your money, taken as a small % of your investment — lower isn't always better, but it always matters."}
+      ]
+    }
+  },
+  { icon:'🧃', title:'ETFs', blurb:'A basket you can trade like a stock.',
+    story:"An ETF — Exchange-Traded Fund — is close cousin to a mutual fund: it also holds a basket of assets. The difference is that an ETF trades on the stock exchange all day long, at live prices, just like a single share — giving you a fund's diversification with a stock's flexibility.",
+    xp:40,
+    interaction:{ type:'quiz', title:'Quick check',
+      question:"What's the main practical difference between an ETF and a regular mutual fund?",
+      options:[
+        {label:'ETFs can only hold gold', correct:false},
+        {label:'ETFs trade continuously on the exchange at live prices, like a stock', correct:true},
+        {label:'Mutual funds are always cheaper than ETFs', correct:false}
+      ],
+      explain:"Mutual fund units are priced once a day (NAV). ETF units trade throughout the day on the exchange, so their price can move minute to minute, just like any listed stock."
+    }
+  },
+  { icon:'🏛️', title:'Stocks', blurb:'Owning a genuine sliver of a company.',
+    story:"A stock is one small, real slice of ownership in an actual company — its factories, its brand, its future profits and its future losses, at whatever fraction you own. Buy one share out of ten million, and you truly own one ten-millionth of that entire business.",
+    xp:40,
+    interaction:{ type:'flip', title:'Tap to reveal',
+      cards:[
+        {q:'What do shareholders actually own?', a:'A proportional claim on the company\'s assets and future profits — plus, usually, a vote at shareholder meetings.'},
+        {q:'How do shareholders make money?', a:"Two ways: the share price rising over time (capital gains), and dividends — a portion of profit paid out directly to owners."},
+        {q:'What makes a price move?', a:'More buyers than sellers pushes it up; more sellers than buyers pushes it down — driven by earnings, news, and expectations.'},
+        {q:'Is a falling price always bad?', a:"Not necessarily — if the business itself is still sound, a dip can simply mean the same ownership is now available for less."}
+      ]
+    }
+  },
+  { icon:'🔍', title:'Understanding Companies', blurb:'Reading a business, not just a price.',
+    story:"Before you ever look at a stock's price, Saashya wants you to look at the business behind it. A simple four-question framework separates a considered decision from a guess — the same lens used before any purchase, big or small.",
+    xp:45,
+    interaction:{ type:'flip', title:'Tap each question to see what it\'s really asking',
+      cards:[
+        {q:'Do you understand the business?', a:'Could you explain, in one plain sentence, exactly how this company makes its money?'},
+        {q:'Are earnings consistent?', a:'Has profit grown steadily over years, or does it swing wildly and unpredictably?'},
+        {q:'Is the price fair?', a:"How does its valuation (like P/E) compare to similar companies in the same industry?"},
+        {q:'Would you hold it 5+ years?', a:"If a rough year would make you want to sell in a panic, the price today barely matters."}
+      ]
+    }
+  },
+  { icon:'📑', title:'Financial Statements', blurb:'The three documents that don\'t lie.',
+    story:"Every public company must publish three documents each year, and together they tell its real story: what it owns and owes, what it earned and spent, and where its actual cash moved. Learn to skim these three, and you'll never have to take anyone's word for a company's health again.",
+    xp:45,
+    interaction:{ type:'flip', title:'Tap to reveal',
+      cards:[
+        {q:'Balance Sheet', a:"A snapshot on one specific date: what the company owns (assets), what it owes (liabilities), and what's left for owners (equity)."},
+        {q:'Income Statement', a:"The story over a period of time: revenue earned, costs paid, and the profit (or loss) left at the bottom."},
+        {q:'Cash Flow Statement', a:"Tracks actual cash moving in and out — because a company can show 'profit' on paper while running low on real cash."},
+        {q:'Why check all three?', a:"A company can look profitable on the income statement while its cash flow quietly tells a very different, riskier story."}
+      ]
+    }
+  },
+  { icon:'🥧', title:'Portfolio Diversification', blurb:'Never all your eggs, one basket.',
+    story:"Diversification means spreading money across different, unrelated assets — so that one bad outcome in a single company or sector doesn't decide your entire result. It won't stop losses altogether, but it stops any single mistake from being catastrophic. Try building a spread of your own below.",
+    xp:40,
+    interaction:{ type:'allocate', title:'Spread the portfolio to 100%',
+      target:100, tolerance:2,
+      categories:[
+        {icon:'📈', name:'Equity / Stocks', def:60},
+        {icon:'🏦', name:'Debt / Bonds', def:30},
+        {icon:'🪙', name:'Gold', def:10}
+      ]
+    }
+  },
+  { icon:'🛡️', title:'Risk Management', blurb:'Protecting the downside, on purpose.',
+    story:"Every investment carries risk — the real skill isn't avoiding it, it's managing it deliberately. That means only risking money you can afford to lose, sizing positions sensibly, and deciding your exit before you ever enter. Confidence in investing comes from control, not from certainty.",
+    xp:40,
+    interaction:{ type:'quiz', title:'Quick check',
+      question:"You buy a stock at ₹500 and set a stop-loss at ₹460. What are you actually doing?",
+      options:[
+        {label:'Guaranteeing you\'ll never lose money', correct:false},
+        {label:'Pre-deciding the maximum you\'re willing to lose on this trade, before emotion can interfere', correct:true},
+        {label:'Locking in a guaranteed profit', correct:false}
+      ],
+      explain:"A stop-loss is a pre-set exit if a trade moves against you. It doesn't guarantee anything — markets can gap past it — but it removes in-the-moment panic from the decision."
+    }
+  },
+  { icon:'⚖️', title:'Trading', blurb:'Orders, timing, and discipline.',
+    story:"Trading is simply placing considered orders inside a market you now understand. A Market Order buys or sells immediately at whatever price is available. A Limit Order waits, and only executes at a price you choose, or better. Knowing the difference is the line between reacting and deciding.",
+    xp:40,
+    interaction:{ type:'flip', title:'Tap to reveal',
+      cards:[
+        {q:'Market Order', a:"Executes immediately at the best available current price. Fast, but you accept the price as-is."},
+        {q:'Limit Order', a:'Only executes at a price you set, or better. You control the price; the market controls the timing.'},
+        {q:'Stop-Loss Order', a:'Automatically sells if the price falls to a level you set — a safety net you decide on in advance.'},
+        {q:'Position sizing', a:"Deciding how much capital to put in any single trade, so no one decision can hurt you too badly."}
+      ]
+    }
+  },
+  { icon:'📊', title:'Technical Analysis', blurb:'Reading the story a chart is telling.',
+    story:"While fundamentals ask 'is this a good business?', technical analysis asks 'what is the price action suggesting right now?' It studies patterns in price and volume — support levels, trends, momentum — as one more lens, not a crystal ball.",
+    xp:40,
+    interaction:{ type:'predict', title:'Make a call, then see the answer',
+      question:"A stock keeps falling to ₹450 three separate times, then bounces upward each time. Traders would call ₹450 a...",
+      options:[
+        {label:'Resistance level', correct:false},
+        {label:'Support level', correct:true},
+        {label:'Dividend yield', correct:false}
+      ],
+      reveal:"That's called a support level — a price where buying pressure has repeatedly stepped in and pushed the price back up. Its mirror image, where selling pressure repeatedly caps a rise, is called resistance."
+    }
+  },
+  { icon:'🧭', title:'Advanced Strategies', blurb:'Putting every lesson to work together.',
+    story:"You now have every ingredient — how money and inflation behave, how compounding rewards patience, how to read a company, how to spread and manage risk. Advanced investing isn't a secret trick; it's choosing a strategy from the Strategy Universe that matches your goals, and having the discipline to stay with it.",
+    xp:50,
+    interaction:{ type:'quiz', title:'Final check',
+      question:"Which best describes 'having an investing strategy'?",
+      options:[
+        {label:'Chasing whatever stock is trending this week', correct:false},
+        {label:'A consistent, goal-matched approach you can explain and stick to through ups and downs', correct:true},
+        {label:'Only investing when you feel confident about the market', correct:false}
+      ],
+      explain:"A real strategy survives contact with a bad week. It's built around your goals, horizon, and risk comfort — not around whatever headline you saw this morning."
+    }
+  }
+];
+
+let lwState = { completed: [], xp: 0, badgesShown: [] };
+let lwCurrentIdx = -1;
+let lwInteractionOk = false;
+
+window.Fin2edgeLearningProgress = {
+  getSnapshot() {
+    return {
+      xp: Number(lwState.xp || 0),
+      completed: Array.isArray(lwState.completed) ? [...lwState.completed] : [],
+      lessons: LW_LESSONS.map(lesson => ({ icon: lesson.icon, title: lesson.title, xp: lesson.xp }))
+    };
+  }
+};
+
+function lwLoad(){
+  try{
+    const raw = localStorage.getItem(LW_STORE_KEY);
+    if(raw) lwState = Object.assign({completed:[],xp:0,badgesShown:[]}, JSON.parse(raw));
+  }catch(e){ /* ignore */ }
+  updateNavProgress(lwState.completed.length, lwState.xp);
+}
+
+/* Progress dashboard pill in the top nav — shows lessons completed & points gained,
+   in place of the previous name/avatar identity card. Safe to call anytime. */
+function updateNavProgress(done, xp){
+  const lessonsEl = document.getElementById('navProgressLessons');
+  const xpEl = document.getElementById('navProgressXp');
+  const total = (typeof LW_LESSONS !== 'undefined' && LW_LESSONS.length) ? LW_LESSONS.length : 15;
+  if(lessonsEl) lessonsEl.textContent = (done||0)+'/'+total;
+  if(xpEl) xpEl.textContent = (xp||0)+' XP';
+}
+function lwSave(){
+  try{ localStorage.setItem(LW_STORE_KEY, JSON.stringify(lwState)); }catch(e){ /* ignore */ }
+}
+function lwFmtINR(n){
+  try{ return '₹' + Math.round(n).toLocaleString('en-IN'); }catch(e){ return '₹'+Math.round(n); }
+}
+function lwToast(msg){ if(typeof window.toast==='function') window.toast(msg); }
+function lwCelebrate(title, subtitle, cb){
+  if(typeof window.celebrateFinish==='function') window.celebrateFinish(title, subtitle, cb);
+  else if(cb) cb();
+}
+function lwShowModal(id){ if(typeof window.showModal==='function') window.showModal(id); else document.getElementById(id).classList.add('show'); }
+function lwCloseModal(id){ if(typeof window.closeModal==='function') window.closeModal(id); else document.getElementById(id).classList.remove('show'); }
+function lwGuideImg(){
+  const el = document.getElementById('guideFloatImg') || document.getElementById('guidePortraitImg');
+  return (el && el.src) ? el.src : '';
+}
+
+function lwNodeState(i){
+  if(lwState.completed.includes(i)) return 'done';
+  if(i===0 || lwState.completed.includes(i-1)) return 'current';
+  return 'locked';
+}
+
+function lwUpdateStats(){
+  const done = lwState.completed.length;
+  const level = Math.floor(lwState.xp/150)+1;
+  document.getElementById('lwStatLevel').textContent = level;
+  document.getElementById('lwStatXp').textContent = lwState.xp+' XP';
+  document.getElementById('lwStatDone').textContent = done+' / '+LW_LESSONS.length;
+  document.getElementById('lwProgressFill').style.width = Math.round(done/LW_LESSONS.length*100)+'%';
+  updateNavProgress(done, lwState.xp);
+  if (window.renderProgressDashboard) window.renderProgressDashboard();
+
+  const badgesRow = document.getElementById('lwBadgesRow');
+  badgesRow.innerHTML = LW_BADGES.map(b=>{
+    const earned = done >= b.at;
+    return `<div class="lw-badge-chip ${earned?'earned':''}"><span>${b.icon}</span><span>${b.name}</span></div>`;
+  }).join('');
+
+  const finale = document.getElementById('lwFinale');
+  finale.classList.toggle('lw-state-done', done===LW_LESSONS.length);
+}
+
+function lwCheckNewBadges(){
+  const done = lwState.completed.length;
+  LW_BADGES.forEach(b=>{
+    if(done>=b.at && !lwState.badgesShown.includes(b.at)){
+      lwState.badgesShown.push(b.at);
+      lwSave();
+      setTimeout(()=> lwToast(b.icon+' Badge earned — '+b.name), 2600);
+    }
+  });
+}
+
+function lwRenderNodes(){
+  const wrap = document.getElementById('lwNodes');
+  wrap.innerHTML = LW_LESSONS.map((L,i)=>{
+    const st = lwNodeState(i);
+    const side = i%2===0 ? 'left' : 'right';
+    const badge = st==='locked' ? '<div class="lw-lock">🔒</div>' : (st==='done' ? '<div class="lw-check">✓</div>' : '');
+    return `<div class="lw-node-row lw-${side}">
+      <button type="button" class="lw-node lw-${side} lw-state-${st}" data-idx="${i}" ${st==='locked'?'disabled':''}>
+        <div class="lw-node-orb">${L.icon}${badge}</div>
+        <div class="lw-node-copy">
+          <div class="lw-node-step">Step ${i+1} of ${LW_LESSONS.length}</div>
+          <h4>${L.title}</h4>
+          <p>${L.blurb}</p>
+        </div>
+      </button>
+    </div>`;
+  }).join('');
+  wrap.querySelectorAll('.lw-node').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const idx = +btn.dataset.idx;
+      if(lwNodeState(idx)==='locked') return;
+      lwOpenLesson(idx);
+    });
+  });
+  requestAnimationFrame(lwComputePath);
+}
+
+function lwComputePath(){
+  const wrap = document.getElementById('lwPathWrap');
+  const svg = document.getElementById('lwPathSvg');
+  if(!wrap || !svg) return;
+  const rect = wrap.getBoundingClientRect();
+  if(rect.width===0) return;
+  svg.setAttribute('viewBox', `0 0 ${rect.width} ${rect.height}`);
+  svg.setAttribute('width', rect.width);
+  svg.setAttribute('height', rect.height);
+
+  const orbs = Array.from(wrap.querySelectorAll('.lw-node-orb'));
+  const finaleOrb = wrap.querySelector('.lw-finale-orb');
+  const points = orbs.map(o=>{
+    const r = o.getBoundingClientRect();
+    return { x: r.left - rect.left + r.width/2, y: r.top - rect.top + r.height/2 };
+  });
+  if(finaleOrb){
+    const r = finaleOrb.getBoundingClientRect();
+    points.push({ x: r.left - rect.left + r.width/2, y: r.top - rect.top + r.height/2 });
+  }
+  if(points.length < 2) return;
+
+  let d = `M ${points[0].x} ${points[0].y}`;
+  for(let i=1;i<points.length;i++){
+    const p0 = points[i-1], p1 = points[i];
+    const midY = (p0.y + p1.y)/2;
+    d += ` C ${p0.x} ${midY}, ${p1.x} ${midY}, ${p1.x} ${p1.y}`;
+  }
+  const base = document.getElementById('lwPathBase');
+  const lit = document.getElementById('lwPathLit');
+  base.setAttribute('d', d);
+  lit.setAttribute('d', d);
+  const totalLen = lit.getTotalLength();
+  const frac = Math.max(0, Math.min(1, lwState.completed.length / LW_LESSONS.length));
+  const litLen = totalLen * frac;
+  lit.style.strokeDasharray = `${litLen} ${totalLen}`;
+}
+
+/* ---------- Interaction renderers ---------- */
+function lwRenderInteractive(lesson){
+  lwInteractionOk = false;
+  lwSetCompleteEnabled(false);
+  const body = document.getElementById('lwInteractiveBody');
+  const titleEl = document.getElementById('lwInteractiveTitle');
+  const it = lesson.interaction;
+  titleEl.textContent = it.title || 'Try it yourself';
+
+  if(it.type==='flip'){
+    body.innerHTML = `<div class="lw-flip-grid">${it.cards.map((c,i)=>
+      `<div class="lw-flip-card" data-i="${i}"><div class="fc-q">${c.q}</div><div class="fc-a">${c.a}</div></div>`
+    ).join('')}</div><div class="lw-flip-hint">Flip every card to unlock completion.</div>`;
+    const cards = body.querySelectorAll('.lw-flip-card');
+    const flipped = new Set();
+    cards.forEach(card=>{
+      card.addEventListener('click', ()=>{
+        card.classList.add('flipped');
+        flipped.add(card.dataset.i);
+        if(flipped.size===cards.length) lwSetCompleteEnabled(true);
+      });
+    });
+  }
+
+  else if(it.type==='slider'){
+    const calc = (years)=>{
+      const months = years*12;
+      const r = it.ratePct/1200;
+      const fvMonthly = it.monthly * ( (Math.pow(1+r, months)-1)/r ) * (1+r);
+      const fvLump = it.principal * Math.pow(1+it.ratePct/100, years);
+      const invested = it.principal + it.monthly*months;
+      const total = fvMonthly + fvLump;
+      return { total, invested, growth: total-invested };
+    };
+    body.innerHTML = `<div class="lw-slider-box">
+      <div class="lw-slider-row"><span class="lbl">Years invested</span><span class="val" id="lwSlYears">${it.defaultYears}</span></div>
+      <input type="range" id="lwSlRange" min="${it.minYears}" max="${it.maxYears}" value="${it.defaultYears}" step="1" />
+      <div style="font-size:12.5px;color:var(--muted);">Starting with ${lwFmtINR(it.principal)} + ${lwFmtINR(it.monthly)}/month, at ~${it.ratePct}% annual return.</div>
+      <div class="lw-slider-result">
+        <div class="r-item"><div class="r-lbl">You invested</div><div class="r-val" id="lwSlInvested">—</div></div>
+        <div class="r-item hi"><div class="r-lbl">Growth earned</div><div class="r-val" id="lwSlGrowth">—</div></div>
+        <div class="r-item"><div class="r-lbl">Total value</div><div class="r-val" id="lwSlTotal">—</div></div>
+      </div>
+    </div>`;
+    const range = body.querySelector('#lwSlRange');
+    const paint = (years)=>{
+      const r = calc(years);
+      body.querySelector('#lwSlYears').textContent = years;
+      body.querySelector('#lwSlInvested').textContent = lwFmtINR(r.invested);
+      body.querySelector('#lwSlGrowth').textContent = lwFmtINR(r.growth);
+      body.querySelector('#lwSlTotal').textContent = lwFmtINR(r.total);
+    };
+    paint(it.defaultYears);
+    range.addEventListener('input', ()=>{
+      paint(+range.value);
+      lwSetCompleteEnabled(true);
+    });
+  }
+
+  else if(it.type==='allocate'){
+    body.innerHTML = `<div class="lw-allocate-box">
+      ${it.categories.map((c,i)=>`<div class="lw-alloc-row">
+        <div class="a-icon">${c.icon}</div><div class="a-name">${c.name}</div>
+        <input type="range" min="0" max="100" value="${c.def}" data-i="${i}" class="lw-alloc-input" />
+        <div class="a-pct" data-out="${i}">${c.def}%</div>
+      </div>`).join('')}
+      <div class="lw-alloc-total" id="lwAllocTotal">Total: ${it.categories.reduce((s,c)=>s+c.def,0)}%</div>
+    </div>`;
+    const inputs = body.querySelectorAll('.lw-alloc-input');
+    const totalEl = body.querySelector('#lwAllocTotal');
+    let touched = false;
+    const repaint = ()=>{
+      let total = 0;
+      inputs.forEach(inp=>{
+        const out = body.querySelector(`[data-out="${inp.dataset.i}"]`);
+        out.textContent = inp.value+'%';
+        total += (+inp.value);
+      });
+      const ok = Math.abs(total - it.target) <= it.tolerance;
+      totalEl.textContent = 'Total: '+total+'%'+(ok?' — balanced':' — adjust to reach 100%');
+      totalEl.className = 'lw-alloc-total '+(ok?'ok':'bad');
+      if(touched && ok) lwSetCompleteEnabled(true); else lwSetCompleteEnabled(false);
+    };
+    inputs.forEach(inp=> inp.addEventListener('input', ()=>{ touched=true; repaint(); }));
+    repaint();
+  }
+
+  else if(it.type==='predict'){
+    body.innerHTML = `<div class="lw-predict-box">
+      <div style="font-size:15.5px;color:var(--cream);">${it.question}</div>
+      <div class="lw-predict-opts">${it.options.map((o,i)=>`<button type="button" class="lw-predict-opt" data-i="${i}">${o.label}</button>`).join('')}</div>
+      <div class="lw-predict-reveal" id="lwPredictReveal">${it.reveal}</div>
+    </div>`;
+    const opts = body.querySelectorAll('.lw-predict-opt');
+    opts.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        opts.forEach(b=>b.disabled=true);
+        const correct = it.options[+btn.dataset.i].correct;
+        btn.classList.add(correct?'correct':'wrong');
+        if(!correct){
+          const rightBtn = Array.from(opts).find((b,i)=>it.options[i].correct);
+          if(rightBtn) rightBtn.classList.add('correct');
+        }
+        body.querySelector('#lwPredictReveal').style.display='block';
+        lwSetCompleteEnabled(true);
+      });
+    });
+  }
+
+  else if(it.type==='quiz'){
+    body.innerHTML = `<div class="lw-quiz-q">${it.question}</div>
+      <div class="lw-quiz-opts">${it.options.map((o,i)=>`<button type="button" class="lw-quiz-opt" data-i="${i}">${o.label}</button>`).join('')}</div>
+      <div class="lw-quiz-fb" id="lwQuizFb"></div>`;
+    const opts = body.querySelectorAll('.lw-quiz-opt');
+    opts.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        opts.forEach(b=>b.disabled=true);
+        const correct = it.options[+btn.dataset.i].correct;
+        btn.classList.add(correct?'correct':'wrong');
+        if(!correct){
+          const rightBtn = Array.from(opts).find((b,i)=>it.options[i].correct);
+          if(rightBtn) rightBtn.classList.add('correct');
+        }
+        const fb = body.querySelector('#lwQuizFb');
+        fb.textContent = it.explain;
+        fb.style.color = correct ? 'var(--emerald-soft)' : 'var(--cream-dim)';
+        lwSetCompleteEnabled(true);
+      });
+    });
+  }
+}
+
+function lwSetCompleteEnabled(ok){
+  lwInteractionOk = ok;
+  const btn = document.getElementById('lwCompleteBtn');
+  if(btn) btn.disabled = !ok;
+}
+
+function lwOpenLesson(idx){
+  lwCurrentIdx = idx;
+  const lesson = LW_LESSONS[idx];
+  document.getElementById('lwLessonOrb').textContent = lesson.icon;
+  document.getElementById('lwLessonMeta').textContent = `Lesson ${idx+1} of ${LW_LESSONS.length}`;
+  document.getElementById('lwLessonTitle').textContent = lesson.title;
+  document.getElementById('lwStoryImg').src = lwGuideImg();
+  document.getElementById('lwStoryText').textContent = lesson.story;
+  document.getElementById('lwXpTag').textContent = `+${lesson.xp} XP on completion`;
+  lwRenderInteractive(lesson);
+  lwShowModal('lwModal');
+}
+
+function lwCompleteCurrentLesson(){
+  if(lwCurrentIdx<0 || !lwInteractionOk) return;
+  const idx = lwCurrentIdx;
+  const lesson = LW_LESSONS[idx];
+  if(!lwState.completed.includes(idx)){
+    lwState.completed.push(idx);
+    lwState.xp += lesson.xp;
+    lwSave();
+  }
+  lwCloseModal('lwModal');
+  lwRenderNodes();
+  lwUpdateStats();
+  lwCelebrate(lesson.title+' complete', '+'+lesson.xp+' XP', ()=>{
+    lwToast(`Lesson complete — +${lesson.xp} XP`);
+    lwCheckNewBadges();
+    const nextIdx = idx+1;
+    if(nextIdx < LW_LESSONS.length){
+      const nextBtn = document.querySelector(`.lw-node[data-idx="${nextIdx}"]`);
+      if(nextBtn) nextBtn.scrollIntoView({behavior:'smooth', block:'center'});
+    } else {
+      document.getElementById('lwFinale').scrollIntoView({behavior:'smooth', block:'center'});
+    }
+  });
+}
+
+function lwInit(){
+  lwLoad();
+  lwRenderNodes();
+  lwUpdateStats();
+  const completeBtn = document.getElementById('lwCompleteBtn');
+  if(completeBtn) completeBtn.addEventListener('click', lwCompleteCurrentLesson);
+  window.addEventListener('resize', ()=> requestAnimationFrame(lwComputePath));
+  window.addEventListener('load', ()=> requestAnimationFrame(lwComputePath));
+  setTimeout(lwComputePath, 400);
+  setTimeout(lwComputePath, 1200);
+}
+
+if(document.readyState!=='loading') lwInit();
+else document.addEventListener('DOMContentLoaded', lwInit);
+
+})();
+
+
+/* =========================================================
+   MONEY RAIN CANVAS — Bank Hall Walkthrough Background
+========================================================= */
+(function initMoneyRain(){
+  const canvas = document.getElementById('moneyRainCanvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  let W, H, animId, active = false;
+
+  const SYMBOLS = ['$', '₹', '€', '£', '¥', '💵', '💰', '💎'];
+  const COLORS = [
+    'rgba(201,162,77,ALPHA)',   // gold
+    'rgba(230,205,141,ALPHA)',  // gold soft
+    'rgba(255,220,100,ALPHA)',  // bright gold
+    'rgba(255,255,255,ALPHA)',  // white
+    'rgba(144,200,140,ALPHA)',  // money green
+  ];
+
+  let drops = [];
+
+  function resize(){
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = canvas.offsetWidth;
+    H = canvas.offsetHeight;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    spawnDrops();
+  }
+
+  function spawnDrops(){
+    drops = [];
+    const count = Math.max(18, Math.floor(W / 45));
+    for (let i = 0; i < count; i++){
+      drops.push(makeDropAt(Math.random() * W, Math.random() * H - H));
+    }
+  }
+
+  function makeDropAt(x, startY){
+    const size = Math.random() * 22 + 14;
+    const symbol = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+    const colorTpl = COLORS[Math.floor(Math.random() * COLORS.length)];
+    const alpha = Math.random() * 0.45 + 0.15;
+    const color = colorTpl.replace('ALPHA', alpha.toFixed(2));
+    const speed = Math.random() * 1.8 + 0.7;
+    const drift = (Math.random() - 0.5) * 0.6;
+    const spin = (Math.random() - 0.5) * 0.04;
+    const wobble = Math.random() * Math.PI * 2;
+    const wobbleSpeed = Math.random() * 0.03 + 0.01;
+    const isBill = symbol === '💵' || symbol === '💰' || symbol === '💎';
+    return { x, y: startY, size, symbol, color, speed, drift, spin, angle: Math.random() * Math.PI * 2, wobble, wobbleSpeed, isBill, alpha };
+  }
+
+  function draw(){
+    if (!active) return;
+    ctx.clearRect(0, 0, W, H);
+
+    for (let d of drops){
+      ctx.save();
+      ctx.translate(d.x + Math.sin(d.wobble) * 12, d.y);
+      ctx.rotate(d.angle);
+      ctx.globalAlpha = d.alpha;
+
+      if (d.isBill){
+        // Draw mini banknote rectangle
+        const bw = d.size * 2.4;
+        const bh = d.size * 1.3;
+        ctx.fillStyle = 'rgba(56,120,56,0.55)';
+        ctx.strokeStyle = 'rgba(201,162,77,0.55)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.roundRect(-bw/2, -bh/2, bw, bh, 3);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = 'rgba(255,230,140,0.8)';
+        ctx.font = `bold ${d.size * 0.75}px serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('$', 0, 0);
+      } else {
+        ctx.font = `bold ${d.size}px "Fraunces", Georgia, serif`;
+        ctx.fillStyle = d.color;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = 'rgba(201,162,77,0.5)';
+        ctx.fillText(d.symbol, 0, 0);
+      }
+      ctx.restore();
+
+      // Physics
+      d.y += d.speed;
+      d.x += d.drift;
+      d.angle += d.spin;
+      d.wobble += d.wobbleSpeed;
+
+      // Recycle when off-screen
+      if (d.y > H + 40){
+        const newDrop = makeDropAt(Math.random() * W, -40);
+        Object.assign(d, newDrop);
+        d.y = -40;
+      }
+    }
+
+    animId = requestAnimationFrame(draw);
+  }
+
+  function start(){
+    if (active) return;
+    active = true;
+    resize();
+    draw();
+  }
+
+  function stop(){
+    active = false;
+    cancelAnimationFrame(animId);
+    ctx.clearRect(0, 0, W, H);
+  }
+
+  // Start when bankModal opens, stop when it closes
+  const bankModal = document.getElementById('bankModal');
+  if (!bankModal) return;
+
+  const observer = new MutationObserver(() => {
+    const isVisible = bankModal.classList.contains('open') ||
+                      bankModal.style.display === 'flex' ||
+                      bankModal.style.display === 'block' ||
+                      getComputedStyle(bankModal).display !== 'none';
+    if (isVisible && !active) {
+      start();
+    } else if (!isVisible && active) {
+      stop();
+    }
+  });
+
+  observer.observe(bankModal, { attributes: true, attributeFilter: ['class', 'style'] });
+
+  // Also hook open/close buttons directly
+  document.querySelectorAll('[data-open="bankModal"], [id="navEnterBank"], .bank-close, [data-close="bankModal"]').forEach(el => {
+    el.addEventListener('click', () => {
+      setTimeout(() => {
+        const isVisible = getComputedStyle(bankModal).display !== 'none';
+        if (isVisible && !active) start();
+        else if (!isVisible && active) stop();
+      }, 50);
+    });
+  });
+
+  window.addEventListener('resize', () => { if (active) resize(); }, { passive: true });
+})();
+
+/* ============================================================
+   TAP-TO-TEACH — "?" badges that explain the Live Market chart
+   Additive, self-contained. Namespaced with `tt` to avoid collisions.
+============================================================ */
+(function(){
+
+function ttGuideImg(){
+  const el = document.getElementById('guideFloatImg') || document.getElementById('guidePortraitImg');
+  return (el && el.src) ? el.src : '';
+}
+
+async function ttAsk(question, context){
+  try{
+    const svc = window.Fin2edgeModules && window.Fin2edgeModules.geminiService;
+    if(svc && typeof svc.askSaashya === 'function'){
+      const answer = await svc.askSaashya(question, context || '');
+      if(answer) return answer;
+    }
+  }catch(e){ /* fall through to local fallback */ }
+  return "Here's how to read it: the price is what the stock trades at right now, and the percentage next to it is how much that's moved since the previous close — green means up, red means down. P/E compares the price to the company's earnings, and the 52-week low/high shows the full range it's traded in over the past year, so you can see where today's price sits in that range.";
+}
+
+let ttActivePop = null;
+function ttClosePop(){
+  if(ttActivePop){
+    ttActivePop.classList.remove('show');
+    setTimeout(()=>{ if(ttActivePop) ttActivePop.remove(); ttActivePop = null; }, 220);
+  }
+}
+
+function ttOpenPopover(anchorEl, question, context){
+  ttClosePop();
+  const pop = document.createElement('div');
+  pop.className = 'tt-pop';
+  pop.innerHTML = `
+    <div class="tt-pop-head"><img src="${ttGuideImg()}" alt="Saashya"/><span class="name">Saashya · Reading this chart</span>
+      <button class="tt-pop-close" aria-label="Close">×</button></div>
+    <div class="tt-pop-body">
+      <div class="tt-pop-q">"${question}"</div>
+      <div class="tt-pop-loading"><span class="dot">●</span> Saashya is thinking…</div>
+      <div class="tt-pop-ans"></div>
+    </div>
+    <div class="tt-pop-actions" style="display:none;">
+      <button class="tt-primary tt-open-chat">Ask something else</button>
+    </div>`;
+  document.body.appendChild(pop);
+
+  const rect = anchorEl.getBoundingClientRect();
+  let top = rect.bottom + 10;
+  let left = rect.left - 100;
+  left = Math.max(12, Math.min(left, window.innerWidth - 332));
+  if(top + 240 > window.innerHeight) top = Math.max(12, rect.top - 250);
+  pop.style.top = top + 'px';
+  pop.style.left = left + 'px';
+  requestAnimationFrame(()=> pop.classList.add('show'));
+  ttActivePop = pop;
+
+  pop.querySelector('.tt-pop-close').addEventListener('click', ttClosePop);
+  pop.querySelector('.tt-pop-loading').style.display = 'block';
+
+  ttAsk(question, context).then(answer=>{
+    if(!document.body.contains(pop)) return;
+    pop.querySelector('.tt-pop-loading').style.display = 'none';
+    const ansEl = pop.querySelector('.tt-pop-ans');
+    ansEl.textContent = answer;
+    ansEl.style.display = 'block';
+    pop.querySelector('.tt-pop-actions').style.display = 'flex';
+  });
+
+  pop.querySelector('.tt-open-chat').addEventListener('click', ()=>{
+    ttClosePop();
+    const toggle = document.getElementById('aiToggleBtn');
+    if(toggle) toggle.click();
+  });
+}
+
+document.addEventListener('click', (e)=>{
+  if(ttActivePop && !ttActivePop.contains(e.target) && !e.target.classList.contains('tt-badge')){
+    ttClosePop();
+  }
+});
+
+function ttAddBadge(hostEl, questionFn){
+  if(!hostEl || hostEl.dataset.ttDone === '1') return;
+  hostEl.dataset.ttDone = '1';
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'tt-badge';
+  b.textContent = '?';
+  b.setAttribute('aria-label', 'Ask Saashya to explain this chart');
+  b.title = 'Ask Saashya to explain this';
+  b.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    ttOpenPopover(b, questionFn(), 'Live market board — reading a real quote');
+  });
+  hostEl.appendChild(b);
+}
+
+function ttAugmentLiveMarket(){
+  document.querySelectorAll('#liveMarketPanel .lm-card').forEach(card=>{
+    const top = card.querySelector('.lm-card-top > div');
+    if(!top || top.dataset.ttDone === '1') return;
+    ttAddBadge(top, ()=>{
+      const name = card.querySelector('.lm-name')?.textContent.trim() || 'this stock';
+      const price = card.querySelector('.lm-price')?.textContent.trim() || '';
+      const change = card.querySelector('.lm-change')?.textContent.trim() || '';
+      const metrics = Array.from(card.querySelectorAll('.lm-metrics > div'))
+        .map(d => d.textContent.replace(/\s+/g,' ').trim()).join('; ');
+      return `Help me read ${name}'s numbers — price ${price} (${change}), and: ${metrics}. What should I actually pay attention to here?`;
+    });
+  });
+}
+
+// Live market panel re-renders on a timer (fetchRealMarketData), so re-attach badges after each render
+const ttLmPanel = document.getElementById('liveMarketPanel');
+if(ttLmPanel){
+  const ttObs = new MutationObserver(ttAugmentLiveMarket);
+  ttObs.observe(ttLmPanel, { childList: true, subtree: false });
+}
+ttAugmentLiveMarket();
+setTimeout(ttAugmentLiveMarket, 1200); // catch the first live-data render
+
+})();

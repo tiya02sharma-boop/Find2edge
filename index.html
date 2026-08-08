@@ -1,12 +1,212 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" /><title>Fin2edge — Wealth, Refined</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet"><script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script><link rel="stylesheet" href="styles.css"></head><body><nav id="site-nav">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" /><title>Fin2edge — Wealth, Refined</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet"><script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script><link rel="stylesheet" href="styles.css"></head><body>
+<!-- ============ LUXURY ONBOARDING INTRO VIDEO EXPERIENCE ============ -->
+<div id="fin2edgeIntroOverlay" class="fin2edge-intro-overlay">
+  <!-- Interactive Ambient Gold Particles Canvas -->
+  <canvas id="introParticlesCanvas" class="intro-particles-canvas"></canvas>
+
+  <!-- Top Bar -->
+  <div class="intro-top-bar">
+    <button type="button" id="btnIntroSound" class="intro-sound-btn" aria-label="Enable video sound">🔊 Sound on</button>
+    <button type="button" id="btnSkipIntro" class="intro-skip-btn" aria-label="Skip Introduction">
+      <span>Skip Intro</span>
+      <svg class="skip-arrow" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+
+  <!-- Fullscreen Video Container -->
+  <div class="intro-video-container">
+    <video id="introVideo" playsinline webkit-playsinline preload="auto" autoplay>
+      <source src="assets/fin2edge-intro.mp4" type="video/mp4" />
+    </video>
+    <!-- 60fps Procedural Luxury Cinematic Canvas Fallback -->
+    <canvas id="introCanvasFallback" class="intro-canvas-fallback"></canvas>
+  </div>
+
+  <!-- Post-Video Swipe Up to Enter Overlay -->
+  <div id="introEnterOverlay" class="intro-enter-overlay">
+    <div class="intro-enter-card">
+      <div class="intro-eyebrow">EXCLUSIVE ACCESS</div>
+      <h1 class="intro-enter-title">Wealth, <em>Refined</em></h1>
+      <p class="intro-enter-sub">Step into the future of private algorithmic capital management.</p>
+      
+      <!-- Premium Animated Arrow -->
+      <div class="intro-arrow-trigger" id="introArrowTrigger">
+        <div class="intro-arrow-ring"></div>
+        <div class="intro-arrow-icon">
+          <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 21l7-7 7 7" opacity="0.45"/>
+          </svg>
+        </div>
+        <span class="intro-swipe-text">Swipe Up to Enter</span>
+      </div>
+
+      <!-- Explicit Enter Button -->
+      <button type="button" id="btnEnterFin2Edge" class="btn btn-gold intro-enter-btn">
+        <span>Enter Fin2Edge</span>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </button>
+
+      <div class="intro-desktop-hint">Scroll upward, press Up arrow key, or drag up to reveal</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ AUTHENTICATION & PROFILE PORTAL ============ -->
+<div id="authPortal" class="auth-portal">
+  <div class="auth-card">
+    <button type="button" class="auth-close-btn" id="btnContinueExploring" aria-label="Close modal">✕</button>
+    <div class="auth-header">
+      <div class="auth-brand">Fin2<em>edge</em></div>
+      <div class="auth-eyebrow">Private Finance House</div>
+      <h2 id="authTitle">Welcome to <em>Fin2edge</em></h2>
+      <p id="authSubtitle" class="auth-sub">Sign in to your private desk or create an investor profile to unlock personalized features.</p>
+    </div>
+
+    <!-- Auth Mode Switcher Tabs -->
+    <div class="auth-tabs">
+      <button class="auth-tab-btn active" id="authTabLogin">Sign In</button>
+      <button class="auth-tab-btn" id="authTabRegister">Create Profile</button>
+    </div>
+
+    <!-- Sign In Form -->
+    <form id="loginForm" class="auth-form active" onsubmit="return false;">
+      <div class="form-group">
+        <label for="loginEmail">Email Address or Username</label>
+        <input type="text" id="loginEmail" placeholder="e.g. aaradhya@fin2edge.com" autocomplete="username" required />
+      </div>
+      <div class="form-group">
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password" required />
+      </div>
+      <div class="auth-error" id="loginError"></div>
+      <button type="submit" class="btn btn-gold btn-block auth-btn" id="btnSubmitLogin">Sign In to Desk</button>
+      
+      <div class="auth-divider"><span>OR</span></div>
+      
+      <button type="button" class="btn btn-outline btn-block" id="btnQuickDemo">
+        <span class="icon">⚡</span> Quick Demo Access (Aaradhya S.)
+      </button>
+      
+      <p class="auth-switch-text">
+        Don't have a profile yet? <a href="#" id="linkToRegister">Create your investor profile →</a>
+      </p>
+      
+      <button type="button" class="btn-continue-explore" id="btnContinueExploringLink">Continue Exploring Site →</button>
+    </form>
+
+    <!-- Profile Creation Form -->
+    <form id="registerForm" class="auth-form" onsubmit="return false;">
+      <div class="form-group">
+        <label for="regFullName">Full Name</label>
+        <input type="text" id="regFullName" placeholder="e.g. Aaradhya Sharma" required />
+      </div>
+      <div class="form-group">
+        <label for="regEmail">Email Address</label>
+        <input type="email" id="regEmail" placeholder="aaradhya@example.com" autocomplete="email" required />
+      </div>
+      <div class="form-group">
+        <label for="regPassword">Password</label>
+        <input type="password" id="regPassword" placeholder="Minimum 6 characters" autocomplete="new-password" required />
+      </div>
+
+      <div class="form-group">
+        <label>Select Investor Persona Avatar</label>
+        <div class="avatar-selector" id="avatarSelector">
+          <div class="avatar-opt active" data-avatar="👑" title="Empress Investor">👑</div>
+          <div class="avatar-opt" data-avatar="💎" title="Diamond Wealth">💎</div>
+          <div class="avatar-opt" data-avatar="🦁" title="Market Vanguard">🦁</div>
+          <div class="avatar-opt" data-avatar="🌿" title="Financial Sage">🌿</div>
+          <div class="avatar-opt" data-avatar="⚡" title="Growth Visionary">⚡</div>
+          <div class="avatar-opt" data-avatar="🌟" title="Capital Pioneer">🌟</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="regAge">Age</label>
+          <input type="number" id="regAge" placeholder="e.g. 21" min="16" max="100" required />
+        </div>
+        <div class="form-group">
+          <label for="regGoal">Primary Financial Goal</label>
+          <select id="regGoal">
+            <option value="Wealth Creation & Growth">Wealth Creation & Growth</option>
+            <option value="Financial Freedom & Safety">Financial Freedom & Safety</option>
+            <option value="Trading & Market Skills">Trading & Market Skills</option>
+            <option value="Government Schemes & Savings">Government Schemes & Savings</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="regExperience">Experience Level</label>
+          <select id="regExperience">
+            <option value="Beginner Investor">Beginner (Learning terms)</option>
+            <option value="Intermediate Saver">Intermediate (Building portfolio)</option>
+            <option value="Advanced Investor">Advanced (Experienced trader)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="regProfession">Profession</label>
+          <select id="regProfession">
+            <option value="Student">Student / Intern</option><option value="Software Engineer">Software Engineer</option><option value="Teacher">Teacher</option><option value="Doctor">Doctor</option><option value="Freelancer">Freelancer</option><option value="Business Owner">Business Owner</option><option value="Homemaker">Homemaker</option><option value="Entrepreneur">Entrepreneur</option><option value="Government Employee">Government Employee</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="regMonthlyIncome">Monthly Income (₹)</label>
+          <input type="number" id="regMonthlyIncome" value="20000" min="0" step="1000" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="regPersonalGoals">What are your personal and financial goals?</label>
+        <textarea id="regPersonalGoals" rows="3" placeholder="For example: build an emergency fund, buy a home, support my family…" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="regAmbitions">What ambitions matter most to you?</label>
+        <textarea id="regAmbitions" rows="3" placeholder="For example: start a business, pursue further study, travel, or grow your career…" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="regFiveYearPlan">What would you like your life and finances to look like in five years?</label>
+        <textarea id="regFiveYearPlan" rows="3" placeholder="Describe the milestones and financial position you are working toward…" required></textarea>
+      </div>
+
+      <div class="auth-error" id="registerError"></div>
+      <button type="submit" class="btn btn-gold btn-block auth-btn" id="btnSubmitRegister">Create Profile & Enter Bank</button>
+      
+      <p class="auth-switch-text">
+        Already have a profile? <a href="#" id="linkToLogin">Sign In instead →</a>
+      </p>
+
+      <button type="button" class="btn-continue-explore" id="btnContinueExploringLink2">Continue Exploring Site →</button>
+    </form>
+
+  </div>
+</div>
+
+<nav id="site-nav">
   <div class="brand" data-scrollto="hero">Fin2<em>edge</em></div>
   <ul class="nav-links">
     <li><a href="#literacy">Financial Literacy</a></li>
+    <li><a href="#academy-world">Academy</a></li>
+    <li><a href="#budget-simulator">Budget Simulator</a></li>
     <li><a href="#exchange">Exchange</a></li>
     <li><a href="#guide-section">Your Guide</a></li>
   </ul>
-  <button class="btn btn-gold nav-cta" id="navEnterBank">Enter the Bank</button>
-  <button id="navToggle" aria-label="Menu">☰</button></nav><!-- ============ HERO ============ --><section id="hero">
+  <div class="nav-actions">
+    <button class="btn btn-outline" id="navSignInBtn">Sign In</button>
+    <div class="nav-profile-pill" id="navProfilePill" style="display:none;">
+      <span class="nav-profile-avatar" id="navProfileAvatar">👑</span>
+      <span class="nav-profile-name" id="navProfileName">User</span>
+      <span class="nav-profile-arrow">▾</span>
+      <div class="nav-profile-dropdown" id="navProfileDropdown">
+        <button class="dropdown-item" id="btnOpenProgress">Progress Dashboard</button>
+      </div>
+    </div>
+    <button class="btn btn-gold nav-cta" id="navEnterBank">Enter the Bank</button>
+  </div>
+  <button id="navToggle" aria-label="Menu">☰</button>
+</nav><!-- ============ HERO ============ --><section id="hero">
   <canvas id="hero-canvas"></canvas>
   <div class="hero-veil"></div>
   <div class="hero-content">
@@ -79,21 +279,134 @@
       <div class="glossary-search"><input type="text" id="glossarySearch" placeholder="Search a term — e.g. equity, NFT, hedge fund…" /></div>
       <div class="glossary-grid" id="glossaryGrid"></div>
     </div>
-  </div></section><!-- ============ EXCHANGE ============ --><section id="exchange" class="section">
+  </div></section>
+
+<!-- ============ EXCHANGE ACADEMY — LEARNING WORLD ============ -->
+<section id="academy-world" class="section">
+  <div class="lw-bloom"></div>
+  <div class="container">
+    <div class="lw-head">
+      <span class="eyebrow">Exchange Academy</span>
+      <h2>A guided journey, from <em>first rupee</em> to real strategy.</h2>
+      <p>Fifteen steps, each unlocking the next. Saashya walks beside you the whole way — no page of cards, just one path forward.</p>
+    </div>
+
+    <div class="lw-stats">
+      <div class="lw-stat"><span class="num" id="lwStatLevel">1</span><span class="lbl">Journey Level</span></div>
+      <div class="lw-stat"><span class="num" id="lwStatXp">0 XP</span><span class="lbl">Experience</span></div>
+      <div class="lw-stat"><span class="num" id="lwStatDone">0 / 15</span><span class="lbl">Lessons Complete</span></div>
+    </div>
+    <div class="lw-progress-track"><div class="lw-progress-fill" id="lwProgressFill"></div></div>
+    <div class="lw-badges-row" id="lwBadgesRow"></div>
+
+    <div class="lw-path-wrap" id="lwPathWrap">
+      <svg class="lw-path-svg" id="lwPathSvg" preserveAspectRatio="none">
+        <defs><linearGradient id="lwGoldGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="var(--gold-dim)"/><stop offset="100%" stop-color="var(--gold-soft)"/>
+        </linearGradient></defs>
+        <path id="lwPathBase"></path>
+        <path id="lwPathLit" class="lw-path-lit"></path>
+      </svg>
+      <div id="lwNodes"></div>
+      <div class="lw-finale" id="lwFinale">
+        <div class="lw-finale-orb">🎓</div>
+        <h4>Journey Complete</h4>
+        <p>Every foundation is laid — the Strategy Universe and live desk are yours to explore.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LEARNING WORLD — LESSON MODAL ============ -->
+<div class="modal-overlay" id="lwModal">
+  <div class="modal-box">
+    <button class="modal-close" data-close="lwModal">×</button>
+    <div class="lw-lesson-head">
+      <div class="lw-lesson-orb" id="lwLessonOrb">💰</div>
+      <div>
+        <div class="lw-lesson-meta" id="lwLessonMeta">Lesson 1 of 15</div>
+        <h3 id="lwLessonTitle">Money</h3>
+      </div>
+    </div>
+    <div class="lw-story">
+      <img id="lwStoryImg" src="" alt="Saashya" />
+      <p id="lwStoryText">…</p>
+    </div>
+    <div class="lw-interactive">
+      <div class="lw-interactive-title" id="lwInteractiveTitle">Try it yourself</div>
+      <div id="lwInteractiveBody"></div>
+    </div>
+    <div class="lw-lesson-footer">
+      <span class="lw-xp-tag" id="lwXpTag">+40 XP on completion</span>
+      <button class="btn btn-gold lw-complete-btn" id="lwCompleteBtn" disabled>Complete Lesson</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ BUDGET SIMULATOR LANDING SECTION ============ -->
+<section id="budget-simulator" class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Life & Money Engine</span>
+      <h2>Budget <em>Simulator</em></h2>
+      <p>Learn how to manage your monthly income, handle unexpected situations, and build smart financial habits through realistic simulations.</p>
+    </div>
+
+    <div class="budget-landing-card">
+      <div class="budget-landing-content">
+        <div class="budget-badge-pill">Interactive Financial Life Engine</div>
+        <h3>Master your monthly paycheck before real life tests it.</h3>
+        <p>Choose your profession, allocate your income into visual glass jars, and navigate unexpected life scenarios with Saashya coaching every decision.</p>
+        
+        <div class="budget-landing-actions">
+          <button class="btn btn-gold" id="btnStartBudgetSim">Start Simulation</button>
+          <button class="btn btn-outline" id="btnContinueBudgetSim">Continue Previous Simulation</button>
+        </div>
+      </div>
+      <div class="budget-landing-stats">
+        <div class="budget-stat-item">
+          <span class="stat-num" id="statBudgetLevel">Level 1</span>
+          <span class="stat-lbl">Budget Level</span>
+        </div>
+        <div class="budget-stat-item">
+          <span class="stat-num" id="statBudgetStreak">0 Months</span>
+          <span class="stat-lbl">Active Streak</span>
+        </div>
+        <div class="budget-stat-item">
+          <span class="stat-num" id="statBudgetXp">0 XP</span>
+          <span class="stat-lbl">Total Experience</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXCHANGE ============ --><section id="exchange" class="section">
   <div class="container">
     <div class="section-head">
       <span class="eyebrow">The Exchange</span>
       <h2>Trade with <em>play money</em>, learn with real stakes.</h2>
       <p>You start with ₹1,00,000 in simulated capital. Prices move like a real, restless market. Run it into the ground, and Saashya will quiz you back to solvency.</p>
     </div>
-    <p class="exchange-disclaimer">All prices, tickers and companies below are simulated for learning purposes only — nothing here is real market data or investment advice.</p>
+    <p class="exchange-disclaimer">The play-money board below is simulated for learning purposes only — nothing there is real market data or investment advice.</p>
     <div class="academy-banner" id="academyBanner">
       <div>
         <div class="eyebrow" style="margin-bottom:8px;">New to trading?</div>
-        <h3>Let Saashya walk you through the rules first.</h3>
-        <p style="color:var(--cream-dim);font-size:16px;margin-top:6px;">Orders, tickers, and risk — in seven short steps, before you touch real decisions.</p>
+        <h3>Let Saashya walk you through real stocks first.</h3>
+        <p style="color:var(--cream-dim);font-size:16px;margin-top:6px;">What a share actually is, how to read a real quote, and how to judge any stock yourself — before you touch play-money decisions.</p>
       </div>
       <button class="btn btn-gold" id="startAcademyBtn">Start Trading Academy</button>
+    </div>
+    <div class="live-market-section">
+      <div class="lm-header">
+        <div>
+          <span class="eyebrow" style="margin-bottom:8px;display:inline-block;">Real markets</span>
+          <h3>Live prices, for reference — not for trading here.</h3>
+          <p class="lm-sub">Practice reading a real quote from public market data. Star a stock to watch it. This board never affects your play-money balance.</p>
+        </div>
+        <div class="lm-status" id="lmStatus"><span class="lm-status-dot"></span><span id="lmStatusText">Loading market prices…</span></div>
+      </div>
+      <div class="live-market-grid" id="liveMarketPanel"></div>
     </div>
     <div class="exchange-grid">
       <div class="asset-panel" id="assetPanel"></div>
@@ -118,7 +431,8 @@
         <button class="btn btn-block" id="quizBoostBtn">Take a quiz for bonus capital</button>
       </div>
     </div>
-  </div></section><footer>
+  </div></section>
+<footer>
   <span class="brand">Fin2<em>edge</em></span>
   <p>A learning simulation for private finance education. No real money, trades, or advice are involved.</p>
   <p>© Fin2edge — Wealth, Refined.</p></footer><!-- ============ FLOATING GUIDE — persistent cinematic companion ============ --><div id="guideStage">
@@ -134,23 +448,42 @@
     <div class="guide-aura"></div>
     <div class="guide-embers"><span class="ember"></span><span class="ember"></span><span class="ember"></span><span class="ember"></span></div>
     <img id="guideFloatImg" src="" alt="Saashya" />
-  </div></div><!-- ============ AI ASSISTANT — Gemini-powered chat, bottom-left ============ --><div id="aiStage">
+    <button id="aiToggleBtn" aria-label="Open AI assistant" onclick="event.stopPropagation()">
+      <span id="aiToggleIcon">AI</span>
+    </button>
+  </div></div><!-- ============ AI ASSISTANT — Saashya's chat panel, anchored above her ============ --><div id="aiStage">
   <div id="aiChatPanel">
     <div class="ai-chat-head">
-      <span class="ai-chat-title">Ask the Fin2edge Assistant</span>
-      <button id="aiChatClose" aria-label="Close assistant">×</button>
+      <div class="ai-chat-id">
+        <span class="ai-chat-dot"></span>
+        <div class="ai-chat-names">
+          <span class="ai-chat-name">Saashya</span>
+          <span class="ai-chat-role">AI Guide · Fin2edge</span>
+        </div>
+      </div>
+      <div class="ai-chat-actions">
+        <button id="aiKeyToggle" class="ai-key-btn" title="Configure Gemini API Key" aria-label="Gemini API Key Settings">⚙️</button>
+        <button id="aiChatClose" aria-label="Close assistant">×</button>
+      </div>
+    </div>
+    <div id="aiKeyPanel" class="ai-key-panel" style="display:none;">
+      <label for="aiApiKeyInput">Gemini API Key (Optional)</label>
+      <div class="ai-key-row">
+        <input type="password" id="aiApiKeyInput" placeholder="Paste AIZA... key" />
+        <button id="aiApiKeySave">Save</button>
+        <button id="aiApiKeyClear">Clear</button>
+      </div>
+      <span class="ai-key-note">Works automatically via local server or smart offline AI mentor.</span>
     </div>
     <div id="aiChatMessages" class="ai-chat-messages"></div>
     <div class="ai-chat-input-row">
-      <input type="text" id="aiChatInput" placeholder="Ask about a scheme, term, or trade…" />
+      <input type="text" id="aiChatInput" placeholder="Ask Saashya…" />
       <button id="aiChatSend" aria-label="Send">➤</button>
     </div>
   </div>
-  <button id="aiToggleBtn" aria-label="Open AI assistant">
-    <span id="aiToggleIcon">✦</span>
-  </button>
 </div><!-- ============ 3D BANK HALL MODAL ============ --><div class="modal-overlay bank-overlay" id="bankModal">
   <div class="bank-stage">
+    <canvas id="moneyRainCanvas" class="money-rain-canvas"></canvas>
     <button class="modal-close bank-close" data-close="bankModal">×</button>
     <div id="bankCanvasWrap"></div>
     <div class="bank-vignette"></div>
@@ -160,9 +493,16 @@
         <h3 id="bankTitle">The Counter</h3>
       </div>
       <div class="sim-dots" id="bankDots"></div>
-      <div class="sim-bubble bank-bubble">
-        <span class="step-tag" id="bankStepTag">Saashya, your banker</span>
-        <p id="bankStepText">Welcome in. What would you like to understand today?</p>
+      <div class="bank-guide-conversation">
+        <div class="bank-saashya-figure" aria-hidden="true">
+          <img id="bankSaashyaFull" src="" alt="" />
+        </div>
+        <div class="sim-bubble bank-bubble bank-dialogue-cloud">
+          <div class="bank-bubble-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px;">
+            <span class="step-tag" id="bankStepTag" style="margin-bottom:0;">Saashya, your banker</span>
+          </div>
+          <div id="bankStepText">Welcome in. What would you like to understand today?</div>
+        </div>
       </div>
       <div id="bankPicker" class="bank-picker"></div>
       <div class="sim-nav" id="bankNavRow" style="display:none;">
@@ -227,4 +567,340 @@
       <div class="quiz-options" id="quizOptions"></div>
       <div class="quiz-feedback" id="quizFeedback"></div>
     </div>
-  </div></div><div class="toast" id="toast"></div><script src="script.js"></script></body></html>
+  </div>
+</div>
+
+<!-- ============ BUDGET SIMULATOR MODAL ============ -->
+<div class="modal-overlay" id="budgetModal">
+  <div class="modal-box budget-modal-box">
+    <button class="modal-close" data-close="budgetModal">×</button>
+
+    <!-- Stage 1: salary-credit cinematic, personalized from the saved profile -->
+    <div class="budget-stage active budget-cinematic" id="budgetStageSetup">
+      <span class="risk-tag">Month <span id="cinematicMonth">1</span> · <span id="incomeDayLabel">Salary day</span></span>
+      <div class="cinematic-banker">✦</div>
+      <h3 id="cinematicGreeting">Good morning! Welcome back.</h3>
+      <p id="cinematicLine">Congratulations! Your monthly income is credited. Let's build your future together.</p>
+      <div class="salary-notification" id="salaryNotification"><span id="incomeCreditLabel">✓ Salary credited successfully</span><strong id="salaryCreditAmount">₹0</strong></div>
+      <button class="salary-envelope" id="salaryEnvelope" aria-label="Open your income envelope"><span>Fin2<em>edge</em></span><b id="incomeEnvelopeLabel">Monthly salary</b><i>Tap to open</i></button>
+      <div class="wallet-reveal" id="walletReveal">Digital wallet <strong id="walletRevealAmount">₹0</strong></div>
+      <div class="goal-picker" aria-label="Choose a financial goal">
+        <span>Saashya's profile-powered plan</span>
+        <div id="goalChips" class="goal-chips"></div>
+        <small id="goalRecommendation">Saashya will use your saved goal and risk comfort to tailor this month’s plan.</small>
+      </div>
+      <p class="cinematic-hint">Open your envelope to begin planning the month.</p>
+    </div>
+
+    <!-- Stage 2: Salary Notes Allocation Experience -->
+    <div class="budget-stage" id="budgetStageJars">
+      <div class="sim-head">
+        <span class="risk-tag" id="budgetMonthTag">Month 1 · Budget Allocation</span>
+        <h3>Drag Notes to Allocate Your Salary</h3>
+      </div>
+
+      <!-- Top tracker bar -->
+      <div class="budget-tracker-bar">
+        <div class="bt-info">
+          <span>Income: <strong id="lblTotalIncome">₹80,000</strong></span>
+          <span>Allocated: <strong id="lblAllocatedAmt">₹0</strong></span>
+          <span>Remaining: <strong id="lblRemainingAmt" style="color:var(--gold-bright);">₹80,000</strong></span>
+        </div>
+        <div class="bt-progress-wrap">
+          <div class="bt-progress-fill" id="btProgressFill" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <!-- Saashya Live Feedback -->
+      <div class="saashya-live-tip" id="saashyaLiveTip">
+        <span class="slt-avatar">✦</span>
+        <p id="saashyaLiveTipText">Drag your salary notes into the budget categories below. Start with your most important expenses!</p>
+      </div>
+
+      <!-- Two-column layout: Notes Wallet | Donut Chart -->
+      <div class="notes-layout-row">
+        <!-- Left: Salary Notes Wallet -->
+        <div class="notes-wallet-panel">
+          <div class="notes-wallet-label">
+            <span>💼 Your Salary Notes</span>
+            <strong id="notesWalletBalance">₹0</strong>
+          </div>
+          <div class="notes-wallet" id="notesWallet">
+            <!-- Draggable currency notes rendered here -->
+          </div>
+          <small class="notes-hint">Drag a note to a category · or tap to split</small>
+        </div>
+
+        <!-- Right: Live Donut Chart -->
+        <div class="donut-chart-wrap">
+          <svg class="donut-svg" id="donutSvg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="70" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="28"/>
+            <!-- Segments rendered dynamically -->
+          </svg>
+          <div class="donut-center-label">
+            <span id="donutPct">0%</span>
+            <small>Allocated</small>
+          </div>
+          <div class="donut-legend" id="donutLegend"></div>
+        </div>
+      </div>
+
+      <!-- Category Drop Zones -->
+      <div class="jars-grid" id="jarsGrid">
+        <!-- Category cards dynamically rendered here -->
+      </div>
+
+      <div class="budget-action-row">
+        <button class="btn btn-outline" id="btnResetJars">↺ Reset</button>
+        <button class="btn btn-gold" id="btnLockBudget" disabled>Lock Budget &amp; Run Month ➔</button>
+      </div>
+
+      <section class="what-if-panel" aria-labelledby="whatIfTitle">
+        <div><span class="risk-tag">Decision lab</span><h4 id="whatIfTitle">What if you…</h4></div>
+        <div class="what-if-actions">
+          <button type="button" data-whatif="iphone">Buy an iPhone</button>
+          <button type="button" data-whatif="sip">Increase SIP by ₹3,000</button>
+          <button type="button" data-whatif="dining">Reduce dining by ₹2,000</button>
+        </div>
+        <p id="whatIfResult">Try a decision to see its impact on your health score and one-year outlook.</p>
+      </section>
+    </div>
+
+    <!-- Partial Note Allocation Popup -->
+    <div class="note-alloc-overlay" id="noteAllocOverlay" style="display:none;">
+      <div class="note-alloc-popup" id="noteAllocPopup">
+        <div class="nap-header">
+          <span class="nap-title">Split Note</span>
+          <button class="nap-close" id="napClose">×</button>
+        </div>
+        <div class="nap-note-display">
+          <div class="nap-note-chip" id="napNoteChip">₹20,000</div>
+          <span class="nap-arrow">→</span>
+          <div class="nap-target-chip" id="napTargetChip">🏠 Rent</div>
+        </div>
+        <div class="nap-slider-row">
+          <span class="nap-min">₹0</span>
+          <input type="range" id="napSlider" class="nap-slider" min="0" max="100" step="1" value="100">
+          <span class="nap-max" id="napMaxLabel">₹20,000</span>
+        </div>
+        <div class="nap-quick-btns">
+          <button class="nap-q" data-pct="25">¼</button>
+          <button class="nap-q" data-pct="50">½</button>
+          <button class="nap-q" data-pct="75">¾</button>
+          <button class="nap-q" data-pct="100">Full</button>
+        </div>
+        <div class="nap-custom-row">
+          <span>₹</span>
+          <input type="number" id="napCustomInput" class="nap-custom-input" placeholder="Enter custom amount">
+        </div>
+        <div class="nap-preview">
+          <div class="nap-preview-item green"><span id="napAllocLabel">₹20,000</span><small>→ Category</small></div>
+          <div class="nap-preview-item gold"><span id="napReturnLabel">₹0</span><small>↩ Returns to wallet</small></div>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:4px;">
+          <button class="btn btn-outline" id="napCancel" style="flex:1;">Cancel</button>
+          <button class="btn btn-gold" id="napConfirm" style="flex:2;">Allocate ✓</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stage 3: Life Scenario Engine & Reallocation -->
+    <div class="budget-stage" id="budgetStageScenario">
+      <div class="sim-head">
+        <span class="risk-tag danger" id="scenarioCategoryTag">Unexpected Event</span>
+        <h3 id="scenarioTitle">Life Happened!</h3>
+      </div>
+      
+      <div class="scenario-card">
+        <div class="scenario-icon" id="scenarioIcon">⚡</div>
+        <div class="scenario-details">
+          <h4 id="scenarioName">Medical Emergency</h4>
+          <p id="scenarioDesc">An unexpected bill requires immediate attention.</p>
+          <div class="scenario-impact" id="scenarioImpact">- ₹12,000</div>
+        </div>
+      </div>
+
+      <div class="saashya-advice-box">
+        <div class="sab-tag">Saashya's Insight</div>
+        <p id="saashyaScenarioText">"Life tests even the tightest budget. Reallocate your jars below to cover this expense."</p>
+      </div>
+      <div class="event-decision-row" aria-label="Choose a response to this life event">
+        <button type="button" class="event-decision" data-event-decision="emergency">Use emergency fund</button>
+        <button type="button" class="event-decision" data-event-decision="lifestyle">Reduce discretionary spending</button>
+        <button type="button" class="event-decision" data-event-decision="savings">Use savings / investments</button>
+        <button type="button" class="event-decision" data-event-decision="delay">Delay the goal</button>
+      </div>
+
+      <section class="comparison-card">
+        <div class="comparison-heading"><span class="risk-tag">Saashya AI analysis</span><h4>Your plan vs. optimized plan</h4></div>
+        <div id="budgetEvaluation" class="budget-evaluation">Allocate your response first — Saashya will then analyse its immediate and long-term impact.</div>
+        <div class="budget-score-comparison" id="budgetScoreComparison" aria-label="Current plan and improved plan score comparison"></div>
+        <div class="allocation-chart-heading"><span>Allocation comparison</span><small>Gold = your reallocation · Green = suggested plan</small></div>
+        <div class="allocation-chart" id="allocationChart" aria-label="Allocation comparison graph"></div>
+        <div class="comparison-table" id="comparisonTable"></div>
+        <div class="detailed-budget-insights" id="detailedBudgetInsights"></div>
+        <div class="gemini-budget-insight" id="geminiBudgetInsight" aria-live="polite"><strong>Gemini’s personalised review</strong><p>Gemini’s detailed insight will appear here after you review your reallocation.</p></div>
+      </section>
+
+      <div class="forecast-grid" id="forecastGrid">
+        <div><span>1-year savings</span><strong id="forecastSavings">₹0</strong></div>
+        <div><span>Emergency coverage</span><strong id="forecastEmergency">0 months</strong></div>
+        <div><span>Investment corpus</span><strong id="forecastInvestments">₹0</strong></div>
+        <div><span>Goal progress</span><strong id="forecastGoal">0%</strong></div>
+      </div>
+
+      <div class="reallocate-jars-wrap">
+        <h4>Rebuild your plan — drag or tap a jar to move ₹500 back to your wallet:</h4>
+        <div id="reallocateJarsList" class="reallocate-jars-list"></div>
+      </div>
+
+      <div class="budget-action-row"><button class="btn btn-outline" id="btnBorrowBudget">Borrow as last resort</button><button class="btn btn-outline" id="btnReviewReallocation">Review my reallocation</button><button class="btn btn-gold" id="btnCompleteMonth">Complete Month & View Financial Report ➔</button></div>
+    </div>
+
+    <!-- Stage 4: Monthly Financial Evaluation Report -->
+    <div class="budget-stage" id="budgetStageReport">
+      <div class="sim-head">
+        <span class="risk-tag" id="reportMonthTag">Month 1 Evaluation</span>
+        <h3>Your Budget Health Score</h3>
+      </div>
+
+      <div class="budget-complete-banner">
+        <h4>✦ Salary fully allocated</h4>
+        <p>Every rupee now has a purpose. Here is Saashya’s take on your plan.</p>
+      </div>
+
+      <div class="report-score-card">
+        <div class="report-score-circle">
+          <span class="score-num" id="reportScoreNum">88</span>
+          <span class="score-lbl">Health Score</span>
+        </div>
+        <div class="report-metrics-grid">
+          <div class="rm-item">
+            <span class="lbl">Goal Alignment</span>
+            <span class="val" id="reportGoalAlignmentVal">Strong (88)</span>
+          </div>
+          <div class="rm-item">
+            <span class="lbl">Savings Score</span>
+            <span class="val" id="reportSavingsVal">Excellent (92)</span>
+          </div>
+          <div class="rm-item">
+            <span class="lbl">Emergency Readiness</span>
+            <span class="val" id="reportEmergencyVal">Strong</span>
+          </div>
+          <div class="rm-item">
+            <span class="lbl">Goal Achievement</span>
+            <span class="val" id="reportGoalProbabilityVal">On track</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="saashya-advice-box">
+        <div class="sab-tag">Saashya's Monthly Review</div>
+        <p id="saashyaReportText">"Outstanding job allocating 20% to savings while managing the medical scenario smoothly!"</p>
+      </div>
+
+      <section class="projection-dashboard" aria-labelledby="projectionTitle">
+        <div class="projection-heading"><span class="risk-tag">Future projection</span><h4 id="projectionTitle">Your next 12 months</h4></div>
+        <svg id="budgetProjectionChart" viewBox="0 0 560 190" role="img" aria-label="Projected savings and investment growth over twelve months"></svg>
+        <div class="projection-metrics">
+          <div><span>Savings growth</span><strong id="projectionSavingsGrowth">₹0</strong></div>
+          <div><span>Investment growth</span><strong id="projectionInvestmentGrowth">₹0</strong></div>
+          <div><span>Emergency progress</span><strong id="projectionEmergencyProgress">0 months</strong></div>
+          <div><span>Goal timeline</span><strong id="projectionGoalTimeline">—</strong></div>
+        </div>
+      </section>
+
+      <div class="budget-action-row"><button class="btn btn-gold" id="btnNextMonth">Proceed to Next Month ➔</button></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ PROGRESS DASHBOARD MODAL ============ -->
+<div class="modal-overlay" id="passportModal">
+  <div class="modal-box passport-modal-box">
+    <button class="modal-close" data-close="passportModal">×</button>
+
+    <div class="passport-header">
+      <div class="passport-avatar" id="passportAvatar">👑</div>
+      <div class="passport-info">
+        <span class="risk-tag">Progress Dashboard</span>
+        <h3 id="passportName">Aaradhya Sharma</h3>
+        <div class="passport-level-pill" id="passportLevelPill">Level 1 · Financial Novice</div>
+      </div>
+    </div>
+
+    <div class="passport-body">
+      <div class="passport-xp-bar">
+        <div class="xp-info">
+          <span>Experience Points: <strong id="passportXpText">300 / 500 XP</strong></span>
+        </div>
+        <div class="xp-progress-wrap">
+          <div class="xp-progress-fill" id="passportXpFill" style="width: 60%;"></div>
+        </div>
+      </div>
+
+      <div class="progress-dashboard-summary" id="progressDashboardSummary">0 of 15 lessons complete</div>
+      <h4 class="passport-sec-title">Completed lessons</h4>
+      <div class="progress-lesson-list" id="progressLessonList"></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- ============ SIP SIMULATOR MODAL ============ -->
+<div class="modal-overlay sip-sim-overlay" id="sipSimModal">
+  <div class="sip-sim-container">
+    <!-- Top Bar -->
+    <div class="sip-sim-topbar">
+      <span style="font-size:20px">💹</span>
+      <h2 class="sip-sim-title">SIP Registration — SBI Branch</h2>
+      <div class="sip-sim-step-pills" id="sipStepPills"></div>
+      <span class="sip-sim-xp-tag">+200 XP</span>
+      <button class="sip-sim-restart-btn" onclick="restartSipSim()">↺ Restart</button>
+      <button class="modal-close" data-close="sipSimModal" style="position:relative;top:auto;right:auto;margin-left:8px;">×</button>
+    </div>
+    <!-- World -->
+    <div class="sip-sim-world">
+      <!-- Scene -->
+      <div class="sip-sim-scene" id="sipSimScene">
+        <div class="sip-sky-stars" id="sipSkyStars"></div>
+        <div class="sip-bank-building">
+          <div class="sip-bank-body">
+            <div class="sip-bank-sign"><span>STATE BANK OF INDIA</span></div>
+            <div class="sip-bank-pillars"><div class="sip-pillar"></div><div class="sip-pillar"></div><div class="sip-pillar"></div><div class="sip-pillar"></div></div>
+            <div class="sip-bank-windows"><div class="sip-bwin"></div><div class="sip-bwin"></div><div class="sip-bwin"></div></div>
+            <div class="sip-bank-door-area"><div class="sip-bank-door sip-clickable-hint" id="sipBankDoor" onclick="sipSceneDoorClick()">🚪</div></div>
+            <div class="sip-bank-steps"><div class="sip-step1"></div><div class="sip-step2"></div></div>
+          </div>
+        </div>
+        <div class="sip-atm-machine">
+          <div class="sip-atm-body">
+            <div class="sip-atm-screen">ATM</div>
+            <div class="sip-atm-keypad"><div class="sip-atm-key"></div><div class="sip-atm-key"></div><div class="sip-atm-key"></div><div class="sip-atm-key"></div><div class="sip-atm-key"></div><div class="sip-atm-key"></div><div class="sip-atm-key"></div><div class="sip-atm-key"></div><div class="sip-atm-key"></div></div>
+          </div>
+        </div>
+        <div class="sip-ground"><div class="sip-road-line"></div></div>
+        <div id="sipSceneNPCs"></div>
+        <div class="sip-scene-label" id="sipSceneLabel"></div>
+      </div>
+      <!-- Right Panel -->
+      <div class="sip-panel">
+        <div class="sip-panel-saashya">
+          <div class="sip-panel-saa-avatar" id="sipPanelSaaAvatar"></div>
+          <div class="sip-panel-saa-bubble">
+            <div class="sip-panel-saa-name">Saashya — Your Guide</div>
+            <div class="sip-panel-saa-text" id="sipSaashyaGuideText">Hi! I'm Saashya. I'll walk you through every step. Click the glowing elements in the scene to begin!</div>
+          </div>
+        </div>
+        <div class="sip-panel-steps"><div class="sip-panel-steps-title">📋 Your Steps</div><div id="sipStepsList"></div></div>
+        <div id="sipActionBox"></div>
+        <div id="sipCompletionBox"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="src/main.js"></script>
+<script src="script.js"></script></body></html>
