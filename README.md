@@ -1,13 +1,61 @@
-# Fin2edge local demo
+# Fin2edge — Wealth, Refined
 
-The AI assistant is ready to use through the included local server. From this folder, run:
+An immersive financial literacy web app featuring **Saashya**, an AI mentor who teaches banking, SIPs, and mutual funds through a 3D, story-driven experience.
+
+> ⚠️ All trading/market data is simulated for education only — not real investment advice.
+
+## Features
+- **Saashya AI Guide** — voice-enabled mentor (TTS/STT) powered by Gemini
+- **Bank Simulator** — budgeting, risk profiling, monthly progression
+- **SIP Learning Engine** — step-by-step lessons on SIPs & compounding
+- **Strategy Vault** — investment strategy explorer
+- **Simulated Trading Exchange** — sandboxed market with allocation charts
+- **Cinematic Intro** — video-driven onboarding
+
+## Tech Stack
+Three.js · GSAP · Vanilla JS (ES modules) · Node.js server · Gemini API · Web Speech API
+
+## Project Structure
+```
+├── index.html / strategy-vault.html / vault_section.html
+├── styles.css, script.js, vault.js
+├── server.mjs         # static + Gemini proxy server
+├── assets/            # intro video
+└── src/
+    ├── main.js
+    ├── config/, components/, features/
+    ├── services/       # gemini, speech, investment, user
+    ├── data/lessons/
+    └── utils/
+```
+
+## Getting Started
 
 ```sh
+git clone <your-repo-url>
+cd fin2edge
 npm start
 ```
 
-Then open `http://localhost:3000` and select the **AI** button beside Saashya.
+Open **http://localhost:3000**.
 
-The Gemini key is held in `.env` and is sent to Google only by `server.mjs`; it is never included in the browser JavaScript. Do not deploy this project as a static site or commit `.env` to source control. For production, set `GEMINI_API_KEY` in the host's secret manager and deploy the server endpoint with the app.
+### Enable the AI Assistant
+Set your key in `.env`:
+```
+GEMINI_API_KEY=your_key_here
+GEMINI_MODEL=gemini-1.5-flash
+```
+Restart the server, then click **AI** beside Saashya.
 
-The default assistant model is `gemini-1.5-flash`. Change `GEMINI_MODEL` in `.env` if your Google project requires a different available Gemini model.
+## Security
+- Requires the Node server — **do not deploy as a static site** (Gemini key must stay server-side)
+- Never commit `.env`
+- In production, set `GEMINI_API_KEY` via your host's secret manager
+
+## Roadmap
+- [ ] Real market analysis & stock evaluation
+- [ ] 2D investing demo
+- [ ] RPG-style explorable world with NPCs/quests
+
+## License
+Add your license here (e.g. MIT).
