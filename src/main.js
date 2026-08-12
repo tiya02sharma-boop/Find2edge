@@ -15,6 +15,8 @@ import { currentLessonIndex, setLessonStepIndex, nextLessonStep, prevLessonStep,
 import { renderVoiceControlsUI } from './components/saashya/voiceControls.js';
 
 import { initFin2EdgeIntro } from './features/intro/introController.js';
+import { initAuthPortal } from './features/auth/authPortalController.js';
+import * as authService from './services/auth/authService.js';
 
 // Expose services on window for debugging & seamless integration
 window.Fin2edgeModules = {
@@ -26,16 +28,22 @@ window.Fin2edgeModules = {
   sttService,
   recommender: { getRecommendedFundCategories, calculateRecommendedSipAmount, projectSipGrowth },
   lessonEngine: { SIP_LESSONS, setLessonStepIndex, nextLessonStep, prevLessonStep, renderCurrentLessonStep },
-  initFin2EdgeIntro
+  initFin2EdgeIntro,
+  authService
 };
 
 // Initialize User Profile & Onboarding Video Intro
 loadUserProfile();
 
-if (document.readyState !== 'loading') {
+function boot() {
   initFin2EdgeIntro();
+  initAuthPortal();
+}
+
+if (document.readyState !== 'loading') {
+  boot();
 } else {
-  document.addEventListener('DOMContentLoaded', initFin2EdgeIntro);
+  document.addEventListener('DOMContentLoaded', boot);
 }
 
 console.log('✨ Fin2edge Modular Architecture & Intro Experience Initialized Successfully.');
