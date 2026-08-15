@@ -15,6 +15,9 @@ export let userProfile = {
   age: 24,
   profession: 'Student',
   monthlyIncome: 25000,
+  personalGoals: '',
+  ambitions: '',
+  fiveYearPlan: '',
   createdAt: null
 };
 
