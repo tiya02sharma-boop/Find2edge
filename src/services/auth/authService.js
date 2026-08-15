@@ -1,81 +1,136 @@
 /**
  * Auth Service
- * Talks to /api/auth and /api/profile on the backend, and keeps the
- * session token + current user in memory (token also persisted so a
- * refresh doesn't sign the user out).
+ * Same public API as before (registerUser, loginUser, fetchCurrentUser,
+ * updateProfile, logoutUser, isLoggedIn, getCurrentUser) so
+ * authPortalController.js doesn't need to change — but now backed by
+ * Supabase Auth + the `profiles` table instead of the old Express/JWT
+ * backend and better-sqlite3.
  */
-
-const TOKEN_KEY = 'fin2edge-token';
+import { supabase } from '../../config/supabaseClient.js';
 
 let currentUser = null;
 
-export function getToken() {
-  return localStorage.getItem(TOKEN_KEY);
+// Builds the same { id, full_name, email, created_at, profile } shape the
+// old backend used to return, from a Supabase auth user + profiles row.
+function toAppUser(authUser, profileRow) {
+  if (!authUser) return null;
+  return {
+    id: authUser.id,
+    full_name: profileRow?.full_name || authUser.user_metadata?.full_name || '',
+    email: authUser.email,
+    created_at: authUser.created_at,
+    profile: profileRow || null
+  };
 }
 
-function setToken(token) {
-  if (token) localStorage.setItem(TOKEN_KEY, token);
-  else localStorage.removeItem(TOKEN_KEY);
+async function fetchProfileRow(userId) {
+  const { data, error } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('id', userId)
+    .single();
+  if (error) throw new Error(error.message);
+  return data;
 }
 
 export function getCurrentUser() {
   return currentUser;
 }
 
-async function apiRequest(path, options = {}) {
-  const token = getToken();
-  const res = await fetch(path, {
-    ...options,
-    headers: {
-      'Content-Type': 'application/json',
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-      ...(options.headers || {})
+export async function registerUser(fields) {
+  const { fullName, email, password, avatar, age, goal, experience, profession,
+    monthlyIncome, personalGoals, ambitions, fiveYearPlan } = fields;
+
+  // Extra profile fields ride along as user_metadata; the on_auth_user_created
+  // trigger (sql/001_profiles_and_auth.sql) reads them and creates the
+  // matching row in `profiles` automatically.
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: {
+        full_name: fullName,
+        avatar, age, goal, experience, profession,
+        monthly_income: monthlyIncome,
+        personal_goals: personalGoals,
+        ambitions,
+        five_year_plan: fiveYearPlan
+      }
     }
   });
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.error || 'Something went wrong. Please try again.');
-  return data;
-}
+  if (error) throw new Error(error.message);
 
-export async function registerUser(fields) {
-  const data = await apiRequest('/api/auth/register', { method: 'POST', body: JSON.stringify(fields) });
-  setToken(data.token);
-  currentUser = data.user;
-  return data.user;
+  // If email confirmation is required in your Supabase auth settings,
+  // data.session will be null here — there's no session yet to fetch a
+  // profile with, so return what we know and let fetchCurrentUser() pick
+  // it up once they've confirmed and signed in.
+  if (!data.session) {
+    currentUser = toAppUser(data.user, null);
+    return currentUser;
+  }
+
+  const profile = await fetchProfileRow(data.user.id);
+  currentUser = toAppUser(data.user, profile);
+  return currentUser;
 }
 
 export async function loginUser(email, password) {
-  const data = await apiRequest('/api/auth/login', { method: 'POST', body: JSON.stringify({ email, password }) });
-  setToken(data.token);
-  currentUser = data.user;
-  return data.user;
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+  if (error) throw new Error(error.message);
+
+  const profile = await fetchProfileRow(data.user.id);
+  currentUser = toAppUser(data.user, profile);
+  return currentUser;
 }
 
 export async function fetchCurrentUser() {
-  if (!getToken()) return null;
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) {
+    currentUser = null;
+    return null;
+  }
   try {
-    const data = await apiRequest('/api/auth/me');
-    currentUser = data.user;
-    return data.user;
+    const profile = await fetchProfileRow(session.user.id);
+    currentUser = toAppUser(session.user, profile);
+    return currentUser;
   } catch {
-    // Token expired/invalid — clear it so we don't keep retrying.
-    setToken(null);
     currentUser = null;
     return null;
   }
 }
 
 export async function updateProfile(fields) {
-  const data = await apiRequest('/api/profile', { method: 'PUT', body: JSON.stringify(fields) });
-  if (currentUser) currentUser.profile = data.profile;
-  return data.profile;
+  if (!currentUser) throw new Error('Not signed in.');
+  const { avatar, age, goal, experience, profession, monthlyIncome,
+    personalGoals, ambitions, fiveYearPlan } = fields;
+
+  const { data, error } = await supabase
+    .from('profiles')
+    .update({
+      ...(avatar !== undefined && { avatar }),
+      ...(age !== undefined && { age }),
+      ...(goal !== undefined && { goal }),
+      ...(experience !== undefined && { experience }),
+      ...(profession !== undefined && { profession }),
+      ...(monthlyIncome !== undefined && { monthly_income: monthlyIncome }),
+      ...(personalGoals !== undefined && { personal_goals: personalGoals }),
+      ...(ambitions !== undefined && { ambitions }),
+      ...(fiveYearPlan !== undefined && { five_year_plan: fiveYearPlan })
+    })
+    .eq('id', currentUser.id)
+    .select()
+    .single();
+  if (error) throw new Error(error.message);
+
+  currentUser.profile = data;
+  return data;
 }
 
-export function logoutUser() {
-  setToken(null);
+export async function logoutUser() {
+  await supabase.auth.signOut();
   currentUser = null;
 }
 
 export function isLoggedIn() {
-  return Boolean(getToken() && currentUser);
+  return Boolean(currentUser);
 }
